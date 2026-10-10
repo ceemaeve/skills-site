@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://skilltrainingcompleted.dev/sitemap.xml
+Sitemap: https://skills.ceema.dev/sitemap.xml

@@ -1,0 +1,28 @@
+# Draws og.png (social preview card). Run from this folder: python3 make_og.py
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
+W,H=1200,630
+void=(3,6,14); blue=(46,139,255); cyan=(53,214,255); pink=(228,139,195); dim=(139,152,184); white=(255,255,255)
+im=Image.new("RGB",(W,H),void)
+g=Image.new("RGB",(W,H),void); d=ImageDraw.Draw(g)
+d.ellipse((-250,-350,700,350),fill=(18,36,90)); d.ellipse((700,-250,1450,300),fill=(58,15,77))
+g=g.filter(ImageFilter.GaussianBlur(120)); im=Image.blend(im,g,0.9)
+d=ImageDraw.Draw(im,"RGBA")
+for x in range(0,W,42): d.line([(x,0),(x,H)],fill=(46,139,255,14))
+for y in range(0,H,42): d.line([(0,y),(W,y)],fill=(46,139,255,14))
+P="/usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf"; M="/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
+f=lambda p,s: ImageFont.truetype(p,s)
+glow=Image.new("RGBA",(W,H),(0,0,0,0)); gd=ImageDraw.Draw(glow)
+gd.ellipse((90,90,190,190),outline=blue+(255,),width=6)
+glow=glow.filter(ImageFilter.GaussianBlur(10)); im.paste(glow,(0,0),glow)
+d=ImageDraw.Draw(im,"RGBA")
+d.ellipse((90,90,190,190),outline=blue,width=4)
+d.text((140,140),"S",font=f(P,52),fill=white,anchor="mm")
+d.text((215,128),"TEL",font=f(M,30),fill=cyan,anchor="lm")
+d.text((215,162),"THIS EVE LIFE FAMILY",font=f(M,20),fill=dim,anchor="lm")
+d.text((90,300),"Skill Training",font=f(P,104),fill=white,anchor="ls")
+d.text((90,415),"Completed",font=f(P,104),fill=pink,anchor="ls")
+d.text((92,480),"Skills first, certs optional",font=f(M,34),fill=cyan,anchor="ls")
+d.line([(90,525),(1110,525)],fill=(28,44,77,255),width=2)
+d.text((90,578),"14 sprints · 7 exam gates · 5 tracks",font=f(M,22),fill=dim,anchor="ls")
+d.text((1110,578),"skilltrainingcompleted.dev",font=f(M,22),fill=white,anchor="rs")
+im.save(__import__("os").path.join(__import__("os").path.dirname(__import__("os").path.abspath(__file__)),"og.png"),optimize=True)

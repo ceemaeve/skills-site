@@ -1,0 +1,37 @@
+{
+  "sprints": [
+    {"id":"S0","name":"Lab and foundations","weeks":2,"outcome":"A working, snapshotted lab, and comfort with the command line on both operating systems."},
+    {"id":"S1","name":"Networking and name resolution","weeks":3,"outcome":"Design and troubleshoot addressing, DNS and DHCP on both platforms."},
+    {"id":"S2","name":"Identity and directory services","weeks":4,"outcome":"Build and run an Active Directory environment and apply policy at scale."},
+    {"id":"S3","name":"Hybrid identity and governance","weeks":3,"outcome":"Connect on-premises identity to the cloud and control access and cost there."},
+    {"id":"S4","name":"Compute and virtualization","weeks":3,"outcome":"Deploy and manage servers on-premises and in Azure and explain the tradeoffs."},
+    {"id":"S5","name":"Storage and file services","weeks":3,"outcome":"Provide and protect storage for users and workloads on-premises and in Azure."},
+    {"id":"S6","name":"Security and hardening","weeks":3,"outcome":"Measure a server against a baseline and fix the gaps."},
+    {"id":"S7","name":"Monitoring, backup and troubleshooting","weeks":3,"outcome":"Watch systems, restore them, and trace faults step by step."},
+    {"id":"S8","name":"Automation and infrastructure as code","weeks":3,"outcome":"Build repeatable environments from code instead of by hand."},
+    {"id":"S9","name":"Cloud architecture and operations","weeks":3,"outcome":"Pick the right cloud design and explain cost, risk and migration."},
+    {"id":"S10","name":"Linux services and advanced administration","weeks":4,"outcome":"Run the core network services and manage boot, kernel and capacity on Linux."},
+    {"id":"S11","name":"Security operations, governance and risk","weeks":3,"outcome":"Detect and respond to incidents and explain security in business terms."},
+    {"id":"S12","name":"Containers, virtualization and high availability","weeks":4,"outcome":"Run and secure containers and design for availability."},
+    {"id":"S13","name":"Capstone","weeks":3,"outcome":"One integrated environment that proves the whole skill set."}
+  ],
+  "gates": [
+    {"id":"g802","name":"AZ-802 exam","weeks":1,"note":"Exam week plus review"},
+    {"id":"g104","name":"AZ-104 exam","weeks":1,"note":"Exam week plus review"},
+    {"id":"gcloud","name":"Cloud+ exam","weeks":1,"note":"Review week, then the exam"},
+    {"id":"glinux","name":"Linux+ and LPIC-1 exams","weeks":2,"note":"Two review weeks, then the exams"},
+    {"id":"gsec","name":"Security+ exam","weeks":1,"note":"Review week, then the exam"},
+    {"id":"glpic2","name":"LPIC-2 exams","weeks":2,"note":"Two review weeks, then the exams"},
+    {"id":"glpic3","name":"LPIC-3 exam (one track)","weeks":2,"note":"Two review weeks, then the exam"}
+  ],
+  "tracks": [
+    {"id":"A","name":"Skills only","blurb":"All fourteen sprints with no exam gates. You get the skills without the certificates.","fit":"Learning without exams","items":["S0","S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13"],"gates":false},
+    {"id":"B","name":"Microsoft","blurb":"Windows Server and Azure, ending in AZ-802 and AZ-104.","fit":"Windows and Microsoft 365 administration","items":["S0","S1","S2","S3","S4","S5","S6","S7","g802","S8","g104"],"gates":true},
+    {"id":"C","name":"Linux","blurb":"Linux+, then LPIC-1, 2 and 3, with the Linux lane as the main lab.","fit":"Linux server administration","items":["S0","S1","S2","S5","S6","S7","S8","S10","glinux","S12","glpic2","S13","glpic3"],"gates":true},
+    {"id":"D","name":"Security","blurb":"Hardening, monitoring and security operations, ending in Security+.","fit":"Security or compliance","items":["S0","S1","S2","S6","S7","S9","gcloud","S11","gsec","S13"],"gates":true},
+    {"id":"E","name":"Everyone","blurb":"The full path: all fourteen sprints and every exam gate.","fit":"A mix, or growing into a senior generalist","items":["S0","S1","S2","S3","S4","S5","S6","S7","g802","S8","g104","S9","gcloud","S10","glinux","S11","gsec","S12","glpic2","S13","glpic3"],"gates":true}
+  ],
+  "certs": ["Microsoft AZ-802","Microsoft AZ-104","CompTIA Cloud+","CompTIA Security+","CompTIA Linux+","LPIC-1","LPIC-2","LPIC-3"],
+  "kitUrl": "https://github.com/ceemaeve/skill-training-completed",
+  "homeUrl": "https://thisevelife.space"
+}

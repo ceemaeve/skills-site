@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Study Calendar - TEL - Skill Training Completed</title>
+<meta name="description" content="Pick a track, a start date and your weekly hours. Get a sprint-by-sprint study calendar you can download.">
+<link rel="icon" type="image/png" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<meta name="theme-color" content="#03060e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Study Calendar - TEL - Skill Training Completed">
+<meta property="og:description" content="Pick a track, a start date and your weekly hours. Get a sprint-by-sprint study calendar.">
+<meta property="og:url" content="https://skilltrainingcompleted.dev/calendar.html">
+<meta property="og:image" content="https://skilltrainingcompleted.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="TEL - Skill Training Completed: skills first, certs optional">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap">
+<style>
+__SHARED_CSS__
+  .hero{padding-block:clamp(36px,6vw,56px) 12px;}
+  .hero h1{font-size:clamp(28px,4.6vw,44px);}
+  .controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:24px;background:var(--panel);border:1px solid var(--edge);padding:16px;}
+  .field{display:flex;flex-direction:column;gap:6px;min-width:0;}
+  .field label,.field .lab{font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);}
+  select,input[type=date]{background:var(--panel-2);border:1px solid var(--edge);color:var(--text-hi);font:inherit;font-size:16px;padding:9px 10px;border-radius:6px;width:100%;color-scheme:dark;}
+  .check{display:flex;align-items:center;gap:10px;font-size:16px;color:var(--text-mid);padding-top:4px;}
+  .check input{width:18px;height:18px;accent-color:var(--blue);}
+  .check.off{opacity:.45;}
+  .summary{margin-top:14px;display:flex;gap:12px 22px;flex-wrap:wrap;align-items:center;justify-content:space-between;}
+  .stats{font-family:var(--font-mono);font-size:13.5px;color:var(--text-dim);}
+  .stats b{color:var(--cyan);font-weight:400;}
+  .toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:26px;}
+  .month-nav{display:flex;align-items:center;gap:10px;}
+  .month-nav button{background:var(--panel);border:1px solid var(--edge);color:var(--text-hi);width:38px;height:38px;border-radius:6px;font-size:18px;cursor:pointer;}
+  .month-nav button:disabled{opacity:.35;cursor:default;}
+  .month-name{font-family:var(--font-display);font-weight:800;color:var(--text-hi);font-size:clamp(18px,2.6vw,22px);min-width:11ch;text-align:center;letter-spacing:.04em;}
+  .cal{margin-top:16px;background:var(--panel);border:1px solid var(--edge);}
+  .dow,.grid{display:grid;grid-template-columns:repeat(7,1fr);}
+  .dow div{padding:8px 6px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;color:var(--text-faint);text-align:center;border-bottom:1px solid var(--edge);}
+  .day{min-height:78px;padding:6px;border-right:1px solid var(--edge);border-bottom:1px solid var(--edge);display:flex;flex-direction:column;gap:4px;min-width:0;}
+  .grid .day:nth-child(7n){border-right:none;}
+  .day.out{opacity:.3;}
+  .day .num{font-family:var(--font-mono);font-size:12.5px;color:var(--text-dim);}
+  .day.sprint{background:#2e8bff14;}
+  .day.gate{background:#b9559c24;}
+  .day.today{box-shadow:inset 0 0 0 1px var(--cyan);}
+  .ev{font-size:12px;line-height:1.25;color:var(--text-hi);background:#2e8bff22;border-left:2px solid var(--blue);padding:3px 5px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;word-break:break-word;}
+  .ev .t{font-family:var(--font-mono);color:var(--cyan);margin-right:4px;}
+  .ev.gate{background:#b9559c33;border-left-color:var(--magenta);}.ev.gate .t{color:var(--pink);}
+  @media(max-width:700px){
+    .day{min-height:48px;align-items:center;}
+    .ev{font-size:0;padding:0;width:8px;height:8px;border-radius:50%;border:0;background:var(--blue);-webkit-line-clamp:unset;}
+    .ev.gate{background:var(--pink);}
+    .ev .t{display:none;}
+  }
+  .agenda{margin-top:34px;}
+  .agenda h2{font-size:clamp(20px,3vw,26px);margin:0 0 12px;letter-spacing:.04em;}
+  .row{display:flex;gap:18px;padding:14px 16px;background:var(--panel);border:1px solid var(--edge);margin-bottom:10px;}
+  .row.gate{border-left:3px solid var(--magenta);}
+  .when{flex:none;width:170px;font-family:var(--font-mono);font-size:13.5px;color:var(--cyan);}
+  .when small{display:block;color:var(--text-faint);font-size:12px;margin-top:2px;}
+  .what .name{font-weight:700;color:var(--text-hi);font-size:16.5px;line-height:1.3;}
+  .what .desc{color:var(--text-dim);font-size:15px;margin-top:3px;}
+  .tag{display:inline-block;margin-top:6px;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;border:1px solid var(--blue);color:var(--cyan);}
+  .tag.gate{border-color:var(--magenta);color:var(--pink);}
+  @media(max-width:560px){.row{flex-direction:column;gap:6px;}.when{width:auto;}}
+  .note{margin-top:14px;font-family:var(--font-mono);font-size:12.5px;color:var(--text-faint);max-width:80ch;}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="/"><span class="badge">S</span><span class="brand-word">TEL - SKILL TRAINING<span>STUDY CALENDAR</span></span></a>
+    <nav class="nav"><a class="btn btn-primary" href="/">Back to Home</a><a class="btn btn-ghost" href="__KIT_URL__">Download the Kit</a></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <span class="eyebrow">Plan your path</span>
+    <h1>Study <span style="color:var(--pink)">Calendar</span></h1>
+    <p style="margin:12px 0 0;color:var(--text-dim);max-width:62ch">Choose a track, a start date and the hours you can give each week. The calendar lays out each sprint and exam gate in order. It runs in your browser and saves or sends nothing.</p>
+  </section>
+
+  <div class="controls">
+    <div class="field"><label for="track">Track</label><select id="track"></select></div>
+    <div class="field"><label for="start">Start date</label><input type="date" id="start"></div>
+    <div class="field"><label for="hours">Hours per week</label><select id="hours"><option value="2">2 hours</option><option value="4">4 hours</option><option value="6">6 hours</option><option value="8" selected>8 hours</option><option value="12">12 hours</option><option value="16">16 hours</option></select></div>
+    <div class="field"><span class="lab">Exams</span><label class="check" id="gate-wrap"><input type="checkbox" id="gates" checked> Include exam gates</label></div>
+  </div>
+
+  <div class="summary">
+    <div class="stats" id="stats"></div>
+    <button type="button" class="btn btn-ghost" id="ics">Download .ics</button>
+  </div>
+
+  <div class="toolbar">
+    <div class="month-nav">
+      <button type="button" id="prev" aria-label="Previous month">&lsaquo;</button>
+      <div class="month-name" id="month-name">&nbsp;</div>
+      <button type="button" id="next" aria-label="Next month">&rsaquo;</button>
+    </div>
+  </div>
+  <div class="cal">
+    <div class="dow"><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div></div>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <section class="agenda"><h2>Sprint by sprint</h2><div id="agenda"></div></section>
+  <p class="note">Week counts are planning estimates built on 8 hours a week, and they scale with your hours. Exam gate weeks are review time, so book the exam inside that window. Check the official exam pages for current versions before you book.</p>
+</main>
+
+<footer><div class="wrap">&copy; 2026 TEL - Skill Training Completed, part of <a href="__HOME_URL__">This EVE Life</a>. Not affiliated with or endorsed by Microsoft, CompTIA or LPI.</div></footer>
+
+<script>
+(function () {
+  "use strict";
+  var DATA = __DATA__;
+  var MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var MS = 86400000;
+  var byId = {};
+  DATA.sprints.forEach(function (s) { s.kind = "sprint"; byId[s.id] = s; });
+  DATA.gates.forEach(function (g) { g.kind = "gate"; g.outcome = g.note; g.short = "Exam"; byId[g.id] = g; });
+
+  function $(id) { return document.getElementById(id); }
+  function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+  function pad(n) { return n < 10 ? "0" + n : "" + n; }
+  function iso(ms) { var d = new Date(ms); return d.getUTCFullYear() + "-" + pad(d.getUTCMonth() + 1) + "-" + pad(d.getUTCDate()); }
+  function parseIso(s) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || ""); return m ? Date.UTC(+m[1], +m[2] - 1, +m[3]) : NaN; }
+  function fmt(ms) { var d = new Date(ms); return MONTHS[d.getUTCMonth()].slice(0, 3) + " " + d.getUTCDate(); }
+  function mondayOnOrAfter(ms) { var wd = (new Date(ms).getUTCDay() + 6) % 7; return wd === 0 ? ms : ms + (7 - wd) * MS; }
+  function todayUtc() { var d = new Date(); return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()); }
+
+  var items = [], view = null;
+
+  function build() {
+    var track = DATA.tracks.filter(function (t) { return t.id === $("track").value; })[0];
+    var hours = +$("hours").value || 8;
+    var useGates = track.gates && $("gates").checked;
+    var start = parseIso($("start").value);
+    if (isNaN(start)) start = mondayOnOrAfter(todayUtc());
+    start = mondayOnOrAfter(start);
+    var cursor = start, n = 0, totalWeeks = 0;
+    items = [];
+    track.items.forEach(function (id) {
+      var it = byId[id];
+      if (it.kind === "gate" && !useGates) return;
+      var weeks = it.kind === "sprint" ? Math.max(1, Math.ceil(it.weeks * 8 / hours)) : it.weeks;
+      var from = cursor, to = cursor + weeks * 7 * MS - MS;
+      items.push({ it: it, from: from, to: to, weeks: weeks, w0: totalWeeks + 1, w1: totalWeeks + weeks });
+      totalWeeks += weeks; cursor = to + MS;
+    });
+    var end = items.length ? items[items.length - 1].to : start;
+    var sprintCount = items.filter(function (x) { return x.it.kind === "sprint"; }).length;
+    var gateCount = items.length - sprintCount;
+    $("stats").textContent = "";
+    [["Track " + track.id + ": " + track.name, ""], [sprintCount + " sprints", ""], [gateCount + " exam gates", ""], [totalWeeks + " weeks (about " + (Math.round(totalWeeks / 4.345 * 10) / 10) + " months)", ""], ["Finish around " + fmt(end) + " " + new Date(end).getUTCFullYear(), ""]]
+      .forEach(function (p, i) { if (i) $("stats").appendChild(document.createTextNode("  |  ")); var b = el("b", null, p[0]); $("stats").appendChild(b); });
+    $("gate-wrap").classList.toggle("off", !track.gates);
+    $("gates").disabled = !track.gates;
+    view = { y: new Date(start).getUTCFullYear(), m: new Date(start).getUTCMonth() };
+    render(start, end);
+  }
+
+  function bounds(start, end) { var s = new Date(start), e = new Date(end); return { a: s.getUTCFullYear() * 12 + s.getUTCMonth(), b: e.getUTCFullYear() * 12 + e.getUTCMonth() }; }
+
+  function render(start, end) {
+    start = items.length ? items[0].from : start; end = items.length ? items[items.length - 1].to : end;
+    var bd = bounds(start, end), cur = view.y * 12 + view.m;
+    if (cur < bd.a) { view = { y: Math.floor(bd.a / 12), m: bd.a % 12 }; cur = bd.a; }
+    if (cur > bd.b) { view = { y: Math.floor(bd.b / 12), m: bd.b % 12 }; cur = bd.b; }
+    $("month-name").textContent = MONTHS[view.m] + " " + view.y;
+    $("prev").disabled = cur <= bd.a; $("next").disabled = cur >= bd.b;
+    var grid = $("grid"); grid.textContent = "";
+    var firstDow = (new Date(Date.UTC(view.y, view.m, 1)).getUTCDay() + 6) % 7;
+    var gridStart = Date.UTC(view.y, view.m, 1 - firstDow), today = todayUtc();
+    for (var i = 0; i < 42; i++) {
+      var ms = gridStart + i * MS, d = new Date(ms);
+      if (i >= 35 && d.getUTCMonth() !== view.m) break;
+      var hit = null;
+      for (var j = 0; j < items.length; j++) if (ms >= items[j].from && ms <= items[j].to) { hit = items[j]; break; }
+      var cell = el("div", "day" + (d.getUTCMonth() !== view.m ? " out" : "") + (hit ? " " + hit.it.kind : "") + (ms === today ? " today" : ""));
+      cell.appendChild(el("span", "num", String(d.getUTCDate())));
+      if (hit && ms === hit.from) {
+        var ev = el("div", "ev " + hit.it.kind);
+        ev.appendChild(el("span", "t", hit.it.kind === "sprint" ? hit.it.id : "EXAM"));
+        ev.appendChild(document.createTextNode(hit.it.kind === "sprint" ? hit.it.name : hit.it.name));
+        cell.appendChild(ev);
+      }
+      grid.appendChild(cell);
+    }
+    var ag = $("agenda"); ag.textContent = "";
+    items.forEach(function (x) {
+      var row = el("div", "row " + x.it.kind);
+      var when = el("div", "when", fmt(x.from) + " to " + fmt(x.to));
+      when.appendChild(el("small", null, "Week " + (x.w0 === x.w1 ? x.w0 : x.w0 + " to " + x.w1) + " (" + x.weeks + (x.weeks === 1 ? " week)" : " weeks)")));
+      var what = el("div", "what");
+      what.appendChild(el("div", "name", (x.it.kind === "sprint" ? x.it.id + ". " : "") + x.it.name));
+      what.appendChild(el("div", "desc", x.it.outcome));
+      what.appendChild(el("span", "tag " + x.it.kind, x.it.kind === "sprint" ? "Sprint" : "Exam gate"));
+      row.appendChild(when); row.appendChild(what); ag.appendChild(row);
+    });
+  }
+
+  function icsEscape(s) { return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n"); }
+  function download() {
+    var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//TEL Skill Training Completed//Study Calendar//EN", "CALSCALE:GREGORIAN"];
+    var stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+Z$/, "Z");
+    items.forEach(function (x, i) {
+      var s = iso(x.from).replace(/-/g, ""), e = iso(x.to + MS).replace(/-/g, "");
+      lines.push("BEGIN:VEVENT", "UID:stc-" + i + "-" + s + "@skilltrainingcompleted.dev", "DTSTAMP:" + stamp,
+        "DTSTART;VALUE=DATE:" + s, "DTEND;VALUE=DATE:" + e,
+        "SUMMARY:" + icsEscape((x.it.kind === "sprint" ? x.it.id + " " : "Exam: ") + x.it.name),
+        "DESCRIPTION:" + icsEscape(x.it.outcome), "TRANSP:TRANSPARENT", "END:VEVENT");
+    });
+    lines.push("END:VCALENDAR");
+    var blob = new Blob([lines.join("\r\n") + "\r\n"], { type: "text/calendar" });
+    var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "skill-training-calendar.ics";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+  }
+
+  DATA.tracks.forEach(function (t) { var o = el("option", null, t.id + ": " + t.name); o.value = t.id; $("track").appendChild(o); });
+  var q = new URLSearchParams(location.search), qt = (q.get("track") || "").toUpperCase();
+  if (DATA.tracks.some(function (t) { return t.id === qt; })) $("track").value = qt; else $("track").value = "E";
+  $("start").value = iso(mondayOnOrAfter(todayUtc()));
+  ["track", "start", "hours", "gates"].forEach(function (id) { $(id).addEventListener("change", build); });
+  $("prev").addEventListener("click", function () { view = { y: view.m ? view.y : view.y - 1, m: (view.m + 11) % 12 }; render(); });
+  $("next").addEventListener("click", function () { view = { y: view.m === 11 ? view.y + 1 : view.y, m: (view.m + 1) % 12 }; render(); });
+  $("ics").addEventListener("click", download);
+  build();
+})();
+</script>
+</body>
+</html>

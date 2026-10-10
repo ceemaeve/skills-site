@@ -1,0 +1,62 @@
+name: Deploy to VPS
+
+# Every push to main builds the site from src/ into site/, then syncs site/ to /var/www/skills on the ceema.dev VPS.
+# Caddy serves that folder at https://skills.ceema.dev. DEPLOY_PATH must be /var/www/skills: --delete would wipe any other folder.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check deploy settings
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          fail() { echo "::error::$1"; exit 1; }
+          [ -n "$DEPLOY_USER" ] || fail "DEPLOY_USER secret is missing or empty."
+          [ -n "$DEPLOY_HOST" ] || fail "DEPLOY_HOST secret is missing or empty."
+          [ -n "$DEPLOY_PATH" ] || fail "DEPLOY_PATH secret is missing or empty."
+          [ -n "$DEPLOY_SSH_KEY" ] || fail "DEPLOY_SSH_KEY secret is missing or empty."
+          [ -n "$DEPLOY_KNOWN_HOSTS" ] || fail "DEPLOY_KNOWN_HOSTS secret is missing or empty."
+          [[ "$DEPLOY_USER" =~ ^[a-z_][a-z0-9_-]*$ ]] || fail "DEPLOY_USER must be only a username such as deploy (no spaces, slashes, new lines or other text)."
+          [[ "$DEPLOY_HOST" =~ ^[A-Za-z0-9.-]+$ ]] || fail "DEPLOY_HOST must be only an IP address or hostname such as 66.94.127.56 (no spaces, slashes, new lines or other text)."
+          [ "$DEPLOY_PATH" = "/var/www/skills" ] || fail "DEPLOY_PATH must be exactly /var/www/skills (this deploy deletes files the site no longer has)."
+          [[ "$DEPLOY_SSH_KEY" == *"BEGIN OPENSSH PRIVATE KEY"* && "$DEPLOY_SSH_KEY" == *"END OPENSSH PRIVATE KEY"* ]] || fail "DEPLOY_SSH_KEY must include both the BEGIN and END OPENSSH PRIVATE KEY lines."
+          [[ "$DEPLOY_KNOWN_HOSTS" == "$DEPLOY_HOST ssh-ed25519 "* ]] || fail "DEPLOY_KNOWN_HOSTS must be one line starting with the same address as DEPLOY_HOST, followed by ssh-ed25519 and the key."
+          echo "Deploy settings look well-formed."
+
+      - name: Build the site
+        run: python3 src/build.py
+
+      - name: Install SSH key and pinned host key
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+      - name: Sync site files
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          rsync -az --delete --chmod=D755,F644 \
+            -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes" \
+            site/ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"

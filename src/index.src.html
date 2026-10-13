@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Skill Training Completed</title>
-<meta name="description" content="A skills-first study path from IT basics to Windows Server, Azure, Linux, cloud and security. One home lab, 18 sprints, certifications optional.">
+<meta name="description" content="A skills-first study path from IT basics to Windows Server, Azure, Linux, AWS, cloud and security. One home lab, 19 sprints, certifications optional.">
 <link rel="icon" type="image/png" href="/favicon.png?v=2">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <meta name="theme-color" content="#140c2b">
@@ -12,7 +12,7 @@
 <meta property="og:title" content="Skill Training Completed">
 <meta property="og:description" content="A skills-first study path for Windows Server, Azure, Linux, cloud and security. Certifications optional.">
 <meta property="og:url" content="https://skills.ceema.dev/">
-<meta property="og:image" content="https://skills.ceema.dev/og.png?v=5">
+<meta property="og:image" content="https://skills.ceema.dev/og.png?v=6">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Skill Training Completed: skills first, certs optional">
@@ -50,7 +50,7 @@ __SHARED_CSS__
   .choose a{display:flex;justify-content:space-between;gap:12px;align-items:center;min-height:44px;padding:6px 0;border-bottom:1px solid rgb(var(--rgb-primary) / .3);text-decoration:none;color:var(--text-mid);}
   .choose a b{font-family:var(--font-mono);font-weight:400;font-size:13px;color:var(--cyan);white-space:nowrap;}
   .choose a:hover,.choose a:hover b{color:var(--text-hi);}
-  /* Phones: the track cards become one swipeable row, with the next card peeking in, instead of 7 stacked cards. */
+  /* Phones: the track cards become one swipeable row, with the next card peeking in, instead of a stack of cards. */
   .swipe{display:none;}
   @media(max-width:640px){
     .swipe{display:block;margin:18px 0 0;font-family:var(--font-mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);}
@@ -90,7 +90,7 @@ __SHARED_CSS__
   <section class="hero">
     <span class="eyebrow">Skills first, certs optional</span>
     <h1>Skill Training <span>Completed</span></h1>
-    <p>One home lab and 18 sprints, from IT basics through Windows Server, Azure, Linux, Cisco networking, cloud and security. Each sprint ends with something you built and someone else can check. Certifications are optional exams along the way.</p>
+    <p>One home lab and 19 sprints, from IT basics through Windows Server, Azure, Linux, Cisco networking, AWS, cloud and security. Each sprint ends with something you built and someone else can check. Certifications are optional exams along the way.</p>
     <div class="ctas"><a class="btn btn-primary" href="#choose">Find my track</a><a class="btn btn-ghost" href="__ZIP_URL__">Download the study kit (ZIP)</a></div>
   </section>
 
@@ -105,20 +105,20 @@ __SHARED_CSS__
 
   <section id="tracks">
     <h2>Pick a track</h2>
-    <p class="lede">All 7 tracks use the same sprints. Your pick sets which ones you do and whether you sit exams. Week counts assume about 8 hours a week. Exam costs are US list prices for one attempt each; see Resources for each exam.</p>
+    <p class="lede">All 8 tracks use the same sprints. Your pick sets which ones you do and whether you sit exams. Week counts assume about 8 hours a week. Exam costs are US list prices for one attempt each; see Resources for each exam.</p>
     <div class="choose" id="choose">
       <h3>Not sure? Start here</h3>
       <ul>
         __CHOOSER__
       </ul>
     </div>
-    <p class="swipe" aria-hidden="true">Swipe for all 7 tracks &rarr;</p>
+    <p class="swipe" aria-hidden="true">Swipe for all 8 tracks &rarr;</p>
     <div class="cards row" role="region" aria-label="Tracks" tabindex="0">__TRACK_CARDS__</div>
   </section>
 
   <section id="sprints">
-    <h2>The 18 sprints</h2>
-    <p class="lede">F1 to F3 are the Foundations sprints, for people new to IT. The core sprints, S0 to S13, start with Windows and Azure so the AZ-802 exam comes early, and each one adds a short Linux lab alongside the Windows work. N1 is the Cisco sprint for Track G.</p>
+    <h2>The 19 sprints</h2>
+    <p class="lede">F1 to F3 are the Foundations sprints, for people new to IT. The core sprints, S0 to S13, start with Windows and Azure so the AZ-802 exam comes early, and each one adds a short Linux lab alongside the Windows work. N1 is the Cisco sprint for Track G, and A1 the AWS sprint for Track H.</p>
     <div class="sprints">__SPRINT_ROWS__</div>
     <script>if (window.matchMedia("(min-width: 700px)").matches) document.querySelectorAll("details.sprint").forEach(function (d) { d.open = true; });</script>
   </section>
@@ -126,7 +126,7 @@ __SHARED_CSS__
   <section id="certs">
     <h2>Certifications covered</h2>
     <ul class="exams">__CERT_CHIPS__</ul>
-    <p class="note">Exam versions and retirement dates change. Re-check the official Microsoft, CompTIA, Cisco and LPI pages before booking. __NOTICE__ Study links for each exam are on the <a href="resources.html">Resources</a> page.</p>
+    <p class="note">Exam versions and retirement dates change. Re-check the official Microsoft, CompTIA, Cisco, AWS and LPI pages before booking. __NOTICE__ Study links for each exam are on the <a href="resources.html">Resources</a> page.</p>
   </section>
 
   <section id="kit">

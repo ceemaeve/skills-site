@@ -9,8 +9,14 @@ SCRIPT = os.path.dirname(os.path.abspath(__file__))
 # $SRC_DIR (tests) reads the src files from there and writes to <SRC_DIR>/../site, never the repo's own site/.
 HERE = os.environ.get('SRC_DIR') or SCRIPT
 OUT = os.path.join(HERE, '..', 'site')
-data = json.load(open(os.path.join(HERE, 'data.json'), encoding='utf-8'))
-res = json.load(open(os.path.join(HERE, 'resources.json'), encoding='utf-8'))
+def load_json(name):
+    try:
+        return json.load(open(os.path.join(HERE, name), encoding='utf-8'))
+    except json.JSONDecodeError as ex:
+        print('%s: line %d column %d: %s' % (name, ex.lineno, ex.colno, ex.msg))
+        sys.exit(1)
+data = load_json('data.json')
+res = load_json('resources.json')
 
 def validate(data, res):
     # Returns error strings as "<file>: <where>: <problem>".
@@ -22,9 +28,16 @@ def validate(data, res):
     for k in ('microsoft', 'foundation', 'comptia', 'lpi', 'cisco', 'tools'):
         for n, x in enumerate(res.get(k, [])):
             if isinstance(x.get('anchor'), str):
+                if x['anchor'] in anchors:
+                    errs.append('resources.json: duplicate anchor "%s"' % x['anchor'])
                 anchors.add(x['anchor'])
             else:
                 errs.append('resources.json: %s %s: missing anchor' % (k, n))
+            if k != 'tools' and not (isinstance(x.get('exam'), str) and x['exam']):
+                errs.append('resources.json: %s %s: missing exam' % (k, n))
+    for s in data['sprints']:
+        if not isinstance(s.get('weeks'), int) or isinstance(s.get('weeks'), bool):
+            errs.append('data.json: sprint %s: weeks must be a number' % s['id'])
     for t in data['tracks']:
         for i in t['items']:
             if not isinstance(i, str):
@@ -34,6 +47,10 @@ def validate(data, res):
     for g in data['gates']:
         if 'cost' not in g:
             errs.append('data.json: gate %s: no cost' % g['id'])
+        elif not isinstance(g['cost'], (int, float)) or isinstance(g['cost'], bool):
+            errs.append('data.json: gate %s: cost must be a number' % g['id'])
+        if not isinstance(g.get('weeks'), int) or isinstance(g.get('weeks'), bool):
+            errs.append('data.json: gate %s: weeks must be a number' % g['id'])
         r = g.get('res')
         if r is None:
             errs.append('data.json: gate %s: missing res' % g['id'])
@@ -54,7 +71,9 @@ def validate(data, res):
     ch = data.get('chooser')
     if ch is None:
         errs.append('data.json: chooser: missing')
-    elif not isinstance(ch, list) or not ch:
+    elif not isinstance(ch, list):
+        errs.append('data.json: chooser: must be a list')
+    elif not ch:
         errs.append('data.json: chooser: empty')
     else:
         for n, c in enumerate(ch):

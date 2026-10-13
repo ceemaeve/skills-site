@@ -51,7 +51,7 @@ jobs:
           echo "Deploy settings look well-formed."
 
       # Breaks a scratch copy of the data once per build check and confirms the build stops with the right message.
-      - name: Check the data
+      - name: Run the build-check tests
         env:
           KIT_DIR: kit
         run: python3 tests/test_build_checks.py

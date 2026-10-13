@@ -4,7 +4,7 @@
 import json, os, shutil, subprocess, sys, tempfile
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 
-def run(mutate):
+def run(mutate, raw=None):
     tmp = tempfile.mkdtemp()
     try:
         src = os.path.join(tmp, 'src')
@@ -15,6 +15,9 @@ def run(mutate):
         mutate(files['data'], files['resources'])
         for name, obj in files.items():
             json.dump(obj, open(os.path.join(src, name + '.json'), 'w', encoding='utf-8'), ensure_ascii=False)
+        if raw:
+            with open(os.path.join(src, 'data.json'), 'a', encoding='utf-8') as f:
+                f.write(raw)
         p = subprocess.run([sys.executable, os.path.join(ROOT, 'src', 'build.py')], env=dict(os.environ, SRC_DIR=src),
                            capture_output=True, text=True)
         return p.returncode, p.stdout + p.stderr
@@ -55,6 +58,19 @@ def m_no_anchor(d, r):
 def m_http(d, r):
     d['kitUrl'] = 'http://example.com'
 
+def m_json_syntax(d, r):
+    pass
+def m_cost_text(d, r):
+    gate(d, 'g802')['cost'] = '$300'
+def m_sprint_weeks(d, r):
+    d['sprints'][0]['weeks'] = '3'
+def m_no_exam(d, r):
+    del r['comptia'][0]['exam']
+def m_dup_anchor(d, r):
+    r['tools'][0]['anchor'] = r['comptia'][0]['anchor']
+def m_chooser_str(d, r):
+    d['chooser'] = 'x'
+
 CASES = [
     ('unknown_track_item', m_track_item, 1, 'data.json: track C: unknown item "S99"'),
     ('gate_missing_cost', m_cost, 1, 'gate g802: no cost'),
@@ -71,12 +87,18 @@ CASES = [
     ('track_item_not_string', m_item_obj, 1, 'track C: invalid item'),
     ('tool_missing_anchor', m_no_anchor, 1, 'missing anchor'),
     ('http_link', m_http, 1, 'not https'),
-    ('clean_build', lambda d, r: None, 0, 'ok'),
+    ('json_syntax', m_json_syntax, 1, 'data.json: line '),
+    ('gate_cost_text', m_cost_text, 1, 'data.json: gate g802: cost must be a number'),
+    ('sprint_weeks_text', m_sprint_weeks, 1, 'data.json: sprint F1: weeks must be a number'),
+    ('card_missing_exam', m_no_exam, 1, 'resources.json: comptia 0: missing exam'),
+    ('duplicate_anchor', m_dup_anchor, 1, 'resources.json: duplicate anchor'),
+    ('chooser_not_list', m_chooser_str, 1, 'data.json: chooser: must be a list'),
+    ('clean_build', lambda d, r: None, 0, 'ok 22 pages'),
 ]
 
 failed = 0
 for name, mutate, code, text in CASES:
-    got, out = run(mutate)
+    got, out = run(mutate, ',' if name == 'json_syntax' else None)
     good = got == code and text in out
     failed += not good
     print('%s %s' % ('PASS' if good else 'FAIL', name))

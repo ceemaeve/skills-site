@@ -109,6 +109,14 @@ def m_aws_sprint_no_kit(d, r):
     d['sprints'].append({'id': 'A99', 'name': 'AWS', 'weeks': 3, 'outcome': 'x'})  # an id the real data never uses
 def m_claude_sprint_no_kit(d, r):
     d['sprints'].append({'id': 'C99', 'name': 'Claude', 'weeks': 2, 'outcome': 'x'})  # an id the real data never uses
+def m_copilot(d, r):
+    # A Copilot card next to any real ones, and a gate pointing at it.
+    card = json.loads(json.dumps(r['cisco'][0]))
+    card.update(anchor='copilot-test', exam='Copilot Test', code='TEST-02', title='Test card')
+    r.setdefault('copilot', []).append(card)
+    gate(d, 'gccna')['res'] = 'copilot-test'
+def m_copilot_sprint_no_kit(d, r):
+    d['sprints'].append({'id': 'P99', 'name': 'Copilot', 'weeks': 2, 'outcome': 'x'})  # an id the real data never uses
 def t_placeholder(src):
     with open(os.path.join(src, '404.src.html'), 'a', encoding='utf-8') as f:
         f.write('__LEFT_OVER__')
@@ -120,6 +128,8 @@ PAGES = 'ok %d pages' % (4 + len(REAL['sprints']))  # 4 main pages plus one per 
 HAS_AWS_CARDS = bool(REAL_RES.get('aws'))
 HAS_A_SPRINTS = any(s['id'].startswith('A') for s in REAL['sprints'])
 HAS_C_SPRINTS = any(s['id'].startswith('C') for s in REAL['sprints'])
+HAS_P_SPRINTS = any(s['id'].startswith('P') for s in REAL['sprints'])
+HAS_COPILOT_CARDS = bool(REAL_RES.get('copilot'))
 
 CASES = [
     ('unknown_track_item', m_track_item, 1, 'data.json: track C: unknown item "S99"'),
@@ -147,9 +157,11 @@ CASES = [
     ('gate_missing_id', m_gate_no_id, 1, 'data.json: gates 0: missing id'),
     ('track_missing_id', m_track_no_id, 1, 'data.json: tracks 0: missing id'),
     ('duplicate_id', m_dup_id, 1, 'data.json: duplicate id "F1"'),
-    ('sprint_id_letter', m_sprint_bad_id, 1, 'data.json: sprint X1: id must be a group letter (C, F, S, N, A) and a number'),
+    ('sprint_id_letter', m_sprint_bad_id, 1, 'data.json: sprint X1: id must be a group letter (C, P, F, S, N, A) and a number'),
     ('aws_sprint_reaches_kit_check', m_aws_sprint_no_kit, 1, 'data.json: sprint A99: kit SPRINTS.md has no heading "## A99. AWS (3 weeks)"'),
     ('aws_gate_res', m_aws, 0, PAGES),
+    ('copilot_gate_res', m_copilot, 0, PAGES),
+    ('copilot_sprint_reaches_kit_check', m_copilot_sprint_no_kit, 1, 'data.json: sprint P99: kit SPRINTS.md has no heading "## P99. Copilot (2 weeks)"'),
     ('claude_sprint_reaches_kit_check', m_claude_sprint_no_kit, 1, 'data.json: sprint C99: kit SPRINTS.md has no heading "## C99. Claude (2 weeks)"'),
     ('res_nested_list', m_res_nested, 1, 'data.json: gate glinux: invalid res'),
     ('tool_sprints_nested', m_tool_nested, 1, 'resources.json: tool tool-vmware: invalid sprint'),
@@ -172,14 +184,21 @@ for name, mutate, code, text in CASES:
         rp = pages.get('resources.html', '')
         if name == 'aws_gate_res':
             # The AWS section, its card, its jump button and the meta description all appear, and the calendar knows the exam name.
-            good = good and '<section id="aws">' in rp and 'id="aws-test"' in rp and 'href="#aws"' in rp and 'CCNA, AWS SAA, Cloud+' in rp \
-                and 'Cisco, AWS and LPI' in rp and '<!--aws' not in rp and '"aws-test": "AWS Test"' in pages.get('calendar.html', '')
+            good = good and '<section id="aws">' in rp and 'id="aws-test"' in rp and 'href="#aws"' in rp and 'CCNA, AWS SAA,' in rp \
+                and 'Cisco, AWS' in rp and '<!--aws' not in rp and '"aws-test": "AWS Test"' in pages.get('calendar.html', '')
         if name == 'clean_build':
             # The AWS section shows exactly when there are AWS cards; the AWS sprint group exactly when there are A sprints.
-            good = good and '<!--aws' not in rp and (('<section id="aws">' in rp and 'href="#aws"' in rp and 'CCNA, AWS SAA, Cloud+' in rp)
-                if HAS_AWS_CARDS else ('id="aws"' not in rp and 'href="#aws"' not in rp and 'CCNA, Cloud+' in rp and 'Cisco and LPI' in rp))
+            good = good and '<!--aws' not in rp and (('<section id="aws">' in rp and 'href="#aws"' in rp and 'CCNA, AWS SAA,' in rp)
+                if HAS_AWS_CARDS else ('id="aws"' not in rp and 'href="#aws"' not in rp and 'AWS SAA' not in rp))
             good = good and (('>AWS <small>' in pages.get('index.html', '')) == HAS_A_SPRINTS)
             good = good and (('>Claude <small>' in pages.get('index.html', '')) == HAS_C_SPRINTS)
+            good = good and (('>Copilot <small>' in pages.get('index.html', '')) == HAS_P_SPRINTS)
+            good = good and '<!--copilot' not in rp and ((('<section id="copilot">' in rp and 'href="#copilot"' in rp and 'AB-900, GH-300,' in rp)
+                if HAS_COPILOT_CARDS else ('id="copilot"' not in rp and 'href="#copilot"' not in rp and 'GH-300' not in rp)))
+        if name == 'copilot_gate_res':
+            good = good and '<section id="copilot">' in rp and 'id="copilot-test"' in rp and 'href="#copilot"' in rp \
+                and 'AB-900, GH-300, Cloud+' in rp and ', GitHub and LPI' in rp and '<!--copilot' not in rp \
+                and '"copilot-test": "Copilot Test"' in pages.get('calendar.html', '')
     failed += not good
     print('%s %s' % ('PASS' if good else 'FAIL', name))
     if not good:

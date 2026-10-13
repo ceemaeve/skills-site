@@ -27,13 +27,14 @@ res = load_json('resources.json')
 
 # Sprint groups, in page order. A sprint id is one of these letters plus a number.
 GROUPS = [('C', 'Claude', 'C1 in every track; C2 and C3 for Track I'),
+          ('P', 'Copilot', 'P1 in Tracks A, B, D, E and J; P2 and P3 for Tracks B and J'),
           ('F', 'Foundations', 'F1 to F3, for people new to IT (Tracks F and E)'),
           ('S', 'Core sprints', 'S0 to S13, the shared lab and most of the exams'),
           ('N', 'Networking', 'N1, the Cisco sprint for Track G'),
           ('A', 'AWS', 'A1, the AWS sprint for Track H')]
 LETTERS = ''.join(g[0] for g in GROUPS)
-# Resources exam-card groups (aws may be absent until it has cards).
-CARD_GROUPS = ('microsoft', 'foundation', 'comptia', 'lpi', 'cisco', 'aws')
+# Resources exam-card groups (aws and copilot may be absent until they have cards).
+CARD_GROUPS = ('microsoft', 'foundation', 'comptia', 'lpi', 'cisco', 'aws', 'copilot')
 
 def validate(data, res):
     # Returns error strings as "<file>: <where>: <problem>".
@@ -323,6 +324,7 @@ foundation = ''.join(exam_card(x) for x in res['foundation'])
 lpi = ''.join(exam_card(x) for x in res['lpi'])
 cisco = ''.join(exam_card(x) for x in res['cisco'])
 aws = ''.join(exam_card(x) for x in res.get('aws', []))
+copilot = ''.join(exam_card(x) for x in res.get('copilot', []))
 
 def optional(page, name, on):
     # Keeps (on) or drops (off) everything between <!--name--> and <!--/name-->, markers included.
@@ -335,8 +337,9 @@ chooser = '\n        '.join('<li><a href="calendar.html?track=%s">%s<b>Track %s<
 idx = fill(open(os.path.join(HERE, 'index.src.html'), encoding='utf-8').read()).replace('__CHOOSER__', chooser).replace('__NOTICE__', e(data['notice']))
 resp = (fill(open(os.path.join(HERE, 'resources.src.html'), encoding='utf-8').read()).replace('__MS_LEARN__', ms_learn)
         .replace('__MS_UDEMY__', ms_udemy).replace('__COMPTIA__', comptia).replace('__FOUNDATION__', foundation).replace('__LPI__', lpi)
-        .replace('__CISCO__', cisco).replace('__AWS__', aws).replace('__TOOLS__', tools).replace('__CHECKED__', e(res['checked'])).replace('__PRICES_CHECKED__', e(res['pricesChecked'])))
+        .replace('__CISCO__', cisco).replace('__AWS__', aws).replace('__COPILOT__', copilot).replace('__TOOLS__', tools).replace('__CHECKED__', e(res['checked'])).replace('__PRICES_CHECKED__', e(res['pricesChecked'])))
 resp = optional(resp, 'aws', bool(aws))
+resp = optional(resp, 'copilot', bool(copilot))
 # The calendar labels two-exam gates (Linux+ and LPIC-1) with the Resources card's exam name.
 data['resNames'] = {x['anchor']: x['exam'] for k in CARD_GROUPS for x in res.get(k, [])}
 cal = fill(open(os.path.join(HERE, 'calendar.src.html'), encoding='utf-8').read()).replace('__DATA__', json.dumps(data, ensure_ascii=False).replace('</', '<\\/'))

@@ -21,7 +21,10 @@ Moved here from the private `tel-sites` repo (`src/site-skills/`, last commit th
 
 1. Edit `src/data.json` or a template. Never edit `site/` by hand.
 2. Check it: clone the kit next to this repo (`git clone https://github.com/ceemaeve/skill-training-completed ../skill-training-completed`), run `python3 src/build.py` (prints `ok` and the page count), then open `site/index.html`.
-3. Commit and push to `main`. The Deploy workflow does the rest (Actions tab shows it).
+3. Run `python3 tests/test_build_checks.py` before you push. Every line must say PASS.
+4. Commit and push to `main`. The Deploy workflow does the rest (Actions tab shows it).
+
+Who owns which files, and the checklists for routine changes, are in the ceema.dev project doc `claude/SKILLS-SITE-HANDOFF.md`.
 
 ## Rules
 

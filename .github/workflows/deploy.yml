@@ -50,6 +50,12 @@ jobs:
           [[ "$DEPLOY_KNOWN_HOSTS" == "$DEPLOY_HOST ssh-ed25519 "* ]] || fail "DEPLOY_KNOWN_HOSTS must be one line starting with the same address as DEPLOY_HOST, followed by ssh-ed25519 and the key."
           echo "Deploy settings look well-formed."
 
+      # Breaks a scratch copy of the data once per build check and confirms the build stops with the right message.
+      - name: Check the data
+        env:
+          KIT_DIR: kit
+        run: python3 tests/test_build_checks.py
+
       - name: Build the site
         run: python3 src/build.py
 

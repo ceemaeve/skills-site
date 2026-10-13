@@ -9,8 +9,9 @@ Moved here from the private `tel-sites` repo (`src/site-skills/`, last commit th
 | Path | What it is |
 |---|---|
 | `src/data.json` | Sprints, gates, tracks, certs and the links the pages use (`kitUrl`, `homeUrl`) |
+| `src/resources.json` | Study links on the Resources page (Microsoft Learn, CompTIA, Sybex, Udemy) and the date they were checked |
 | `src/*.src.html`, `src/shared.css` | Page templates |
-| `src/build.py` | Writes the site into `site/` (index, calendar, 404, og.png, robots.txt, sitemap.xml, icons) |
+| `src/build.py` | Writes the site into `site/` (index, calendar, resources, 404, og.png, robots.txt, sitemap.xml, icons) |
 | `src/make_og.py` | Remakes `src/og.png` (needs Pillow and the fonts it names; run by hand, not in the deploy) |
 | `site/` | Build output. Not committed; the deploy builds it fresh |
 | `.github/workflows/deploy.yml` | Builds, then syncs `site/` to `/var/www/skills` |

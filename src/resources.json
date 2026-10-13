@@ -1,0 +1,247 @@
+{
+  "checked": "October 13, 2026",
+  "microsoft": [
+    {
+      "exam": "AZ-802",
+      "name": "Administering Windows Server",
+      "note": "AZ-802 is the single exam for Windows Server Administrator Associate. It replaces AZ-800 and AZ-801, which retired on September 30, 2026.",
+      "links": [
+        [
+          "Credential page",
+          "https://learn.microsoft.com/en-us/credentials/certifications/windows-server-administrator-associate/"
+        ],
+        [
+          "Study guide (skills measured)",
+          "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-802"
+        ],
+        [
+          "Course AZ-802T00: Administer Windows Server",
+          "https://learn.microsoft.com/en-us/training/courses/az-802t00"
+        ]
+      ],
+      "paths": [
+        [
+          "Deploy and manage AD DS",
+          "https://learn.microsoft.com/en-us/training/paths/deploy-manage-active-directory-domain-services/"
+        ],
+        [
+          "Windows Server in a hybrid environment",
+          "https://learn.microsoft.com/en-us/training/paths/manage-windows-server-instances-workloads-hybrid-environment/"
+        ],
+        [
+          "Manage virtual machines",
+          "https://learn.microsoft.com/en-us/training/paths/manage-virtual-machines/"
+        ],
+        [
+          "On-premises and hybrid networking",
+          "https://learn.microsoft.com/en-us/training/paths/implement-manage-premises-hybrid-networking-infrastructure/"
+        ],
+        [
+          "Storage and file services",
+          "https://learn.microsoft.com/en-us/training/paths/manage-storage-file-services/"
+        ],
+        [
+          "Secure Windows Server",
+          "https://learn.microsoft.com/en-us/training/paths/secure-windows-server-infrastructure/"
+        ],
+        [
+          "Monitor and troubleshoot Windows Server",
+          "https://learn.microsoft.com/en-us/training/paths/monitor-troubleshoot-windows-server-environments/"
+        ]
+      ],
+      "udemy": [
+        {
+          "title": "AZ-802: Administering Windows Server Certification Course",
+          "by": "John Christopher",
+          "url": "https://www.udemy.com/course/az-800-course-administering-windows-server-hybrid-core-inf/",
+          "rating": 4.7,
+          "ratings": 4803
+        },
+        {
+          "title": "AZ-802 Microsoft Windows Server Administrator Practice Test",
+          "by": "Ashvin Parmar",
+          "url": "https://www.udemy.com/course/az-802-microsoft-windows-server-administrator-practice-test/",
+          "note": "Practice tests, no ratings yet"
+        },
+        {
+          "title": "AZ-802 Practice Tests: 250 Questions Explained",
+          "by": "Vitalii Shumylo",
+          "url": "https://www.udemy.com/course/az-802-practice-questions/",
+          "note": "Practice tests, no ratings yet"
+        }
+      ],
+      "udemyNote": "AZ-802 is new, so only one full video course has ratings so far."
+    },
+    {
+      "exam": "AZ-104",
+      "name": "Microsoft Azure Administrator",
+      "links": [
+        [
+          "Credential page",
+          "https://learn.microsoft.com/en-us/credentials/certifications/azure-administrator/"
+        ],
+        [
+          "Study guide (skills measured)",
+          "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-104"
+        ],
+        [
+          "Course AZ-104T00: Microsoft Azure Administrator",
+          "https://learn.microsoft.com/en-us/training/courses/az-104t00"
+        ]
+      ],
+      "paths": [
+        [
+          "Prerequisites for Azure administrators",
+          "https://learn.microsoft.com/en-us/training/paths/az-104-administrator-prerequisites/"
+        ],
+        [
+          "Manage identities and governance",
+          "https://learn.microsoft.com/en-us/training/paths/az-104-manage-identities-governance"
+        ],
+        [
+          "Implement and manage storage",
+          "https://learn.microsoft.com/en-us/training/paths/az-104-manage-storage/"
+        ],
+        [
+          "Deploy and manage compute",
+          "https://learn.microsoft.com/en-us/training/paths/az-104-manage-compute-resources/"
+        ],
+        [
+          "Configure and manage virtual networks",
+          "https://learn.microsoft.com/en-us/training/paths/az-104-manage-virtual-networks/"
+        ],
+        [
+          "Monitor and back up resources",
+          "https://learn.microsoft.com/en-us/training/paths/az-104-monitor-backup-resources/"
+        ]
+      ],
+      "udemy": [
+        {
+          "title": "AZ-104 Microsoft Azure Administrator course with SIMULATIONS",
+          "by": "John Christopher",
+          "url": "https://www.udemy.com/course/az-104-microsoft-azure-administrator-course-with-simulations/",
+          "rating": 4.8,
+          "ratings": 6218
+        },
+        {
+          "title": "AZ-104 Microsoft Azure Administrator",
+          "by": "Refactored LLC, Nick Colyer",
+          "url": "https://www.udemy.com/course/az-100-skylines-academy/",
+          "rating": 4.7,
+          "ratings": 7441
+        },
+        {
+          "title": "AZ-104 Microsoft Azure Administrator Certification",
+          "by": "Alan Rodrigues",
+          "url": "https://www.udemy.com/course/microsoft-certified-azure-administrator/",
+          "rating": 4.6,
+          "ratings": 27692
+        }
+      ]
+    }
+  ],
+  "comptia": [
+    {
+      "exam": "Cloud+",
+      "code": "CV0-004",
+      "page": "https://www.comptia.org/en-us/certifications/cloud/",
+      "book": [
+        "CompTIA Cloud+ Study Guide: Exam CV0-004, 4th Edition",
+        "Ben Piper",
+        "https://www.amazon.com/dp/1394333773"
+      ],
+      "udemy": [
+        {
+          "title": "CompTIA Cloud+ (CV0-004) Complete Course & Practice Exams",
+          "by": "Anthony Sequeira, Michael Shannon",
+          "url": "https://www.udemy.com/course/comptia-cloud-plus/",
+          "rating": 4.6,
+          "ratings": 1475
+        },
+        {
+          "title": "TOTAL: Cloud Computing / CompTIA Cloud+ (CV0-004)",
+          "by": "Tom Carpenter, Total Seminars",
+          "url": "https://www.udemy.com/course/total-cloud-computing-comptia-cloud-cert-cv0-002/",
+          "rating": 4.4,
+          "ratings": 11770
+        },
+        {
+          "title": "TOTAL: CompTIA Cloud+ (CV0-004): 4 Practice Tests",
+          "by": "Total Seminars",
+          "url": "https://www.udemy.com/course/total-comptia-cloud-cv0-003-4-practice-tests/",
+          "rating": 4.3,
+          "ratings": 450,
+          "note": "Practice tests"
+        }
+      ]
+    },
+    {
+      "exam": "Security+",
+      "code": "SY0-701",
+      "page": "https://www.comptia.org/en-us/certifications/security/",
+      "note": "Security+ V8 (SY0-801) is due around November 17, 2026. SY0-701 stays bookable into 2027. The Sybex SY0-801 guide is due December 2026.",
+      "book": [
+        "CompTIA Security+ Study Guide: Exam SY0-701, 9th Edition",
+        "Mike Chapple, David Seidl",
+        "https://www.amazon.com/dp/1394211414"
+      ],
+      "udemy": [
+        {
+          "title": "CompTIA Security+ (SY0-701) Complete Course & Practice Exam",
+          "by": "Jason Dion",
+          "url": "https://www.udemy.com/course/securityplus/",
+          "rating": 4.7,
+          "ratings": 124177
+        },
+        {
+          "title": "TOTAL: CompTIA Security+ Course + Practice Exam SY0-701",
+          "by": "Mike Meyers, Total Seminars",
+          "url": "https://www.udemy.com/course/total-comptia-security-plus/",
+          "rating": 4.7,
+          "ratings": 38333
+        },
+        {
+          "title": "CompTIA Security+ SY0-701 Full Course, Labs, and Study Plan",
+          "by": "Andrew Ramdayal",
+          "url": "https://www.udemy.com/course/comptia_security_plus/",
+          "rating": 4.7,
+          "ratings": 13021
+        }
+      ]
+    },
+    {
+      "exam": "Linux+",
+      "code": "XK0-006",
+      "page": "https://www.comptia.org/en-us/certifications/linux/",
+      "book": [
+        "CompTIA Linux+ Study Guide: Exam XK0-006, 6th Edition",
+        "Richard Blum",
+        "https://www.amazon.com/dp/1394316321"
+      ],
+      "udemy": [
+        {
+          "title": "CompTIA Linux+ (XK0-006) Complete Course & Exam",
+          "by": "Jason Dion, Jeremiah Minner",
+          "url": "https://www.udemy.com/course/comptia-linux/",
+          "rating": 4.6,
+          "ratings": 5659
+        },
+        {
+          "title": "Total: CompTIA Linux+ (XK0-006)",
+          "by": "Michael Solomon, Total Seminars",
+          "url": "https://www.udemy.com/course/total-comptia-linux-xk0-006/",
+          "rating": 4.5,
+          "ratings": 88
+        },
+        {
+          "title": "CompTIA Linux+ (XK0-006) 6 Practice Exams",
+          "by": "Jason Dion, Jeremiah Minner",
+          "url": "https://www.udemy.com/course/comptia-linux-xk0-006-6-practice-exams/",
+          "rating": 4.3,
+          "ratings": 45,
+          "note": "Practice tests"
+        }
+      ]
+    }
+  ]
+}

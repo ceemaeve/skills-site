@@ -36,6 +36,9 @@ __SHARED_CSS__
   .body a{color:var(--cyan);}
   .body code{font-family:var(--font-mono);font-size:.9em;background:rgb(var(--rgb-primary) / .2);border:1px solid rgb(var(--rgb-primary) / .4);border-radius:5px;padding:1px 5px;color:var(--text-hi);}
   .gate{border-left:3px solid var(--magenta);padding:10px 14px;background:rgb(var(--rgb-highlight) / .08);border-radius:0 8px 8px 0;}
+  .tools-h{font-size:20px;letter-spacing:.03em;margin:28px 0 10px;}
+  .tools{margin:0;padding-left:20px;color:var(--text-mid);display:flex;flex-direction:column;gap:6px;}
+  .tools a{color:var(--cyan);}
   .help{margin-top:30px;border:1px solid rgb(var(--rgb-accent) / .5);border-radius:var(--r);background:rgb(var(--rgb-accent) / .06);padding:16px 18px;color:var(--text-mid);}
   .help a{color:var(--cyan);}
   .pager{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:30px;}
@@ -60,6 +63,8 @@ __SHARED_CSS__
     <h1>__S_ID__. <span>__S_NAME__</span></h1>
     <div class="facts"><span><b>__S_WEEKS__ weeks</b> at 8 hours a week</span><span>In tracks: __S_TRACKS__</span></div>
     <div class="body">__S_BODY__</div>
+    <h2 class="tools-h">Tools for this sprint</h2>
+    <ul class="tools">__S_TOOLS__</ul>
     <div class="help">Every sprint ends with a peer review. Need a reviewer? <a href="__STUDY_URL__">Find a study partner</a> in the kit's Discussions. The same sprint is in the kit's <a href="__S_KIT__">SPRINTS.md on GitHub</a>.</div>
     <nav class="pager" aria-label="Sprints">__S_PAGER__</nav>
   </article>

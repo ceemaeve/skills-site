@@ -4,7 +4,7 @@
     {
       "exam": "AZ-802",
       "name": "Administering Windows Server",
-      "note": "AZ-802 is the single exam for Windows Server Administrator Associate. It replaces AZ-800 and AZ-801, which retired on September 30, 2026.",
+      "note": "AZ-802 is the single exam for Windows Server Administrator Associate. It replaces AZ-800 and AZ-801, which retired on September 30, 2026. Microsoft has no practice assessment for it yet.",
       "links": [
         [
           "Credential page",
@@ -72,7 +72,15 @@
       ],
       "udemyNote": "AZ-802 is new, so only one full video course has ratings so far.",
       "anchor": "az-802",
-      "cost": "$165 in the US"
+      "cost": "$165 in the US",
+      "book": [
+        "Exam Ref AZ-800 Administering Windows Server Hybrid Core Infrastructure",
+        "Orin Thomas",
+        "https://www.amazon.com/dp/013772926X",
+        "Microsoft Press",
+        "Amazon"
+      ],
+      "bookNote": "No AZ-802 book is out yet. This one was written for AZ-800, which covered much of the same Windows Server ground."
     },
     {
       "exam": "AZ-104",
@@ -89,6 +97,10 @@
         [
           "Course AZ-104T00: Microsoft Azure Administrator",
           "https://learn.microsoft.com/en-us/training/courses/az-104t00"
+        ],
+        [
+          "Free practice assessment",
+          "https://learn.microsoft.com/en-us/credentials/certifications/azure-administrator/practice/assessment?assessment-type=practice&assessmentId=21&practice-assessment-type=certification"
         ]
       ],
       "paths": [
@@ -141,7 +153,14 @@
         }
       ],
       "anchor": "az-104",
-      "cost": "$165 in the US"
+      "cost": "$165 in the US",
+      "book": [
+        "Exam Ref AZ-104 Microsoft Azure Administrator, 2nd Edition",
+        "Charles Pluta",
+        "https://www.amazon.com/dp/0138345937",
+        "Microsoft Press",
+        "Amazon"
+      ]
     }
   ],
   "comptia": [
@@ -151,7 +170,9 @@
       "book": [
         "CompTIA Cloud+ Study Guide: Exam CV0-004, 4th Edition",
         "Ben Piper",
-        "https://www.amazon.com/dp/1394333773"
+        "https://www.amazon.com/dp/1394333773",
+        "Sybex",
+        "Amazon"
       ],
       "udemy": [
         {
@@ -181,6 +202,10 @@
         [
           "CompTIA Cloud+ (CV0-004)",
           "https://www.comptia.org/en-us/certifications/cloud/"
+        ],
+        [
+          "CV0-004 exam objectives (PDF)",
+          "https://lecbyo.files.cmp.optimizely.com/download/1caf96e2bef111efba33a6b3d2c966cf"
         ]
       ],
       "title": "CompTIA Cloud+",
@@ -194,7 +219,9 @@
       "book": [
         "CompTIA Security+ Study Guide: Exam SY0-701, 9th Edition",
         "Mike Chapple, David Seidl",
-        "https://www.amazon.com/dp/1394211414"
+        "https://www.amazon.com/dp/1394211414",
+        "Sybex",
+        "Amazon"
       ],
       "udemy": [
         {
@@ -223,11 +250,29 @@
         [
           "CompTIA Security+ (SY0-701)",
           "https://www.comptia.org/en-us/certifications/security/"
+        ],
+        [
+          "SY0-701 exam objectives (PDF)",
+          "https://lecbyo.files.cmp.optimizely.com/download/cf25ec24b8a511ef9ecbb69c0f9687be"
+        ],
+        [
+          "Security+ v8 (SY0-801), launching November 17, 2026",
+          "https://www.comptia.org/en/certifications/security/v8/"
+        ],
+        [
+          "SY0-801 exam objectives (PDF)",
+          "https://lecbyo.files.cmp.optimizely.com/download/77f3bd3223ac11f180820e495f189928"
         ]
       ],
       "title": "CompTIA Security+",
       "anchor": "security-plus",
-      "cost": "about $439. CompTIA list price; check the CompTIA store before you buy"
+      "cost": "about $439. CompTIA list price; check the CompTIA store before you buy",
+      "free": [
+        [
+          "Professor Messer: free SY0-701 video course (no SY0-801 course yet)",
+          "https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-comptia-security-plus-course/"
+        ]
+      ]
     },
     {
       "exam": "Linux+",
@@ -235,7 +280,9 @@
       "book": [
         "CompTIA Linux+ Study Guide: Exam XK0-006, 6th Edition",
         "Richard Blum",
-        "https://www.amazon.com/dp/1394316321"
+        "https://www.amazon.com/dp/1394316321",
+        "Sybex",
+        "Amazon"
       ],
       "udemy": [
         {
@@ -265,6 +312,10 @@
         [
           "CompTIA Linux+ (XK0-006)",
           "https://www.comptia.org/en-us/certifications/linux/"
+        ],
+        [
+          "XK0-006 exam objectives (PDF)",
+          "https://lecbyo.files.cmp.optimizely.com/download/90b9ac985c0e11f0b004a2a93c999a21"
         ]
       ],
       "title": "CompTIA Linux+",
@@ -282,12 +333,22 @@
         [
           "CompTIA A+ (220-1201, 220-1202)",
           "https://www.comptia.org/en-us/certifications/a/"
+        ],
+        [
+          "220-1201 exam objectives (PDF)",
+          "https://lecbyo.files.cmp.optimizely.com/download/34be017cb73211ef8985a6f347fbf652"
+        ],
+        [
+          "220-1202 exam objectives (PDF, CompTIA draft v1.1)",
+          "https://lecbyo.files.cmp.optimizely.com/download/84764f7a85ba11ef87e9da1cab964337"
         ]
       ],
       "book": [
         "CompTIA A+ Complete Study Guide, 2-Volume Set: Core 1 and Core 2, 6th Edition",
         "Quentin Docter, Jon Buhagiar",
-        "https://www.amazon.com/dp/1394330030"
+        "https://www.amazon.com/dp/1394330030",
+        "Sybex",
+        "Amazon"
       ],
       "udemy": [
         {
@@ -316,7 +377,17 @@
         }
       ],
       "anchor": "a-plus",
-      "cost": "about $274 per exam, 2 exams (about $548). CompTIA list price; check the CompTIA store before you buy"
+      "cost": "about $274 per exam, 2 exams (about $548). CompTIA list price; check the CompTIA store before you buy",
+      "free": [
+        [
+          "Professor Messer: free 220-1201 video course",
+          "https://www.professormesser.com/free-a-plus-training/220-1201/220-1201-video/220-1201-training-course/"
+        ],
+        [
+          "Professor Messer: free 220-1202 video course",
+          "https://www.professormesser.com/free-a-plus-training/220-1202/220-1202-video/220-1202-training-course/"
+        ]
+      ]
     },
     {
       "exam": "Network+",
@@ -326,12 +397,18 @@
         [
           "CompTIA Network+ (N10-009)",
           "https://www.comptia.org/en-us/certifications/network/"
+        ],
+        [
+          "N10-009 exam objectives (PDF)",
+          "https://lecbyo.files.cmp.optimizely.com/download/35a7403ab73211ef9dcda6f347fbf652"
         ]
       ],
       "book": [
         "CompTIA Network+ Study Guide: Exam N10-009, 6th Edition",
         "Todd Lammle, Jon Buhagiar",
-        "https://www.amazon.com/dp/1394235607"
+        "https://www.amazon.com/dp/1394235607",
+        "Sybex",
+        "Amazon"
       ],
       "udemy": [
         {
@@ -357,7 +434,13 @@
         }
       ],
       "anchor": "network-plus",
-      "cost": "about $399. CompTIA list price; check the CompTIA store before you buy"
+      "cost": "about $399. CompTIA list price; check the CompTIA store before you buy",
+      "free": [
+        [
+          "Professor Messer: free N10-009 video course",
+          "https://www.professormesser.com/network-plus/n10-009/n10-009-video/n10-009-training-course/"
+        ]
+      ]
     }
   ],
   "lpi": [
@@ -388,7 +471,9 @@
       "book": [
         "LPIC-1 Study Guide: Exam 101-500 and Exam 102-500, 5th Edition",
         "Christine Bresnahan, Richard Blum",
-        "https://www.amazon.com/dp/1119582121"
+        "https://www.amazon.com/dp/1119582121",
+        "Sybex",
+        "Amazon"
       ],
       "udemy": [
         {
@@ -443,7 +528,9 @@
       "book": [
         "LPIC-2 Study Guide: Exam 201 and Exam 202, 2nd Edition",
         "Christine Bresnahan, Richard Blum",
-        "https://www.amazon.com/dp/1119150795"
+        "https://www.amazon.com/dp/1119150795",
+        "Sybex",
+        "Amazon"
       ],
       "bookNote": "From 2016. Check its contents against the current 201-450 and 202-450 objectives.",
       "udemy": [
@@ -502,7 +589,7 @@
           "https://www.lpi.org/our-certifications/lpic-3-306-overview/"
         ]
       ],
-      "bookNote": "There is no Sybex guide for LPIC-3. For exam 305, Apress publishes LPIC-3 Virtualization and Containerization Study Guide by Antonio Vazquez (2024).",
+      "bookNote": "There is no Sybex guide for LPIC-3, and LPI publishes no free LPIC-3 material yet. Study from the objectives for your specialty and your lab.",
       "udemy": [
         {
           "title": "LPIC-3 (305) - Virtualization and Containerization",
@@ -513,9 +600,34 @@
           "note": "Exam 305"
         }
       ],
-      "udemyNote": "Only one Udemy course covers a current LPIC-3 exam. The free LPI objectives plus your lab are the main study path here.",
+      "udemyNote": "Only one Udemy course covers a current LPIC-3 exam.",
       "anchor": "lpic-3",
-      "cost": "$200 in the US, one specialty exam"
+      "cost": "$200 in the US, one specialty exam",
+      "free": [
+        [
+          "300 exam objectives",
+          "https://www.lpi.org/our-certifications/exam-300-objectives/"
+        ],
+        [
+          "303 exam objectives",
+          "https://www.lpi.org/our-certifications/exam-303-objectives/"
+        ],
+        [
+          "305 exam objectives",
+          "https://www.lpi.org/our-certifications/exam-305-objectives/"
+        ],
+        [
+          "306 exam objectives",
+          "https://www.lpi.org/our-certifications/exam-306-objectives/"
+        ]
+      ],
+      "book": [
+        "LPIC-3 Virtualization and Containerization Study Guide (exam 305)",
+        "Antonio Vazquez",
+        "https://link.springer.com/book/10.1007/979-8-8688-1080-0",
+        "Apress",
+        "Springer"
+      ]
     }
   ],
   "cisco": [
@@ -559,7 +671,9 @@
       "book": [
         "CCNA Certification Study Guide, Volumes 1 and 2: Exam 200-301 v1.1, 2nd Edition",
         "Todd Lammle, Donald Robb",
-        "https://www.amazon.com/dp/1394304080"
+        "https://www.amazon.com/dp/1394304080",
+        "Sybex",
+        "Amazon"
       ],
       "bookNote": "Written for v1.1. No v2.0 edition has been announced yet.",
       "udemy": [
@@ -591,5 +705,182 @@
       "cost": "$300"
     }
   ],
-  "pricesChecked": "October 13, 2026"
+  "pricesChecked": "October 13, 2026",
+  "tools": [
+    {
+      "anchor": "tool-vmware",
+      "name": "VMware Workstation Pro",
+      "sprints": [
+        "F1",
+        "S0"
+      ],
+      "note": "The lab runs on it. Free to use; the download needs a free Broadcom account.",
+      "links": [
+        [
+          "Download VMware Workstation Pro (Broadcom)",
+          "https://knowledge.broadcom.com/external/article/344595/downloading-vmware-workstation-pro.html"
+        ]
+      ]
+    },
+    {
+      "anchor": "tool-git",
+      "name": "Git",
+      "sprints": [
+        "S0",
+        "S8"
+      ],
+      "links": [
+        [
+          "Pro Git, the free official book",
+          "https://git-scm.com/book/en/v2"
+        ],
+        [
+          "GitHub: Getting started with Git",
+          "https://docs.github.com/en/get-started/learning-to-code/getting-started-with-git"
+        ]
+      ]
+    },
+    {
+      "anchor": "tool-powershell",
+      "name": "PowerShell",
+      "sprints": [
+        "F3",
+        "S0",
+        "S8"
+      ],
+      "links": [
+        [
+          "Microsoft Learn: Introduction to PowerShell",
+          "https://learn.microsoft.com/en-us/training/modules/introduction-to-powershell"
+        ],
+        [
+          "PowerShell 101 (official docs)",
+          "https://learn.microsoft.com/en-us/powershell/scripting/learn/ps101/01-getting-started"
+        ]
+      ]
+    },
+    {
+      "anchor": "tool-bash",
+      "name": "Bash and the Linux command line",
+      "sprints": [
+        "S0",
+        "S8",
+        "S10"
+      ],
+      "links": [
+        [
+          "The Linux Command Line, a free book by William Shotts",
+          "https://www.linuxcommand.org/tlcl.php"
+        ],
+        [
+          "GNU Bash manual",
+          "https://www.gnu.org/software/bash/manual/index.html"
+        ]
+      ]
+    },
+    {
+      "anchor": "tool-wireshark",
+      "name": "Wireshark",
+      "sprints": [
+        "F2",
+        "S1"
+      ],
+      "links": [
+        [
+          "Wireshark User's Guide",
+          "https://www.wireshark.org/docs/wsug_html_chunked/"
+        ],
+        [
+          "Wireshark docs, videos and sample captures",
+          "https://www.wireshark.org/docs/"
+        ]
+      ]
+    },
+    {
+      "anchor": "tool-packettracer",
+      "name": "Cisco Packet Tracer",
+      "sprints": [
+        "F2",
+        "N1"
+      ],
+      "note": "Free with a Cisco Networking Academy account.",
+      "links": [
+        [
+          "Cisco Packet Tracer",
+          "https://www.netacad.com/cisco-packet-tracer"
+        ]
+      ]
+    },
+    {
+      "anchor": "tool-bicep",
+      "name": "Bicep and ARM templates",
+      "sprints": [
+        "S8"
+      ],
+      "links": [
+        [
+          "Microsoft Learn: Fundamentals of Bicep",
+          "https://learn.microsoft.com/en-us/training/paths/fundamentals-bicep/"
+        ],
+        [
+          "Microsoft Learn: Deploy resources with JSON ARM templates",
+          "https://learn.microsoft.com/en-us/training/paths/deploy-manage-resource-manager-templates"
+        ]
+      ]
+    },
+    {
+      "anchor": "tool-ansible",
+      "name": "Ansible",
+      "sprints": [
+        "S8"
+      ],
+      "links": [
+        [
+          "Getting started with Ansible (official)",
+          "https://docs.ansible.com/projects/ansible/latest/getting_started/index.html"
+        ]
+      ]
+    },
+    {
+      "anchor": "tool-kvm",
+      "name": "KVM and libvirt",
+      "sprints": [
+        "S4",
+        "S12"
+      ],
+      "links": [
+        [
+          "Ubuntu Server docs: libvirt",
+          "https://ubuntu.com/server/docs/how-to/virtualisation/libvirt/"
+        ]
+      ]
+    },
+    {
+      "anchor": "tool-docker",
+      "name": "Docker",
+      "sprints": [
+        "S4",
+        "S12"
+      ],
+      "links": [
+        [
+          "Docker: Get started (official)",
+          "https://docs.docker.com/get-started/"
+        ]
+      ]
+    },
+    {
+      "anchor": "tool-kubernetes",
+      "name": "Kubernetes",
+      "sprints": [
+        "S12"
+      ],
+      "links": [
+        [
+          "Learn Kubernetes Basics (official tutorial)",
+          "https://kubernetes.io/docs/tutorials/kubernetes-basics/"
+        ]
+      ]
+    }
+  ]
 }

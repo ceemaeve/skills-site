@@ -231,9 +231,14 @@ __SHARED_CSS__
       what.appendChild(el("div", "name", (x.it.kind === "sprint" ? x.it.id + ". " : "") + x.it.name));
       what.appendChild(el("div", "desc", x.it.outcome));
       what.appendChild(el("span", "tag " + x.it.kind, x.it.kind === "sprint" ? "Sprint" : "Exam gate"));
-      var more = el("a", "more", x.it.kind === "sprint" ? "Labs and deliverable" : "Study links for this exam");
-      more.href = x.it.kind === "sprint" ? x.it.doc : "resources.html#" + x.it.res;
-      what.appendChild(more);
+      if (x.it.kind === "sprint") {
+        var more = el("a", "more", "Labs and deliverable"); more.href = x.it.doc; what.appendChild(more);
+      } else {
+        [].concat(x.it.res).forEach(function (anchor, i, all) {
+          var link = el("a", "more", all.length > 1 ? "Study links: " + ({ "linux-plus": "Linux+", "lpic-1": "LPIC-1" }[anchor] || anchor) : "Study links for this exam");
+          link.href = "resources.html#" + anchor; what.appendChild(link);
+        });
+      }
       if (x.it.kind === "sprint") {
         var tick = el("label", "tick"), box = document.createElement("input");
         box.type = "checkbox"; box.checked = !!done[x.it.id];

@@ -101,6 +101,12 @@ def fill(s):
              .replace('__STUDY_URL__', e(data['studyUrl'])).replace('__HOME_URL__', e(data['homeUrl']))
              .replace('__TRACK_CARDS__', cards).replace('__SPRINT_ROWS__', rows).replace('__CERT_CHIPS__', chips))
 
+# --- Resources data (the sprint pages list each sprint's lab tools)
+res = json.load(open(os.path.join(HERE, 'resources.json'), encoding='utf-8'))
+
+def tools_for(sid):
+    return [t for t in res['tools'] if sid in t['sprints']]
+
 # --- Sprint pages
 sprint_tpl = fill(open(os.path.join(HERE, 'sprint.src.html'), encoding='utf-8').read())
 group_name = {g[0]: g[1] for g in GROUPS}
@@ -116,12 +122,12 @@ for n, s in enumerate(order):
         pager += '<a class="next" href="%s.html"><small>Next</small>%s. %s</a>' % (p['id'].lower(), e(p['id']), e(p['name']))
     page = (sprint_tpl.replace('__S_ID__', e(s['id'])).replace('__S_NAME__', e(s['name'])).replace('__S_OUTCOME__', e(s['outcome']))
             .replace('__S_SLUG__', s['id'].lower()).replace('__S_GROUP__', e(group_name[s['id'][0]])).replace('__S_WEEKS__', str(s['weeks']))
+            .replace('__S_TOOLS__', ''.join('<li><a href="/resources.html#%s">%s</a></li>' % (e(t['anchor']), e(t['name'])) for t in tools_for(s['id'])) or '<li>Nothing beyond the lab from S0.</li>')
             .replace('__S_TRACKS__', e(tracks)).replace('__S_KIT__', e(kit_anchor(s))).replace('__S_PAGER__', pager)
             .replace('__S_BODY__', md_to_html(sections[s['id']])))
     open(os.path.join(OUT, 'sprints', '%s.html' % s['id'].lower()), 'w', encoding='utf-8').write(page)
 
 # --- Resources page, from resources.json
-res = json.load(open(os.path.join(HERE, 'resources.json'), encoding='utf-8'))
 
 def ext(url, text):
     return '<a href="%s" target="_blank" rel="noopener">%s</a>' % (e(url), e(text))
@@ -146,10 +152,23 @@ def tip(text):
 def cost(x):
     return '<p class="cost"><b>Exam cost:</b> %s</p>' % e(x['cost']) if x.get('cost') else ''
 
+def book(x):
+    out = '<h4>Study guide</h4>'
+    if x.get('book'):
+        t, by, url, publisher, store = x['book']
+        out += ('<div class="book"><ul class="links"><li><span>%s<span class="by">%s &middot; %s &middot; on %s</span></span></li></ul></div>'
+                % (ext(url, t), e(by), e(publisher), e(store)))
+    return out + tip(x.get('bookNote'))
+
+def tool_card(t):
+    used = ', '.join('<a href="sprints/%s.html">%s</a>' % (s.lower(), e(s)) for s in t['sprints'])
+    return ('<div class="card" id="%s"><span class="k">Used in %s</span><h3>%s</h3>%s%s</div>\n'
+            % (e(t['anchor']), used, e(t['name']), tip(t.get('note')), linklist(t['links'])))
+
 ms_learn = ms_udemy = ''
 for x in res['microsoft']:
-    ms_learn += ('<div class="card" id="%s"><span class="k">%s</span><h3>%s</h3>%s%s<h4>Official pages</h4>%s<h4>Learning paths</h4>%s</div>\n'
-                 % (e(x['anchor']), e(x['exam']), e(x['name']), cost(x), tip(x.get('note')), linklist(x['links']), linklist(x['paths'])))
+    ms_learn += ('<div class="card" id="%s"><span class="k">%s</span><h3>%s</h3>%s%s<h4>Official pages</h4>%s<h4>Learning paths</h4>%s%s</div>\n'
+                 % (e(x['anchor']), e(x['exam']), e(x['name']), cost(x), tip(x.get('note')), linklist(x['links']), linklist(x['paths']), book(x)))
     ms_udemy += ('<div class="card"><span class="k">%s</span><h3>%s</h3>%s%s</div>\n'
                  % (e(x['exam']), e(x['name']), tip(x.get('udemyNote')), udemy(x['udemy'])))
 
@@ -158,12 +177,7 @@ def exam_card(x):
     out += '<h4>Official pages</h4>%s' % linklist(x['official'])
     if x.get('free'):
         out += '<h4>Free study material</h4>%s' % linklist(x['free'])
-    out += '<h4>Sybex study guide</h4>'
-    if x.get('book'):
-        t, by, url = x['book']
-        out += ('<div class="book"><ul class="links"><li><span>%s<span class="by">%s &middot; on Amazon</span></span></li></ul></div>'
-                % (ext(url, t), e(by)))
-    out += tip(x.get('bookNote'))
+    out += book(x)
     out += '<h4>Udemy</h4>%s%s</div>\n' % (tip(x.get('udemyNote')), udemy(x['udemy']))
     return out
 
@@ -171,11 +185,12 @@ comptia = ''.join(exam_card(x) for x in res['comptia'])
 foundation = ''.join(exam_card(x) for x in res['foundation'])
 lpi = ''.join(exam_card(x) for x in res['lpi'])
 cisco = ''.join(exam_card(x) for x in res['cisco'])
+tools = ''.join(tool_card(t) for t in res['tools'])
 
 idx = fill(open(os.path.join(HERE, 'index.src.html'), encoding='utf-8').read())
 resp = (fill(open(os.path.join(HERE, 'resources.src.html'), encoding='utf-8').read()).replace('__MS_LEARN__', ms_learn)
         .replace('__MS_UDEMY__', ms_udemy).replace('__COMPTIA__', comptia).replace('__FOUNDATION__', foundation).replace('__LPI__', lpi)
-        .replace('__CISCO__', cisco).replace('__CHECKED__', e(res['checked'])).replace('__PRICES_CHECKED__', e(res['pricesChecked'])))
+        .replace('__CISCO__', cisco).replace('__TOOLS__', tools).replace('__CHECKED__', e(res['checked'])).replace('__PRICES_CHECKED__', e(res['pricesChecked'])))
 cal = fill(open(os.path.join(HERE, 'calendar.src.html'), encoding='utf-8').read()).replace('__DATA__', json.dumps(data, ensure_ascii=False).replace('</', '<\\/'))
 open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8').write(idx)
 open(os.path.join(OUT, 'resources.html'), 'w', encoding='utf-8').write(resp)

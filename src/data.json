@@ -18,7 +18,10 @@
     {"id":"S12","name":"Containers, virtualization and high availability","weeks":4,"outcome":"Run and secure containers and design for availability."},
     {"id":"S13","name":"Capstone","weeks":3,"outcome":"One environment that uses every earlier sprint, reviewed by a peer."},
     {"id":"N1","name":"Cisco routing and switching","weeks":4,"outcome":"Build, secure and troubleshoot a small Cisco campus network, and check what automation and AI tools produce."},
-    {"id":"A1","name":"AWS core services","weeks":4,"outcome":"Design and build a secure, resilient AWS environment and defend what it costs."}
+    {"id":"A1","name":"AWS core services","weeks":4,"outcome":"Design and build a secure, resilient AWS environment and defend what it costs."},
+    {"id":"C1","name":"Claude basics","weeks":2,"outcome":"Use Claude to study and plan IT work, and check what it tells you."},
+    {"id":"C2","name":"Claude for IT work","weeks":2,"outcome":"Use Claude Code to write and fix lab scripts, and review every change before you keep it."},
+    {"id":"C3","name":"Skills and agents","weeks":2,"outcome":"Package a lab chore as a Claude Skill someone else can use, and explain where subagents and MCP fit."}
   ],
   "gates": [
     {"id":"gaplus1","name":"A+ Core 1 exam","weeks":1,"note":"Review week, then the exam","res":"a-plus","cost":274},
@@ -35,14 +38,15 @@
     {"id":"gaws","name":"AWS Solutions Architect – Associate exam","weeks":2,"note":"Two review weeks, then the exam","res":"aws-saa","cost":150}
   ],
   "tracks": [
-    {"id":"A","name":"Skills only","blurb":"All 14 core sprints (S0 to S13), no exams.","fit":"Learning without exams","items":["S0","S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13"],"gates":false},
-    {"id":"B","name":"Microsoft","blurb":"Windows Server and Azure, ending in two Microsoft exams: AZ-802 (Windows Server) and AZ-104 (Azure).","fit":"Windows Server and Azure administration","items":["S0","S1","S2","S3","S4","S5","S6","S7","g802","S8","g104"],"gates":true},
-    {"id":"C","name":"Linux","blurb":"Linux+, then LPIC-1, LPIC-2 and LPIC-3, with Linux as your main lab work.","fit":"Linux server administration","items":["S0","S1","S2","S5","S6","S7","S8","S10","glinux","S12","glpic2","S13","glpic3"],"gates":true},
-    {"id":"D","name":"Security","blurb":"Hardening, monitoring and security operations, ending in Security+.","fit":"Security or compliance","items":["S0","S1","S2","S6","S7","S9","gcloud","S11","gsec","S13"],"gates":true},
-    {"id":"E","name":"Everyone","blurb":"Every sprint except N1 (Cisco) and A1 (AWS): Foundations, then the 14 core sprints, with their exams.","fit":"A mix, or growing into a senior generalist","items":["F1","F2","gaplus1","F3","gaplus2","gnet","S0","S1","S2","S3","S4","S5","S6","S7","g802","S8","g104","S9","gcloud","S10","glinux","S11","gsec","S12","glpic2","S13","glpic3"],"gates":true},
-    {"id":"F","name":"Foundations","blurb":"New to IT? Start here: hardware, networking, operating systems and support, with A+ and Network+ along the way. Then pick B, C or D.","fit":"New to IT, help desk and desktop support","items":["F1","F2","gaplus1","F3","gaplus2","gnet"],"gates":true},
-    {"id":"G","name":"Networking","blurb":"Cisco routing and switching on top of networking basics, ending in the CCNA. New to IT? Do Track F first.","fit":"Network administration and network operations center (NOC) jobs","items":["F2","S0","S1","N1","gccna"],"gates":true},
-    {"id":"H","name":"AWS","blurb":"Cloud on AWS: the shared lab, networking and cloud architecture, then AWS core services, ending in AWS Solutions Architect – Associate. New to IT? Do Track F first.","fit":"Cloud jobs on AWS","items":["S0","S1","S9","A1","gaws"],"gates":true}
+    {"id":"A","name":"Skills only","blurb":"Claude basics, then all 14 core sprints (S0 to S13), no exams.","fit":"Learning without exams","items":["C1","S0","S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13"],"gates":false},
+    {"id":"B","name":"Microsoft","blurb":"Windows Server and Azure, ending in two Microsoft exams: AZ-802 (Windows Server) and AZ-104 (Azure).","fit":"Windows Server and Azure administration","items":["C1","S0","S1","S2","S3","S4","S5","S6","S7","g802","S8","g104"],"gates":true},
+    {"id":"C","name":"Linux","blurb":"Linux+, then LPIC-1, LPIC-2 and LPIC-3, with Linux as your main lab work.","fit":"Linux server administration","items":["C1","S0","S1","S2","S5","S6","S7","S8","S10","glinux","S12","glpic2","S13","glpic3"],"gates":true},
+    {"id":"D","name":"Security","blurb":"Hardening, monitoring and security operations, ending in Security+.","fit":"Security or compliance","items":["C1","S0","S1","S2","S6","S7","S9","gcloud","S11","gsec","S13"],"gates":true},
+    {"id":"E","name":"Everyone","blurb":"Every sprint except N1 (Cisco), A1 (AWS), C2 and C3 (Claude): Claude basics, Foundations, then the 14 core sprints, with their exams.","fit":"A mix, or growing into a senior generalist","items":["C1","F1","F2","gaplus1","F3","gaplus2","gnet","S0","S1","S2","S3","S4","S5","S6","S7","g802","S8","g104","S9","gcloud","S10","glinux","S11","gsec","S12","glpic2","S13","glpic3"],"gates":true},
+    {"id":"F","name":"Foundations","blurb":"New to IT? Start here: Claude basics, then hardware, networking, operating systems and support, with A+ and Network+ along the way. Then pick B, C or D.","fit":"New to IT, help desk and desktop support","items":["C1","F1","F2","gaplus1","F3","gaplus2","gnet"],"gates":true},
+    {"id":"G","name":"Networking","blurb":"Cisco routing and switching on top of networking basics, ending in the CCNA. New to IT? Do Track F first.","fit":"Network administration and network operations center (NOC) jobs","items":["C1","F2","S0","S1","N1","gccna"],"gates":true},
+    {"id":"H","name":"AWS","blurb":"Cloud on AWS: the shared lab, networking and cloud architecture, then AWS core services, ending in AWS Solutions Architect – Associate. New to IT? Do Track F first.","fit":"Cloud jobs on AWS","items":["C1","S0","S1","S9","A1","gaws"],"gates":true},
+    {"id":"I","name":"Claude","blurb":"Use Claude well in IT work: Claude basics, the shared lab, Claude Code for your lab scripts, then Skills and agents. No exam; C2 needs a paid Claude plan.","fit":"Anyone who wants to use Claude well in IT work","items":["C1","S0","C2","C3"],"gates":false}
   ],
   "certs": [
     {"name":"CompTIA A+","what":"IT support: hardware, operating systems and troubleshooting (two exams)"},
@@ -69,6 +73,7 @@
     {"label": "Security or compliance", "track": "D"},
     {"label": "Networking, or a network operations center", "track": "G"},
     {"label": "Cloud on AWS", "track": "H"},
+    {"label": "Using Claude well in IT work", "track": "I"},
     {"label": "The full path, from the basics up", "track": "E"},
     {"label": "The skills without the exams", "track": "A"}
   ],

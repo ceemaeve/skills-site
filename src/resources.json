@@ -788,7 +788,8 @@
       "name": "Git",
       "sprints": [
         "S0",
-        "S8"
+        "S8",
+        "C2"
       ],
       "links": [
         [
@@ -807,7 +808,8 @@
       "sprints": [
         "F3",
         "S0",
-        "S8"
+        "S8",
+        "C2"
       ],
       "links": [
         [
@@ -826,7 +828,8 @@
       "sprints": [
         "S0",
         "S8",
-        "S10"
+        "S10",
+        "C2"
       ],
       "links": [
         [
@@ -954,6 +957,42 @@
         [
           "Getting started with the AWS CLI (official guide)",
           "https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html"
+        ]
+      ]
+    },
+    {
+      "anchor": "tool-claude",
+      "name": "Claude",
+      "sprints": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "note": "C1 and C3 work on the free plan. C2's Claude Code needs a paid Claude plan or an Anthropic Console account. Never paste passwords, keys or real data.",
+      "links": [
+        [
+          "Claude Academy: free courses",
+          "https://academy.claude.com/"
+        ],
+        [
+          "Claude 101",
+          "https://academy.claude.com/courses/claude-101"
+        ],
+        [
+          "Claude Code 101",
+          "https://academy.claude.com/courses/claude-code-101"
+        ],
+        [
+          "Introduction to agent skills",
+          "https://academy.claude.com/courses/introduction-to-agent-skills"
+        ],
+        [
+          "Use skills in Claude (help center)",
+          "https://support.claude.com/en/articles/12512180"
+        ],
+        [
+          "Claude Code overview (docs)",
+          "https://code.claude.com/docs/en/overview"
         ]
       ]
     }

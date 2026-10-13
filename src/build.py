@@ -252,10 +252,13 @@ lpi = ''.join(exam_card(x) for x in res['lpi'])
 cisco = ''.join(exam_card(x) for x in res['cisco'])
 tools = ''.join(tool_card(t) for t in res['tools'])
 
-idx = fill(open(os.path.join(HERE, 'index.src.html'), encoding='utf-8').read())
+chooser = '\n        '.join('<li><a href="calendar.html?track=%s">%s<b>Track %s</b></a></li>' % (e(c['track']), e(c['label']), e(c['track'])) for c in data['chooser'])
+idx = fill(open(os.path.join(HERE, 'index.src.html'), encoding='utf-8').read()).replace('__CHOOSER__', chooser).replace('__NOTICE__', e(data['notice']))
 resp = (fill(open(os.path.join(HERE, 'resources.src.html'), encoding='utf-8').read()).replace('__MS_LEARN__', ms_learn)
         .replace('__MS_UDEMY__', ms_udemy).replace('__COMPTIA__', comptia).replace('__FOUNDATION__', foundation).replace('__LPI__', lpi)
         .replace('__CISCO__', cisco).replace('__TOOLS__', tools).replace('__CHECKED__', e(res['checked'])).replace('__PRICES_CHECKED__', e(res['pricesChecked'])))
+# The calendar labels two-exam gates (Linux+ and LPIC-1) with the Resources card's exam name.
+data['resNames'] = {x['anchor']: x['exam'] for k in ('microsoft', 'foundation', 'comptia', 'lpi', 'cisco') for x in res[k]}
 cal = fill(open(os.path.join(HERE, 'calendar.src.html'), encoding='utf-8').read()).replace('__DATA__', json.dumps(data, ensure_ascii=False).replace('</', '<\\/'))
 open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8').write(idx)
 open(os.path.join(OUT, 'resources.html'), 'w', encoding='utf-8').write(resp)

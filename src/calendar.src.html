@@ -235,7 +235,7 @@ __SHARED_CSS__
         var more = el("a", "more", "Labs and deliverable"); more.href = x.it.doc; what.appendChild(more);
       } else {
         [].concat(x.it.res).forEach(function (anchor, i, all) {
-          var link = el("a", "more", all.length > 1 ? "Study links: " + ({ "linux-plus": "Linux+", "lpic-1": "LPIC-1" }[anchor] || anchor) : "Study links for this exam");
+          var link = el("a", "more", all.length > 1 ? "Study links: " + (DATA.resNames[anchor] || anchor) : "Study links for this exam");
           link.href = "resources.html#" + anchor; what.appendChild(link);
         });
       }

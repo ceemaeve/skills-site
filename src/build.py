@@ -51,12 +51,25 @@ def validate(data, res):
         for i in t['sprints']:
             if i not in sprints:
                 errs.append('resources.json: %s: unknown sprint "%s"' % (where, i))
-    if 'chooser' in data:
-        if not data['chooser']:
-            errs.append('data.json: chooser: empty')
-        for c in data['chooser']:
-            if c['track'] not in tracks:
+    ch = data.get('chooser')
+    if ch is None:
+        errs.append('data.json: chooser: missing')
+    elif not isinstance(ch, list) or not ch:
+        errs.append('data.json: chooser: empty')
+    else:
+        for n, c in enumerate(ch):
+            ok = True
+            for f in ('track', 'label'):
+                if not isinstance(c, dict) or not isinstance(c.get(f), str) or not c[f]:
+                    errs.append('data.json: chooser[%d]: missing %s' % (n, f))
+                    ok = False
+            if ok and c['track'] not in tracks:
                 errs.append('data.json: chooser: unknown track "%s"' % c['track'])
+    nt = data.get('notice')
+    if nt is None:
+        errs.append('data.json: notice: missing')
+    elif not isinstance(nt, str) or not nt:
+        errs.append('data.json: notice: invalid')
     def walk(x, file, where):
         if isinstance(x, str):
             if x.startswith('http://'):

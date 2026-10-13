@@ -38,6 +38,12 @@ def m_chooser_track(d, r):
     d['chooser'] = [{'label': 'x', 'track': 'Z'}]
 def m_chooser_empty(d, r):
     d['chooser'] = []
+def m_no_chooser(d, r):
+    del d['chooser']
+def m_no_notice(d, r):
+    del d['notice']
+def m_entry_no_track(d, r):
+    del d['chooser'][0]['track']
 def m_no_res(d, r):
     del gate(d, 'gsec')['res']
 def m_no_sprints(d, r):
@@ -57,6 +63,9 @@ CASES = [
     ('tool_unknown_sprint', m_tool, 1, 'tool tool-vmware: unknown sprint "S99"'),
     ('chooser_unknown_track', m_chooser_track, 1, 'chooser: unknown track "Z"'),
     ('empty_chooser', m_chooser_empty, 1, 'chooser: empty'),
+    ('chooser_missing', m_no_chooser, 1, 'data.json: chooser: missing'),
+    ('notice_missing', m_no_notice, 1, 'data.json: notice: missing'),
+    ('chooser_entry_missing_track', m_entry_no_track, 1, 'chooser[0]: missing track'),
     ('gate_missing_res', m_no_res, 1, 'gate gsec: missing res'),
     ('tool_missing_sprints', m_no_sprints, 1, 'tool tool-vmware: missing sprints'),
     ('track_item_not_string', m_item_obj, 1, 'track C: invalid item'),

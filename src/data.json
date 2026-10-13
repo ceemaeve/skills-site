@@ -1,5 +1,8 @@
 {
   "sprints": [
+    {"id":"F1","name":"Hardware, devices and troubleshooting","weeks":3,"outcome":"Identify, install and troubleshoot PC, laptop, mobile and printer hardware with one troubleshooting method."},
+    {"id":"F2","name":"Networking fundamentals","weeks":4,"outcome":"Explain how data moves, build a small switched and routed network, and troubleshoot it from cable to application."},
+    {"id":"F3","name":"Operating systems, security and support","weeks":3,"outcome":"Install and support Windows, find your way around macOS and Linux, remove malware and close a support ticket."},
     {"id":"S0","name":"Lab and foundations","weeks":2,"outcome":"A working, snapshotted lab, and comfort with the command line on both operating systems."},
     {"id":"S1","name":"Networking and name resolution","weeks":3,"outcome":"Design and troubleshoot addressing, DNS and DHCP on both platforms."},
     {"id":"S2","name":"Identity and directory services","weeks":4,"outcome":"Build and run an Active Directory environment and apply policy at scale."},
@@ -16,6 +19,9 @@
     {"id":"S13","name":"Capstone","weeks":3,"outcome":"One integrated environment that proves the whole skill set."}
   ],
   "gates": [
+    {"id":"gaplus1","name":"A+ Core 1 exam","weeks":1,"note":"Review week, then the exam"},
+    {"id":"gaplus2","name":"A+ Core 2 exam","weeks":1,"note":"Review week, then the exam"},
+    {"id":"gnet","name":"Network+ exam","weeks":2,"note":"Two review weeks, then the exam"},
     {"id":"g802","name":"AZ-802 exam","weeks":1,"note":"Exam week plus review"},
     {"id":"g104","name":"AZ-104 exam","weeks":1,"note":"Exam week plus review"},
     {"id":"gcloud","name":"Cloud+ exam","weeks":1,"note":"Review week, then the exam"},
@@ -25,13 +31,14 @@
     {"id":"glpic3","name":"LPIC-3 exam (one track)","weeks":2,"note":"Two review weeks, then the exam"}
   ],
   "tracks": [
-    {"id":"A","name":"Skills only","blurb":"All fourteen sprints with no exam gates. You get the skills without the certificates.","fit":"Learning without exams","items":["S0","S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13"],"gates":false},
+    {"id":"A","name":"Skills only","blurb":"All fourteen core sprints with no exam gates. You get the skills without the certificates.","fit":"Learning without exams","items":["S0","S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13"],"gates":false},
     {"id":"B","name":"Microsoft","blurb":"Windows Server and Azure, ending in AZ-802 and AZ-104.","fit":"Windows and Microsoft 365 administration","items":["S0","S1","S2","S3","S4","S5","S6","S7","g802","S8","g104"],"gates":true},
     {"id":"C","name":"Linux","blurb":"Linux+, then LPIC-1, 2 and 3, with the Linux lane as the main lab.","fit":"Linux server administration","items":["S0","S1","S2","S5","S6","S7","S8","S10","glinux","S12","glpic2","S13","glpic3"],"gates":true},
     {"id":"D","name":"Security","blurb":"Hardening, monitoring and security operations, ending in Security+.","fit":"Security or compliance","items":["S0","S1","S2","S6","S7","S9","gcloud","S11","gsec","S13"],"gates":true},
-    {"id":"E","name":"Everyone","blurb":"The full path: all fourteen sprints and every exam gate.","fit":"A mix, or growing into a senior generalist","items":["S0","S1","S2","S3","S4","S5","S6","S7","g802","S8","g104","S9","gcloud","S10","glinux","S11","gsec","S12","glpic2","S13","glpic3"],"gates":true}
+    {"id":"E","name":"Everyone","blurb":"The full path: all seventeen sprints, Foundations included, and every exam gate.","fit":"A mix, or growing into a senior generalist","items":["F1","F2","gaplus1","F3","gaplus2","gnet","S0","S1","S2","S3","S4","S5","S6","S7","g802","S8","g104","S9","gcloud","S10","glinux","S11","gsec","S12","glpic2","S13","glpic3"],"gates":true},
+    {"id":"F","name":"Foundations","blurb":"New to IT? Start here: hardware, networking, operating systems and support, with A+ and Network+ along the way. Then pick B, C or D.","fit":"New to IT, help desk and desktop support","items":["F1","F2","gaplus1","F3","gaplus2","gnet"],"gates":true}
   ],
-  "certs": ["Microsoft AZ-802","Microsoft AZ-104","CompTIA Cloud+","CompTIA Security+","CompTIA Linux+","LPIC-1","LPIC-2","LPIC-3"],
+  "certs": ["CompTIA A+", "CompTIA Network+", "Microsoft AZ-802","Microsoft AZ-104","CompTIA Cloud+","CompTIA Security+","CompTIA Linux+","LPIC-1","LPIC-2","LPIC-3"],
   "kitUrl": "https://github.com/ceemaeve/skill-training-completed",
   "homeUrl": "https://ceema.dev"
 }

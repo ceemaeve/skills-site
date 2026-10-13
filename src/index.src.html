@@ -35,12 +35,28 @@ __SHARED_CSS__
   .card a.go{margin-top:6px;color:var(--cyan);font-family:var(--font-mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;}
   .card a.go:hover{color:var(--text-hi);}
   .sprints{margin-top:22px;display:flex;flex-direction:column;gap:8px;}
-  .sprint{display:grid;grid-template-columns:58px minmax(0,1fr) 84px;gap:6px 16px;align-items:baseline;background:rgb(var(--rgb-panel) / .55);border:1px solid rgb(var(--rgb-primary) / .4);border-radius:10px;padding:12px 16px;}
+  .grp{margin:18px 0 2px;font-size:17px;letter-spacing:.04em;}
+  .grp small{display:block;margin-top:4px;font:500 15px/1.3 var(--font-body);letter-spacing:0;color:var(--text-dim);}
+  .sprint{background:rgb(var(--rgb-panel) / .55);border:1px solid rgb(var(--rgb-primary) / .4);border-radius:10px;}
+  .sprint summary{display:grid;grid-template-columns:58px minmax(0,1fr) 84px;gap:6px 16px;align-items:baseline;padding:12px 16px;cursor:pointer;list-style:none;min-height:44px;}
+  .sprint summary::-webkit-details-marker{display:none;}
+  .sprint summary:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px;border-radius:10px;}
+  .sprint .doc{display:inline-block;margin:0 16px 14px 90px;color:var(--cyan);font-family:var(--font-mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;}
+  .sprint .doc:hover{color:var(--text-hi);}
+  .choose{margin-top:22px;border:1px solid rgb(var(--rgb-accent) / .5);border-radius:var(--r);background:rgb(var(--rgb-accent) / .06);padding:18px 20px;}
+  .choose h3{font-size:18px;}
+  .choose ul{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:6px 18px;}
+  .choose a{display:flex;justify-content:space-between;gap:12px;align-items:center;min-height:44px;padding:6px 0;border-bottom:1px solid rgb(var(--rgb-primary) / .3);text-decoration:none;color:var(--text-mid);}
+  .choose a b{font-family:var(--font-mono);font-weight:400;font-size:13px;color:var(--cyan);white-space:nowrap;}
+  .choose a:hover,.choose a:hover b{color:var(--text-hi);}
+  .card.start{border-color:var(--cyan);box-shadow:0 0 18px rgb(var(--rgb-accent) / .25);}
   .sprint .id{font-family:var(--font-mono);color:var(--cyan);font-size:15px;}
   .sprint .nm{font-weight:700;color:var(--text-hi);font-size:17px;line-height:1.3;}
-  .sprint .oc{grid-column:2;color:var(--text-dim);font-size:15px;}
-  .sprint .wk{font-family:var(--font-mono);font-size:12.5px;color:var(--text-dim);text-align:right;grid-row:1;grid-column:3;}
-  @media(max-width:560px){.sprint{grid-template-columns:44px minmax(0,1fr);}.sprint .wk{grid-column:2;grid-row:auto;text-align:left;}.sprint .oc{grid-column:2;}}
+  .sprint .oc{margin:0 16px 6px 90px;color:var(--text-dim);font-size:15px;}
+  .sprint .wk{font-family:var(--font-mono);font-size:12.5px;color:var(--text-dim);text-align:right;}
+  .sprint summary .nm::after{content:" +";color:var(--cyan);font-family:var(--font-mono);}
+  .sprint[open] summary .nm::after{content:" \2212";}
+  @media(max-width:560px){.sprint summary{grid-template-columns:44px minmax(0,1fr);}.sprint .wk{grid-column:2;text-align:left;}.sprint .oc,.sprint .doc{margin-left:76px;}}
   .exams{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px;}
   .exams li{border:1px solid rgb(var(--rgb-primary) / .5);border-radius:10px;background:rgb(var(--rgb-void) / .5);padding:10px 14px;display:flex;flex-direction:column;gap:2px;}
   .exams b{font:700 14px/1.2 var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:#fff;}
@@ -57,7 +73,7 @@ __SHARED_CSS__
 <header class="top">
   <div class="wrap top-inner">
     <a class="brand" href="/"><i aria-hidden="true"></i><span>Skill Training <b>Completed</b></span></a>
-    <nav class="nav"><a class="btn btn-primary" href="calendar.html">Study calendar</a><a class="btn btn-ghost" href="resources.html">Resources</a><a class="btn btn-ghost" href="__KIT_URL__">Download the kit</a><a class="btn btn-ghost" href="__HOME_URL__">ceema.dev</a></nav>
+    <nav class="nav"><a class="btn btn-primary" href="calendar.html">Study calendar</a><a class="btn btn-ghost" href="resources.html">Resources</a><a class="btn btn-ghost" href="__ZIP_URL__">Download the kit</a><a class="btn btn-ghost" href="__HOME_URL__">ceema.dev</a></nav>
   </div>
 </header>
 
@@ -66,7 +82,7 @@ __SHARED_CSS__
     <span class="eyebrow">Skills first, certs optional</span>
     <h1>Skill Training <span>Completed</span></h1>
     <p>One home lab and 18 sprints, from IT basics through Windows Server, Azure, Linux, Cisco networking, cloud and security. Each sprint ends with something you built and someone else can check. Certifications are optional exams along the way.</p>
-    <div class="ctas"><a class="btn btn-primary" href="calendar.html">Plan my calendar</a><a class="btn btn-ghost" href="__KIT_URL__">Download the study kit</a></div>
+    <div class="ctas"><a class="btn btn-primary" href="#choose">Find my track</a><a class="btn btn-ghost" href="__ZIP_URL__">Download the study kit (ZIP)</a></div>
   </section>
 
   <section id="how">
@@ -81,6 +97,18 @@ __SHARED_CSS__
   <section id="tracks">
     <h2>Pick a track</h2>
     <p class="lede">All 7 tracks use the same sprints. Your pick sets which ones you do and whether you sit exams. Week counts assume about 8 hours a week.</p>
+    <div class="choose" id="choose">
+      <h3>Not sure? Start here</h3>
+      <ul>
+        <li><a href="calendar.html?track=F">New to IT, or in help desk or desktop support<b>Track F</b></a></li>
+        <li><a href="calendar.html?track=B">Windows Server and Azure<b>Track B</b></a></li>
+        <li><a href="calendar.html?track=C">Linux servers<b>Track C</b></a></li>
+        <li><a href="calendar.html?track=D">Security or compliance<b>Track D</b></a></li>
+        <li><a href="calendar.html?track=G">Networking, or a network operations center<b>Track G</b></a></li>
+        <li><a href="calendar.html?track=E">The full path, from the basics up<b>Track E</b></a></li>
+        <li><a href="calendar.html?track=A">The skills without the exams<b>Track A</b></a></li>
+      </ul>
+    </div>
     <div class="cards">__TRACK_CARDS__</div>
   </section>
 
@@ -88,6 +116,7 @@ __SHARED_CSS__
     <h2>The 18 sprints</h2>
     <p class="lede">F1 to F3 are the Foundations sprints, for people new to IT. The core sprints, S0 to S13, start with Windows and Azure so the AZ-802 exam comes early, and each one adds a short Linux lab alongside the Windows work. N1 is the Cisco sprint for Track G.</p>
     <div class="sprints">__SPRINT_ROWS__</div>
+    <script>if (window.matchMedia("(min-width: 700px)").matches) document.querySelectorAll("details.sprint").forEach(function (d) { d.open = true; });</script>
   </section>
 
   <section id="certs">
@@ -101,11 +130,11 @@ __SHARED_CSS__
       <div>
         <h2>Take it with you</h2>
         <p>The whole study kit is free to download: sprint plan, track guide, lab layout, skill map, assessment rubric and a progress template.</p>
-        <div class="ctas"><a class="btn btn-primary" href="__KIT_URL__">Get the kit on GitHub</a><a class="btn btn-ghost" href="calendar.html">Open the calendar</a></div>
+        <div class="ctas"><a class="btn btn-primary" href="__ZIP_URL__">Download the kit (ZIP)</a><a class="btn btn-ghost" href="__KIT_URL__">View on GitHub</a></div>
       </div>
       <div>
         <h3 style="font-size:16px;letter-spacing:.05em">Use it with your own Claude</h3>
-        <ol><li>Download the files from the repo.</li><li>Add them to a Claude Project as knowledge.</li><li>Ask Claude to coach you through one sprint at a time and check your deliverables.</li></ol>
+        <ol><li>Download the kit and unzip it.</li><li>Add the files to a Claude Project as knowledge.</li><li>Ask Claude to coach you through one sprint at a time and check your deliverables.</li></ol>
       </div>
     </div>
   </section>

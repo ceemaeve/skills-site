@@ -1,7 +1,7 @@
 # Builds the Skill Training Completed site from data.json and resources.json.
 #   python3 src/build.py   (from the repo root, or from src/)
 # Writes index.html, calendar.html, resources.html, 404.html, fonts/, og.png, robots.txt, sitemap.xml and the icon files into ../site/
-import json, html, os, shutil
+import json, html, os, re, shutil
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, '..', 'site')
 os.makedirs(OUT, exist_ok=True)
@@ -10,24 +10,42 @@ e = html.escape
 byid = {s['id']: s for s in data['sprints']}
 byid.update({g['id']: g for g in data['gates']})
 
+def kit_link(s):
+    # GitHub heading anchor for this sprint's section in the kit's SPRINTS.md
+    head = '%s. %s (%d weeks)' % (s['id'], s['name'], s['weeks'])
+    slug = re.sub(r'[^a-z0-9 -]', '', head.lower()).replace(' ', '-')
+    return data['kitUrl'] + '/blob/main/SPRINTS.md#' + slug
+
+for s in data['sprints']:
+    s['doc'] = kit_link(s)
+
 def weeks(track):
     return sum(byid[i]['weeks'] for i in track['items'])
 
 cards = ''
 for t in data['tracks']:
-    cards += ('<div class="card"><span class="k">Track %s</span><h3>%s</h3><p>%s</p>'
+    start = t['id'] == 'F'
+    cards += ('<div class="card%s" id="track-%s"><span class="k">Track %s%s</span><h3>%s</h3><p>%s</p>'
               '<div class="meta"><b>%d weeks</b> &middot; for: %s</div>'
               '<a class="go" href="calendar.html?track=%s">Plan this track</a></div>\n'
-              % (e(t['id']), e(t['name']), e(t['blurb']), weeks(t), e(t['fit']), e(t['id'])))
+              % (' start' if start else '', e(t['id'].lower()), e(t['id']), ' &middot; start here if new to IT' if start else '', e(t['name']), e(t['blurb']), weeks(t), e(t['fit']), e(t['id'])))
+GROUPS = [('F', 'Foundations', 'F1 to F3, for people new to IT (Tracks F and E)'),
+          ('S', 'Core sprints', 'S0 to S13, the shared lab and most of the exams'),
+          ('N', 'Networking', 'N1, the Cisco sprint for Track G')]
 rows = ''
-for s in data['sprints']:
-    rows += ('<div class="sprint"><span class="id">%s</span><span class="nm">%s</span><span class="wk">%d weeks</span>'
-             '<span class="oc">%s</span></div>\n' % (e(s['id']), e(s['name']), s['weeks'], e(s['outcome'])))
+for letter, title, sub in GROUPS:
+    rows += '<h3 class="grp">%s <small>%s</small></h3>\n' % (e(title), e(sub))
+    for s in data['sprints']:
+        if s['id'][0] != letter:
+            continue
+        rows += ('<details class="sprint"><summary><span class="id">%s</span><span class="nm">%s</span><span class="wk">%d weeks</span></summary>'
+                 '<p class="oc">%s</p><a class="doc" href="%s">Labs and deliverable in the kit</a></details>\n'
+                 % (e(s['id']), e(s['name']), s['weeks'], e(s['outcome']), e(s['doc'])))
 chips = ''.join('<li><b>%s</b><span>%s</span></li>' % (e(c['name']), e(c['what'])) for c in data['certs'])
 css = open(os.path.join(HERE, 'shared.css'), encoding='utf-8').read()
 
 def fill(s):
-    return (s.replace('__SHARED_CSS__', css).replace('__KIT_URL__', e(data['kitUrl'])).replace('__HOME_URL__', e(data['homeUrl']))
+    return (s.replace('__SHARED_CSS__', css).replace('__KIT_URL__', e(data['kitUrl'])).replace('__ZIP_URL__', e(data['zipUrl'])).replace('__HOME_URL__', e(data['homeUrl']))
              .replace('__TRACK_CARDS__', cards).replace('__SPRINT_ROWS__', rows).replace('__CERT_CHIPS__', chips))
 
 # Resources page, from resources.json
@@ -55,13 +73,13 @@ def tip(text):
 
 ms_learn = ms_udemy = ''
 for x in res['microsoft']:
-    ms_learn += ('<div class="card"><span class="k">%s</span><h3>%s</h3>%s<h4>Official pages</h4>%s<h4>Learning paths</h4>%s</div>\n'
-                 % (e(x['exam']), e(x['name']), tip(x.get('note')), linklist(x['links']), linklist(x['paths'])))
+    ms_learn += ('<div class="card" id="%s"><span class="k">%s</span><h3>%s</h3>%s<h4>Official pages</h4>%s<h4>Learning paths</h4>%s</div>\n'
+                 % (e(x['anchor']), e(x['exam']), e(x['name']), tip(x.get('note')), linklist(x['links']), linklist(x['paths'])))
     ms_udemy += ('<div class="card"><span class="k">%s</span><h3>%s</h3>%s%s</div>\n'
                  % (e(x['exam']), e(x['name']), tip(x.get('udemyNote')), udemy(x['udemy'])))
 
 def exam_card(x):
-    out = '<div class="card"><span class="k">%s</span><h3>%s</h3>%s' % (e(x['code']), e(x['title']), tip(x.get('note')))
+    out = '<div class="card" id="%s"><span class="k">%s</span><h3>%s</h3>%s' % (e(x['anchor']), e(x['code']), e(x['title']), tip(x.get('note')))
     out += '<h4>Official pages</h4>%s' % linklist(x['official'])
     if x.get('free'):
         out += '<h4>Free study material</h4>%s' % linklist(x['free'])
@@ -90,6 +108,13 @@ open(os.path.join(OUT, '404.html'), 'w', encoding='utf-8').write(fill(open(os.pa
 for f in ('favicon.png', 'favicon.ico', 'apple-touch-icon.png', 'og.png', 'robots.txt', 'sitemap.xml'):
     shutil.copy(os.path.join(HERE, f), os.path.join(OUT, f))
 shutil.copytree(os.path.join(HERE, 'fonts', 'web'), os.path.join(OUT, 'fonts'), dirs_exist_ok=True)
+
+# Check: each sprint link matches a heading in the kit, when a kit checkout sits next to this repo.
+kit = os.path.join(HERE, '..', '..', 'skill-training-completed', 'SPRINTS.md')
+if os.path.exists(kit):
+    heads = open(kit, encoding='utf-8').read()
+    for s in data['sprints']:
+        assert '## %s. %s (%d weeks)' % (s['id'], s['name'], s['weeks']) in heads, 'kit has no heading for ' + s['id']
 
 # Check: no template placeholder may survive into a page.
 import re

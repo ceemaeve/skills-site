@@ -28,15 +28,20 @@ __SHARED_CSS__
   .field{display:flex;flex-direction:column;gap:6px;min-width:0;}
   .field label,.field .lab{font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);}
   select,input[type=date]{background:var(--panel-2);border:1px solid rgb(var(--rgb-primary) / .6);color:var(--text-hi);font:inherit;font-size:16px;padding:9px 10px;border-radius:6px;width:100%;color-scheme:dark;}
-  .check{display:flex;align-items:center;gap:10px;font-size:16px;color:var(--text-mid);padding-top:4px;}
-  .check input{width:18px;height:18px;accent-color:var(--cyan);}
+  .check{display:flex;align-items:center;gap:12px;font-size:16px;color:var(--text-mid);min-height:44px;cursor:pointer;}
+  .check input{width:22px;height:22px;accent-color:var(--cyan);cursor:pointer;}
+  .acts{display:flex;flex-wrap:wrap;gap:10px;}
+  .copied{margin:6px 0 0;min-height:1.2em;font-family:var(--font-mono);font-size:12.5px;color:var(--cyan);width:100%;}
+  .row .more{display:inline-block;margin-left:10px;color:var(--cyan);font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;}
+  .row .more:hover{color:var(--text-hi);}
+  @media(max-width:640px){main#main{display:flex;flex-direction:column;}.agenda{order:1;}.toolbar{order:2;margin-top:28px;}.cal{order:3;}.note{order:4;}}
   .check.off{opacity:.45;}
   .summary{margin-top:14px;display:flex;gap:12px 22px;flex-wrap:wrap;align-items:center;justify-content:space-between;}
   .stats{font-family:var(--font-mono);font-size:13.5px;color:var(--text-dim);}
   .stats b{color:var(--cyan);font-weight:400;}
   .toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:26px;}
   .month-nav{display:flex;align-items:center;gap:10px;}
-  .month-nav button{background:rgb(var(--rgb-primary) / .18);border:1px solid rgb(var(--rgb-primary) / .7);color:var(--text-hi);width:38px;height:38px;border-radius:8px;font-size:18px;cursor:pointer;}
+  .month-nav button{background:rgb(var(--rgb-primary) / .18);border:1px solid rgb(var(--rgb-primary) / .7);color:var(--text-hi);width:44px;height:44px;border-radius:8px;font-size:18px;cursor:pointer;}
   .month-nav button:disabled{opacity:.35;cursor:default;}
   .month-name{font-family:var(--font-display);font-weight:800;color:var(--text-hi);font-size:clamp(18px,2.6vw,22px);min-width:11ch;text-align:center;letter-spacing:.04em;}
   .cal{margin-top:16px;border:1px solid rgb(var(--rgb-primary) / .45);border-radius:var(--r);background:linear-gradient(180deg,rgb(var(--rgb-panel) / .9),rgb(var(--rgb-void) / .92));overflow:hidden;}
@@ -77,7 +82,7 @@ __SHARED_CSS__
 <header class="top">
   <div class="wrap top-inner">
     <a class="brand" href="/"><i aria-hidden="true"></i><span>Skill Training <b>Completed</b></span></a>
-    <nav class="nav"><a class="btn btn-primary" href="/">Back to home</a><a class="btn btn-ghost" href="resources.html">Resources</a><a class="btn btn-ghost" href="__KIT_URL__">Download the kit</a></nav>
+    <nav class="nav"><a class="btn btn-primary" href="/">Back to home</a><a class="btn btn-ghost" href="resources.html">Resources</a><a class="btn btn-ghost" href="__ZIP_URL__">Download the kit</a></nav>
   </div>
 </header>
 
@@ -85,7 +90,7 @@ __SHARED_CSS__
   <section class="hero">
     <span class="eyebrow">Plan your path</span>
     <h1>Study <span style="color:var(--pink)">Calendar</span></h1>
-    <p style="margin:12px 0 0;color:var(--text-dim);max-width:62ch">Choose a track, a start date and the hours you can give each week. The calendar lays out each sprint and exam gate in order. It runs in your browser and saves or sends nothing.</p>
+    <p style="margin:12px 0 0;color:var(--text-dim);max-width:62ch">Choose a track, a start date and the hours you can give each week. The calendar lays out each sprint and exam gate in order. It runs in your browser and saves or sends nothing. The page address keeps your choices, so you can bookmark or share your plan.</p>
   </section>
 
   <div class="controls">
@@ -97,7 +102,8 @@ __SHARED_CSS__
 
   <div class="summary">
     <div class="stats" id="stats"></div>
-    <button type="button" class="btn btn-ghost" id="ics">Download .ics</button>
+    <div class="acts"><button type="button" class="btn btn-ghost" id="copy">Copy link to this plan</button><button type="button" class="btn btn-ghost" id="ics">Add to my calendar (.ics)</button></div>
+    <p class="copied" id="copied" role="status" aria-live="polite"></p>
   </div>
 
   <div class="toolbar">
@@ -166,6 +172,8 @@ __SHARED_CSS__
       .forEach(function (text, i) { if (i) $("stats").appendChild(document.createTextNode("  |  ")); $("stats").appendChild(el("b", null, text)); });
     $("gate-wrap").classList.toggle("off", !track.gates);
     $("gates").disabled = !track.gates;
+    var qs = "?track=" + track.id + "&start=" + iso(start) + "&hours=" + hours + (track.gates && !$("gates").checked ? "&exams=0" : "");
+    if (location.search !== qs) history.replaceState(null, "", qs);
     view = { y: new Date(start).getUTCFullYear(), m: new Date(start).getUTCMonth() };
     render(start, end);
   }
@@ -206,6 +214,9 @@ __SHARED_CSS__
       what.appendChild(el("div", "name", (x.it.kind === "sprint" ? x.it.id + ". " : "") + x.it.name));
       what.appendChild(el("div", "desc", x.it.outcome));
       what.appendChild(el("span", "tag " + x.it.kind, x.it.kind === "sprint" ? "Sprint" : "Exam gate"));
+      var more = el("a", "more", x.it.kind === "sprint" ? "Labs and deliverable" : "Study links for this exam");
+      more.href = x.it.kind === "sprint" ? x.it.doc : "resources.html#" + x.it.res;
+      what.appendChild(more);
       row.appendChild(when); row.appendChild(what); ag.appendChild(row);
     });
   }
@@ -240,12 +251,20 @@ __SHARED_CSS__
 
   DATA.tracks.forEach(function (t) { var o = el("option", null, t.id + ": " + t.name); o.value = t.id; $("track").appendChild(o); });
   var q = new URLSearchParams(location.search), qt = (q.get("track") || "").toUpperCase();
-  if (DATA.tracks.some(function (t) { return t.id === qt; })) $("track").value = qt; else $("track").value = "E";
-  $("start").value = iso(mondayOnOrAfter(todayUtc()));
+  if (DATA.tracks.some(function (t) { return t.id === qt; })) $("track").value = qt; else $("track").value = "F";
+  var qStart = parseIso(q.get("start"));
+  $("start").value = iso(isNaN(qStart) ? mondayOnOrAfter(todayUtc()) : qStart);
+  if ([].some.call($("hours").options, function (o) { return o.value === q.get("hours"); })) $("hours").value = q.get("hours");
+  if (q.get("exams") === "0") $("gates").checked = false;
   ["track", "start", "hours", "gates"].forEach(function (id) { $(id).addEventListener("change", build); });
   $("prev").addEventListener("click", function () { view = { y: view.m ? view.y : view.y - 1, m: (view.m + 11) % 12 }; render(); });
   $("next").addEventListener("click", function () { view = { y: view.m === 11 ? view.y + 1 : view.y, m: (view.m + 1) % 12 }; render(); });
   $("ics").addEventListener("click", download);
+  $("copy").addEventListener("click", function () {
+    var url = location.href, done = function () { $("copied").textContent = "Link copied. Anyone who opens it sees this plan."; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, function () { $("copied").textContent = url; });
+    else $("copied").textContent = url;
+  });
   build();
 })();
 </script>

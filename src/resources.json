@@ -70,7 +70,8 @@
           "note": "Practice tests, no ratings yet"
         }
       ],
-      "udemyNote": "AZ-802 is new, so only one full video course has ratings so far."
+      "udemyNote": "AZ-802 is new, so only one full video course has ratings so far.",
+      "anchor": "az-802"
     },
     {
       "exam": "AZ-104",
@@ -137,7 +138,8 @@
           "rating": 4.6,
           "ratings": 27692
         }
-      ]
+      ],
+      "anchor": "az-104"
     }
   ],
   "comptia": [
@@ -179,7 +181,8 @@
           "https://www.comptia.org/en-us/certifications/cloud/"
         ]
       ],
-      "title": "CompTIA Cloud+"
+      "title": "CompTIA Cloud+",
+      "anchor": "cloud-plus"
     },
     {
       "exam": "Security+",
@@ -219,7 +222,8 @@
           "https://www.comptia.org/en-us/certifications/security/"
         ]
       ],
-      "title": "CompTIA Security+"
+      "title": "CompTIA Security+",
+      "anchor": "security-plus"
     },
     {
       "exam": "Linux+",
@@ -259,7 +263,8 @@
           "https://www.comptia.org/en-us/certifications/linux/"
         ]
       ],
-      "title": "CompTIA Linux+"
+      "title": "CompTIA Linux+",
+      "anchor": "linux-plus"
     }
   ],
   "foundation": [
@@ -304,7 +309,8 @@
           "ratings": 47881,
           "note": "Core 1"
         }
-      ]
+      ],
+      "anchor": "a-plus"
     },
     {
       "exam": "Network+",
@@ -343,7 +349,8 @@
           "rating": 4.6,
           "ratings": 34903
         }
-      ]
+      ],
+      "anchor": "network-plus"
     }
   ],
   "lpi": [
@@ -402,7 +409,8 @@
           "note": "Exam 101"
         }
       ],
-      "udemyNote": "LPIC courses have far fewer ratings than CompTIA ones. Christine Bresnahan co-wrote the Sybex guide."
+      "udemyNote": "LPIC courses have far fewer ratings than CompTIA ones. Christine Bresnahan co-wrote the Sybex guide.",
+      "anchor": "lpic-1"
     },
     {
       "exam": "LPIC-2",
@@ -455,7 +463,8 @@
           "ratings": 74,
           "note": "Exam 202"
         }
-      ]
+      ],
+      "anchor": "lpic-2"
     },
     {
       "exam": "LPIC-3",
@@ -495,7 +504,8 @@
           "note": "Exam 305"
         }
       ],
-      "udemyNote": "Only one Udemy course covers a current LPIC-3 exam. The free LPI objectives plus your lab are the main study path here."
+      "udemyNote": "Only one Udemy course covers a current LPIC-3 exam. The free LPI objectives plus your lab are the main study path here.",
+      "anchor": "lpic-3"
     }
   ],
   "cisco": [
@@ -566,7 +576,8 @@
           "ratings": 5023
         }
       ],
-      "udemyNote": "Only Neil Anderson's course says it covers v2.0 so far."
+      "udemyNote": "Only Neil Anderson's course says it covers v2.0 so far.",
+      "anchor": "ccna"
     }
   ]
 }

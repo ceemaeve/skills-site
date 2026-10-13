@@ -43,6 +43,9 @@ __SHARED_CSS__
   .ol li::before{content:counter(n);font-family:var(--font-mono);color:var(--magenta);font-size:15px;line-height:1.5;}
   .book{border:1px solid rgb(var(--rgb-highlight) / .45);border-radius:10px;padding:12px 14px;background:rgb(var(--rgb-highlight) / .07);}
   .tip{margin:2px 0 0;font-size:15px;color:var(--text-dim);border-left:2px solid var(--amber);padding-left:10px;}
+  .totop{margin:14px 0 0;}
+  .totop a{display:inline-flex;align-items:center;min-height:44px;color:var(--cyan);font-family:var(--font-mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;}
+  .card{scroll-margin-top:90px;}
   .note{margin-top:18px;font-family:var(--font-mono);font-size:12.5px;color:var(--text-dim);max-width:80ch;}
 </style>
 </head>
@@ -51,12 +54,12 @@ __SHARED_CSS__
 <header class="top">
   <div class="wrap top-inner">
     <a class="brand" href="/"><i aria-hidden="true"></i><span>Skill Training <b>Completed</b></span></a>
-    <nav class="nav"><a class="btn btn-primary" href="/">Back to home</a><a class="btn btn-ghost" href="calendar.html">Study calendar</a><a class="btn btn-ghost" href="__KIT_URL__">Download the kit</a></nav>
+    <nav class="nav"><a class="btn btn-primary" href="/">Back to home</a><a class="btn btn-ghost" href="calendar.html">Study calendar</a><a class="btn btn-ghost" href="__ZIP_URL__">Download the kit</a></nav>
   </div>
 </header>
 
 <main class="wrap" id="main">
-  <section class="hero">
+  <section class="hero" id="top">
     <span class="eyebrow">Study resources</span>
     <h1>Resources</h1>
     <p>Where to study for each exam the tracks cover: official training and objectives, the Sybex study guides and the best-rated Udemy courses.</p>
@@ -67,36 +70,42 @@ __SHARED_CSS__
     <h2>Foundations: A+ and Network+</h2>
     <p class="lede">Track F covers these two in sprints F1 to F3, and Track E starts with them. They cover the hardware, support and networking basics the core sprints assume.</p>
     <div class="cards">__FOUNDATION__</div>
+    <p class="totop"><a href="#top">Back to top</a></p>
   </section>
 
   <section id="microsoft">
     <h2>Microsoft Learn</h2>
     <p class="lede">Microsoft's own training is free. Start with the study guide: it lists every skill the exam measures.</p>
     <div class="cards">__MS_LEARN__</div>
+    <p class="totop"><a href="#top">Back to top</a></p>
   </section>
 
   <section id="udemy-microsoft">
     <h2>Udemy: AZ courses</h2>
     <p class="lede">Up to three of the highest-rated courses for each exam.</p>
     <div class="cards">__MS_UDEMY__</div>
+    <p class="totop"><a href="#top">Back to top</a></p>
   </section>
 
   <section id="comptia">
     <h2>CompTIA: Cloud+, Security+ and Linux+</h2>
     <p class="lede">For each exam: the official page with its objectives, the Sybex study guide and up to three of the highest-rated Udemy courses.</p>
     <div class="cards">__COMPTIA__</div>
+    <p class="totop"><a href="#top">Back to top</a></p>
   </section>
 
   <section id="cisco">
     <h2>Cisco: CCNA</h2>
     <p class="lede">Track G ends here. Cisco's free tools cover the labs: Packet Tracer for most of them, Cisco Modeling Labs Free for real IOS.</p>
     <div class="cards">__CISCO__</div>
+    <p class="totop"><a href="#top">Back to top</a></p>
   </section>
 
   <section id="lpi">
     <h2>LPI: LPIC-1, 2 and 3</h2>
     <p class="lede">LPI publishes the objectives for every exam and free study material for LPIC-1. Udemy coverage is much thinner than for CompTIA, so lean on the objectives and your lab.</p>
     <div class="cards">__LPI__</div>
+    <p class="totop"><a href="#top">Back to top</a></p>
   </section>
 
   <p class="note">Ratings checked __CHECKED__. Ratings, prices and exam versions change, so re-check before you buy or book. These are plain links; ceema.dev earns nothing from them.</p>

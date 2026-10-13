@@ -942,6 +942,20 @@
           "https://kubernetes.io/docs/tutorials/kubernetes-basics/"
         ]
       ]
+    },
+    {
+      "anchor": "tool-aws-cli",
+      "name": "AWS CLI",
+      "sprints": [
+        "A1"
+      ],
+      "note": "Or use AWS CloudShell in the browser, which has it built in.",
+      "links": [
+        [
+          "Getting started with the AWS CLI (official guide)",
+          "https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html"
+        ]
+      ]
     }
   ]
 }

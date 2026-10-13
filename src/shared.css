@@ -1,3 +1,9 @@
+  @font-face{font-family:'Orbitron';font-style:normal;font-weight:400 900;font-display:swap;src:url(/fonts/orbitron-latin-wght-normal.woff2) format('woff2');}
+  @font-face{font-family:'Rajdhani';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/rajdhani-latin-400-normal.woff2) format('woff2');}
+  @font-face{font-family:'Rajdhani';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/rajdhani-latin-500-normal.woff2) format('woff2');}
+  @font-face{font-family:'Rajdhani';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/rajdhani-latin-600-normal.woff2) format('woff2');}
+  @font-face{font-family:'Rajdhani';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/rajdhani-latin-700-normal.woff2) format('woff2');}
+  @font-face{font-family:'Share Tech Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/share-tech-mono-latin-400-normal.woff2) format('woff2');}
   :root{
     color-scheme:dark;
     /* Stream EVE Today palette (stream-eve-today core/app/globals.css), shared across ceema.dev */
@@ -38,7 +44,9 @@
   .btn-ghost{color:#fff;background:rgb(var(--rgb-primary) / .18);border-color:rgb(var(--rgb-primary) / .7);}
   .btn-ghost:hover{background:rgb(var(--rgb-primary) / .35);}
   .btn:focus-visible,.day:focus-visible,.seg button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;}
-  @media(max-width:640px){.brand span{display:none;}.btn{font-size:13px;padding:11px 12px;}}
+  @media(max-width:640px){.brand span{display:none;}.btn{font-size:13px;padding:11px 12px;}header.top{position:static;}}
+  .skip{position:absolute;left:12px;top:-60px;z-index:20;background:var(--cyan);color:var(--void);padding:10px 14px;border-radius:8px;font-weight:700;text-decoration:none;}
+  .skip:focus{top:12px;}
   .eyebrow{display:inline-flex;align-items:center;gap:10px;font:600 13px/1.2 var(--font-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);}
   .eyebrow::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--magenta);box-shadow:0 0 0 3px rgb(var(--rgb-highlight) / .25),0 0 10px var(--magenta);}
   .hero{padding-block:clamp(40px,7vw,72px) 16px;}

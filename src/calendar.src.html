@@ -17,9 +17,9 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Skill Training Completed: skills first, certs optional">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap">
+<link rel="preload" href="/fonts/rajdhani-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/orbitron-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="canonical" href="https://skills.ceema.dev/calendar.html">
 <style>
 __SHARED_CSS__
   .hero{padding-block:clamp(36px,6vw,56px) 12px;}
@@ -73,14 +73,15 @@ __SHARED_CSS__
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="top">
   <div class="wrap top-inner">
     <a class="brand" href="/"><i aria-hidden="true"></i><span>Skill Training <b>Completed</b></span></a>
-    <nav class="nav"><a class="btn btn-primary" href="/">Back to Home</a><a class="btn btn-ghost" href="resources.html">Resources</a><a class="btn btn-ghost" href="__KIT_URL__">Download the Kit</a></nav>
+    <nav class="nav"><a class="btn btn-primary" href="/">Back to home</a><a class="btn btn-ghost" href="resources.html">Resources</a><a class="btn btn-ghost" href="__KIT_URL__">Download the kit</a></nav>
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="main">
   <section class="hero">
     <span class="eyebrow">Plan your path</span>
     <h1>Study <span style="color:var(--pink)">Calendar</span></h1>
@@ -112,7 +113,7 @@ __SHARED_CSS__
   </div>
 
   <section class="agenda"><h2>Sprint by sprint</h2><div id="agenda"></div></section>
-  <p class="note">Week counts are planning estimates built on 8 hours a week, and they scale with your hours. Exam gate weeks are review time, so book the exam inside that window. Check the official exam pages for current versions before you book.</p>
+  <p class="note">Sprint weeks are planning estimates built on 8 hours a week, and they scale with your hours. Exam gate weeks stay fixed: they are review time, so book the exam inside that window. Check the official exam pages for current versions before you book.</p>
 </main>
 
 <footer><div class="wrap">&copy; 2026 Skill Training Completed, part of <a href="__HOME_URL__">ceema.dev</a>. Not affiliated with or endorsed by Microsoft, CompTIA, Cisco or LPI.</div></footer>
@@ -125,7 +126,7 @@ __SHARED_CSS__
   var MS = 86400000;
   var byId = {};
   DATA.sprints.forEach(function (s) { s.kind = "sprint"; byId[s.id] = s; });
-  DATA.gates.forEach(function (g) { g.kind = "gate"; g.outcome = g.note; g.short = "Exam"; byId[g.id] = g; });
+  DATA.gates.forEach(function (g) { g.kind = "gate"; g.outcome = g.note; byId[g.id] = g; });
 
   function $(id) { return document.getElementById(id); }
   function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
@@ -136,7 +137,7 @@ __SHARED_CSS__
   function mondayOnOrAfter(ms) { var wd = (new Date(ms).getUTCDay() + 6) % 7; return wd === 0 ? ms : ms + (7 - wd) * MS; }
   function todayUtc() { var d = new Date(); return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()); }
 
-  var items = [], view = null;
+  var items = [], view = null, trackId = "";
 
   function build() {
     var track = DATA.tracks.filter(function (t) { return t.id === $("track").value; })[0];
@@ -145,6 +146,8 @@ __SHARED_CSS__
     var start = parseIso($("start").value);
     if (isNaN(start)) start = mondayOnOrAfter(todayUtc());
     start = mondayOnOrAfter(start);
+    $("start").value = iso(start);
+    trackId = track.id;
     var cursor = start, n = 0, totalWeeks = 0;
     items = [];
     track.items.forEach(function (id) {
@@ -159,8 +162,8 @@ __SHARED_CSS__
     var sprintCount = items.filter(function (x) { return x.it.kind === "sprint"; }).length;
     var gateCount = items.length - sprintCount;
     $("stats").textContent = "";
-    [["Track " + track.id + ": " + track.name, ""], [sprintCount + (sprintCount === 1 ? " sprint" : " sprints"), ""], [gateCount + (gateCount === 1 ? " exam gate" : " exam gates"), ""], [totalWeeks + " weeks (about " + (Math.round(totalWeeks / 4.345 * 10) / 10) + " months)", ""], ["Finish around " + fmt(end) + " " + new Date(end).getUTCFullYear(), ""]]
-      .forEach(function (p, i) { if (i) $("stats").appendChild(document.createTextNode("  |  ")); var b = el("b", null, p[0]); $("stats").appendChild(b); });
+    ["Track " + track.id + ": " + track.name, sprintCount + (sprintCount === 1 ? " sprint" : " sprints"), gateCount + (gateCount === 1 ? " exam gate" : " exam gates"), totalWeeks + " weeks (about " + (Math.round(totalWeeks / 4.345 * 10) / 10) + " months)", "Finish around " + fmt(end) + " " + new Date(end).getUTCFullYear()]
+      .forEach(function (text, i) { if (i) $("stats").appendChild(document.createTextNode("  |  ")); $("stats").appendChild(el("b", null, text)); });
     $("gate-wrap").classList.toggle("off", !track.gates);
     $("gates").disabled = !track.gates;
     view = { y: new Date(start).getUTCFullYear(), m: new Date(start).getUTCMonth() };
@@ -189,7 +192,7 @@ __SHARED_CSS__
       if (hit && ms === hit.from) {
         var ev = el("div", "ev " + hit.it.kind);
         ev.appendChild(el("span", "t", hit.it.kind === "sprint" ? hit.it.id : "EXAM"));
-        ev.appendChild(document.createTextNode(hit.it.kind === "sprint" ? hit.it.name : hit.it.name));
+        ev.appendChild(document.createTextNode(hit.it.name));
         cell.appendChild(ev);
       }
       grid.appendChild(cell);
@@ -208,18 +211,28 @@ __SHARED_CSS__
   }
 
   function icsEscape(s) { return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n"); }
+  // RFC 5545 3.1: lines longer than 75 octets are folded with CRLF plus a space.
+  function fold(line) {
+    var out = "", cur = "", bytes = 0;
+    for (var i = 0; i < line.length; i++) {
+      var ch = line[i], n = new TextEncoder().encode(ch).length;
+      if (bytes + n > (out ? 74 : 75)) { out += (out ? "\r\n " : "") + cur; cur = ""; bytes = 0; }
+      cur += ch; bytes += n;
+    }
+    return out ? out + "\r\n " + cur : cur;
+  }
   function download() {
     var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//ceema.dev//Skill Training Completed Study Calendar//EN", "CALSCALE:GREGORIAN"];
     var stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+Z$/, "Z");
-    items.forEach(function (x, i) {
+    items.forEach(function (x) {
       var s = iso(x.from).replace(/-/g, ""), e = iso(x.to + MS).replace(/-/g, "");
-      lines.push("BEGIN:VEVENT", "UID:stc-" + i + "-" + s + "@skilltrainingcompleted.dev", "DTSTAMP:" + stamp,
+      lines.push("BEGIN:VEVENT", "UID:stc-" + trackId + "-" + x.it.id + "@skills.ceema.dev", "DTSTAMP:" + stamp,
         "DTSTART;VALUE=DATE:" + s, "DTEND;VALUE=DATE:" + e,
         "SUMMARY:" + icsEscape((x.it.kind === "sprint" ? x.it.id + " " : "Exam: ") + x.it.name),
         "DESCRIPTION:" + icsEscape(x.it.outcome), "TRANSP:TRANSPARENT", "END:VEVENT");
     });
     lines.push("END:VCALENDAR");
-    var blob = new Blob([lines.join("\r\n") + "\r\n"], { type: "text/calendar" });
+    var blob = new Blob([lines.map(fold).join("\r\n") + "\r\n"], { type: "text/calendar" });
     var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "skill-training-calendar.ics";
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);

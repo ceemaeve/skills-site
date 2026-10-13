@@ -17,9 +17,9 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Skill Training Completed: skills first, certs optional">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap">
+<link rel="preload" href="/fonts/rajdhani-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/orbitron-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="canonical" href="https://skills.ceema.dev/resources.html">
 <style>
 __SHARED_CSS__
   section{padding-block:clamp(32px,5vw,52px) 0;scroll-margin-top:80px;}
@@ -37,7 +37,7 @@ __SHARED_CSS__
   .links a:hover{color:var(--cyan);border-bottom-color:var(--cyan);}
   .links .by{display:block;color:var(--text-dim);font-size:15px;}
   .links .r{font-family:var(--font-mono);font-size:12.5px;color:var(--cyan);}
-  .links .r.none{color:var(--text-faint);}
+  .links .r.none{color:var(--text-dim);}
   .ol{counter-reset:n;}
   .ol li{counter-increment:n;display:grid;grid-template-columns:22px minmax(0,1fr);gap:0 6px;}
   .ol li::before{content:counter(n);font-family:var(--font-mono);color:var(--magenta);font-size:15px;line-height:1.5;}
@@ -47,18 +47,19 @@ __SHARED_CSS__
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="top">
   <div class="wrap top-inner">
     <a class="brand" href="/"><i aria-hidden="true"></i><span>Skill Training <b>Completed</b></span></a>
-    <nav class="nav"><a class="btn btn-primary" href="/">Back to Home</a><a class="btn btn-ghost" href="calendar.html">Study Calendar</a></nav>
+    <nav class="nav"><a class="btn btn-primary" href="/">Back to home</a><a class="btn btn-ghost" href="calendar.html">Study calendar</a><a class="btn btn-ghost" href="__KIT_URL__">Download the kit</a></nav>
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="main">
   <section class="hero">
     <span class="eyebrow">Study resources</span>
     <h1>Resources</h1>
-    <p>Where to study for each exam on the path: official training and objectives, the Sybex study guides and the best-rated Udemy courses.</p>
+    <p>Where to study for each exam the tracks cover: official training and objectives, the Sybex study guides and the best-rated Udemy courses.</p>
     <div class="jump"><a class="btn btn-ghost" href="#foundations">Foundations</a><a class="btn btn-ghost" href="#microsoft">Microsoft Learn</a><a class="btn btn-ghost" href="#udemy-microsoft">Udemy: AZ courses</a><a class="btn btn-ghost" href="#comptia">CompTIA</a><a class="btn btn-ghost" href="#cisco">Cisco</a><a class="btn btn-ghost" href="#lpi">LPI</a></div>
   </section>
 
@@ -70,19 +71,19 @@ __SHARED_CSS__
 
   <section id="microsoft">
     <h2>Microsoft Learn</h2>
-    <p class="lede">Free and official. Start with the study guide: it lists every skill the exam measures.</p>
+    <p class="lede">Microsoft's own training is free. Start with the study guide: it lists every skill the exam measures.</p>
     <div class="cards">__MS_LEARN__</div>
   </section>
 
   <section id="udemy-microsoft">
     <h2>Udemy: AZ courses</h2>
-    <p class="lede">The three highest-rated courses for each exam.</p>
+    <p class="lede">Up to three of the highest-rated courses for each exam.</p>
     <div class="cards">__MS_UDEMY__</div>
   </section>
 
   <section id="comptia">
-    <h2>CompTIA: on the path</h2>
-    <p class="lede">For each exam: the official page with its objectives, the Sybex study guide and the three highest-rated Udemy courses.</p>
+    <h2>CompTIA: Cloud+, Security+ and Linux+</h2>
+    <p class="lede">For each exam: the official page with its objectives, the Sybex study guide and up to three of the highest-rated Udemy courses.</p>
     <div class="cards">__COMPTIA__</div>
   </section>
 

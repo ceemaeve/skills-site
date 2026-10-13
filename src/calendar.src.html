@@ -12,7 +12,7 @@
 <meta property="og:title" content="Study Calendar - Skill Training Completed">
 <meta property="og:description" content="Pick a track, a start date and your weekly hours. Get a sprint-by-sprint study calendar.">
 <meta property="og:url" content="https://skills.ceema.dev/calendar.html">
-<meta property="og:image" content="https://skills.ceema.dev/og.png?v=4">
+<meta property="og:image" content="https://skills.ceema.dev/og.png?v=5">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Skill Training Completed: skills first, certs optional">
@@ -115,7 +115,7 @@ __SHARED_CSS__
   <p class="note">Week counts are planning estimates built on 8 hours a week, and they scale with your hours. Exam gate weeks are review time, so book the exam inside that window. Check the official exam pages for current versions before you book.</p>
 </main>
 
-<footer><div class="wrap">&copy; 2026 Skill Training Completed, part of <a href="__HOME_URL__">ceema.dev</a>. Not affiliated with or endorsed by Microsoft, CompTIA or LPI.</div></footer>
+<footer><div class="wrap">&copy; 2026 Skill Training Completed, part of <a href="__HOME_URL__">ceema.dev</a>. Not affiliated with or endorsed by Microsoft, CompTIA, Cisco or LPI.</div></footer>
 
 <script>
 (function () {
@@ -159,7 +159,7 @@ __SHARED_CSS__
     var sprintCount = items.filter(function (x) { return x.it.kind === "sprint"; }).length;
     var gateCount = items.length - sprintCount;
     $("stats").textContent = "";
-    [["Track " + track.id + ": " + track.name, ""], [sprintCount + " sprints", ""], [gateCount + " exam gates", ""], [totalWeeks + " weeks (about " + (Math.round(totalWeeks / 4.345 * 10) / 10) + " months)", ""], ["Finish around " + fmt(end) + " " + new Date(end).getUTCFullYear(), ""]]
+    [["Track " + track.id + ": " + track.name, ""], [sprintCount + (sprintCount === 1 ? " sprint" : " sprints"), ""], [gateCount + (gateCount === 1 ? " exam gate" : " exam gates"), ""], [totalWeeks + " weeks (about " + (Math.round(totalWeeks / 4.345 * 10) / 10) + " months)", ""], ["Finish around " + fmt(end) + " " + new Date(end).getUTCFullYear(), ""]]
       .forEach(function (p, i) { if (i) $("stats").appendChild(document.createTextNode("  |  ")); var b = el("b", null, p[0]); $("stats").appendChild(b); });
     $("gate-wrap").classList.toggle("off", !track.gates);
     $("gates").disabled = !track.gates;

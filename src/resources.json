@@ -497,5 +497,76 @@
       ],
       "udemyNote": "Only one Udemy course covers a current LPIC-3 exam. The free LPI objectives plus your lab are the main study path here."
     }
+  ],
+  "cisco": [
+    {
+      "exam": "CCNA",
+      "code": "200-301",
+      "title": "Cisco CCNA",
+      "note": "Version 2.0 replaces 1.1 on February 3, 2027 (same exam code). It adds AI in network operations and leans harder on troubleshooting. Study the v2.0 topics.",
+      "official": [
+        [
+          "CCNA certification",
+          "https://www.cisco.com/site/us/en/learn/training-certifications/certifications/enterprise/ccna/index.html"
+        ],
+        [
+          "CCNA v2.0 exam topics",
+          "https://learningnetwork.cisco.com/s/ccna-v2-exam-topics"
+        ],
+        [
+          "CCNA v1.1 exam topics (until Feb 2, 2027)",
+          "https://learningnetwork.cisco.com/s/ccna-exam-topics"
+        ]
+      ],
+      "free": [
+        [
+          "Cisco Packet Tracer (free with a NetAcad account)",
+          "https://www.netacad.com/cisco-packet-tracer"
+        ],
+        [
+          "Cisco Modeling Labs Free",
+          "https://www.cisco.com/site/us/en/learn/training-certifications/training/modeling-labs/index.html"
+        ],
+        [
+          "Cisco U free CCNA learning labs",
+          "https://u.cisco.com/labs/ciscolearning-labsimplementing-administering-cisco-solutionsccna-35"
+        ],
+        [
+          "Jeremy's IT Lab: free CCNA course on YouTube (v1.1)",
+          "https://www.youtube.com/playlist?list=PLxbwE86jKRgMpuZuLBivzlM8s2Dk5lXBQ"
+        ]
+      ],
+      "book": [
+        "CCNA Certification Study Guide, Volumes 1 and 2: Exam 200-301 v1.1, 2nd Edition",
+        "Todd Lammle, Donald Robb",
+        "https://www.amazon.com/dp/1394304080"
+      ],
+      "bookNote": "Written for v1.1. No v2.0 edition has been announced yet.",
+      "udemy": [
+        {
+          "title": "Cisco CCNA 200-301 – The Complete Guide to Getting Certified",
+          "by": "Neil Anderson",
+          "url": "https://www.udemy.com/course/ccna-complete/",
+          "rating": 4.8,
+          "ratings": 91189,
+          "note": "Includes v2.0 updates"
+        },
+        {
+          "title": "Master Cisco CCNA 200-301: Comprehensive All-in-One Course",
+          "by": "Jeremy McDowell (Jeremy's IT Lab)",
+          "url": "https://www.udemy.com/course/ccna-jitl/",
+          "rating": 4.8,
+          "ratings": 6892
+        },
+        {
+          "title": "Cisco CCNA 200-301 Complete Course: Packet Tracer Labs",
+          "by": "David Bombal",
+          "url": "https://www.udemy.com/course/cisco-ccna-icnd2-200-105-complete-course-sims-and-gns3/",
+          "rating": 4.7,
+          "ratings": 5023
+        }
+      ],
+      "udemyNote": "Only Neil Anderson's course says it covers v2.0 so far."
+    }
   ]
 }

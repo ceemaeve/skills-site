@@ -78,10 +78,11 @@ def exam_card(x):
 comptia = ''.join(exam_card(x) for x in res['comptia'])
 foundation = ''.join(exam_card(x) for x in res['foundation'])
 lpi = ''.join(exam_card(x) for x in res['lpi'])
+cisco = ''.join(exam_card(x) for x in res['cisco'])
 
 idx = fill(open(os.path.join(HERE, 'index.src.html')).read())
 resp = (fill(open(os.path.join(HERE, 'resources.src.html')).read()).replace('__MS_LEARN__', ms_learn)
-        .replace('__MS_UDEMY__', ms_udemy).replace('__COMPTIA__', comptia).replace('__FOUNDATION__', foundation).replace('__LPI__', lpi).replace('__CHECKED__', e(res['checked'])))
+        .replace('__MS_UDEMY__', ms_udemy).replace('__COMPTIA__', comptia).replace('__FOUNDATION__', foundation).replace('__LPI__', lpi).replace('__CISCO__', cisco).replace('__CHECKED__', e(res['checked'])))
 open(os.path.join(OUT, 'resources.html'), 'w').write(resp)
 cal = fill(open(os.path.join(HERE, 'calendar.src.html')).read()).replace('__DATA__', json.dumps(data, ensure_ascii=False).replace('</', '<\\/'))
 open(os.path.join(OUT, 'index.html'), 'w').write(idx)

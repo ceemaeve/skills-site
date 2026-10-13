@@ -58,19 +58,30 @@ for x in res['microsoft']:
     tip = '<p class="tip">%s</p>' % e(x['udemyNote']) if x.get('udemyNote') else ''
     ms_udemy += ('<div class="card"><span class="k">%s</span><h3>%s</h3>%s%s</div>\n'
                  % (e(x['exam']), e(x['name']), tip, udemy(x['udemy'])))
-for x in res['comptia']:
-    tip = '<p class="tip">%s</p>' % e(x['note']) if x.get('note') else ''
-    t, by, url = x['book']
-    comptia += ('<div class="card"><span class="k">%s</span><h3>CompTIA %s</h3>%s'
-                '<h4>Official exam page</h4>%s'
-                '<h4>Sybex study guide</h4><div class="book"><ul class="links"><li><span>%s<span class="by">%s &middot; on Amazon</span></span></li></ul></div>'
-                '<h4>Udemy</h4>%s</div>\n'
-                % (e(x['code']), e(x['exam']), tip, linklist([['CompTIA %s (%s)' % (x['exam'], x['code']), x['page']]]),
-                   ext(url, t), e(by), udemy(x['udemy'])))
+def tip(text):
+    return '<p class="tip">%s</p>' % e(text) if text else ''
+
+def exam_card(x):
+    out = '<div class="card"><span class="k">%s</span><h3>%s</h3>%s' % (e(x['code']), e(x['title']), tip(x.get('note')))
+    out += '<h4>Official pages</h4>%s' % linklist(x['official'])
+    if x.get('free'):
+        out += '<h4>Free study material</h4>%s' % linklist(x['free'])
+    out += '<h4>Sybex study guide</h4>'
+    if x.get('book'):
+        t, by, url = x['book']
+        out += ('<div class="book"><ul class="links"><li><span>%s<span class="by">%s &middot; on Amazon</span></span></li></ul></div>'
+                % (ext(url, t), e(by)))
+    out += tip(x.get('bookNote'))
+    out += '<h4>Udemy</h4>%s%s</div>\n' % (tip(x.get('udemyNote')), udemy(x['udemy']))
+    return out
+
+comptia = ''.join(exam_card(x) for x in res['comptia'])
+foundation = ''.join(exam_card(x) for x in res['foundation'])
+lpi = ''.join(exam_card(x) for x in res['lpi'])
 
 idx = fill(open(os.path.join(HERE, 'index.src.html')).read())
 resp = (fill(open(os.path.join(HERE, 'resources.src.html')).read()).replace('__MS_LEARN__', ms_learn)
-        .replace('__MS_UDEMY__', ms_udemy).replace('__COMPTIA__', comptia).replace('__CHECKED__', e(res['checked'])))
+        .replace('__MS_UDEMY__', ms_udemy).replace('__COMPTIA__', comptia).replace('__FOUNDATION__', foundation).replace('__LPI__', lpi).replace('__CHECKED__', e(res['checked'])))
 open(os.path.join(OUT, 'resources.html'), 'w').write(resp)
 cal = fill(open(os.path.join(HERE, 'calendar.src.html')).read()).replace('__DATA__', json.dumps(data, ensure_ascii=False).replace('</', '<\\/'))
 open(os.path.join(OUT, 'index.html'), 'w').write(idx)

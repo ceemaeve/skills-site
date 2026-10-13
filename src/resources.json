@@ -144,7 +144,6 @@
     {
       "exam": "Cloud+",
       "code": "CV0-004",
-      "page": "https://www.comptia.org/en-us/certifications/cloud/",
       "book": [
         "CompTIA Cloud+ Study Guide: Exam CV0-004, 4th Edition",
         "Ben Piper",
@@ -173,12 +172,18 @@
           "ratings": 450,
           "note": "Practice tests"
         }
-      ]
+      ],
+      "official": [
+        [
+          "CompTIA Cloud+ (CV0-004)",
+          "https://www.comptia.org/en-us/certifications/cloud/"
+        ]
+      ],
+      "title": "CompTIA Cloud+"
     },
     {
       "exam": "Security+",
       "code": "SY0-701",
-      "page": "https://www.comptia.org/en-us/certifications/security/",
       "note": "Security+ V8 (SY0-801) is due around November 17, 2026. SY0-701 stays bookable into 2027. The Sybex SY0-801 guide is due December 2026.",
       "book": [
         "CompTIA Security+ Study Guide: Exam SY0-701, 9th Edition",
@@ -207,12 +212,18 @@
           "rating": 4.7,
           "ratings": 13021
         }
-      ]
+      ],
+      "official": [
+        [
+          "CompTIA Security+ (SY0-701)",
+          "https://www.comptia.org/en-us/certifications/security/"
+        ]
+      ],
+      "title": "CompTIA Security+"
     },
     {
       "exam": "Linux+",
       "code": "XK0-006",
-      "page": "https://www.comptia.org/en-us/certifications/linux/",
       "book": [
         "CompTIA Linux+ Study Guide: Exam XK0-006, 6th Edition",
         "Richard Blum",
@@ -241,7 +252,250 @@
           "ratings": 45,
           "note": "Practice tests"
         }
+      ],
+      "official": [
+        [
+          "CompTIA Linux+ (XK0-006)",
+          "https://www.comptia.org/en-us/certifications/linux/"
+        ]
+      ],
+      "title": "CompTIA Linux+"
+    }
+  ],
+  "foundation": [
+    {
+      "exam": "A+",
+      "code": "220-1201 + 220-1202",
+      "title": "CompTIA A+",
+      "note": "Two exams: Core 1 (220-1201, hardware, networking, mobile) and Core 2 (220-1202, operating systems, security, support).",
+      "official": [
+        [
+          "CompTIA A+ (220-1201, 220-1202)",
+          "https://www.comptia.org/en-us/certifications/a/"
+        ]
+      ],
+      "book": [
+        "CompTIA A+ Complete Study Guide, 2-Volume Set: Core 1 and Core 2, 6th Edition",
+        "Quentin Docter, Jon Buhagiar",
+        "https://www.amazon.com/dp/1394330030"
+      ],
+      "udemy": [
+        {
+          "title": "CompTIA A+ 220-1201 Core 1 Hands-On Course Full Training",
+          "by": "Andrew Ramdayal",
+          "url": "https://www.udemy.com/course/comptia-a-plus-core-1-course-hands-on-training/",
+          "rating": 4.8,
+          "ratings": 7950,
+          "note": "Core 1"
+        },
+        {
+          "title": "CompTIA A+ 220-1202 Core 2 Hands-On Course - Full Training",
+          "by": "Andrew Ramdayal",
+          "url": "https://www.udemy.com/course/comptia-a-plus-core-2-exam-prep/",
+          "rating": 4.8,
+          "ratings": 5173,
+          "note": "Core 2"
+        },
+        {
+          "title": "CompTIA A+ Core 1 (220-1201) Full Course & Practice Exam",
+          "by": "Jason Dion",
+          "url": "https://www.udemy.com/course/comptia-a-core-1/",
+          "rating": 4.7,
+          "ratings": 47881,
+          "note": "Core 1"
+        }
       ]
+    },
+    {
+      "exam": "Network+",
+      "code": "N10-009",
+      "title": "CompTIA Network+",
+      "official": [
+        [
+          "CompTIA Network+ (N10-009)",
+          "https://www.comptia.org/en-us/certifications/network/"
+        ]
+      ],
+      "book": [
+        "CompTIA Network+ Study Guide: Exam N10-009, 6th Edition",
+        "Todd Lammle, Jon Buhagiar",
+        "https://www.amazon.com/dp/1394235607"
+      ],
+      "udemy": [
+        {
+          "title": "CompTIA Network+ N10-009 Full Course, Labs, Course Notes",
+          "by": "Andrew Ramdayal",
+          "url": "https://www.udemy.com/course/comptia_network_plus/",
+          "rating": 4.8,
+          "ratings": 10454
+        },
+        {
+          "title": "CompTIA Network+ (N10-009) Full Course & Practice Exam",
+          "by": "Jason Dion",
+          "url": "https://www.udemy.com/course/comptia-network-009/",
+          "rating": 4.7,
+          "ratings": 42455
+        },
+        {
+          "title": "TOTAL: CompTIA Network+ (N10-009) + Practice Exam",
+          "by": "Mike Meyers, Total Seminars",
+          "url": "https://www.udemy.com/course/comptia-networkplus-certification/",
+          "rating": 4.6,
+          "ratings": 34903
+        }
+      ]
+    }
+  ],
+  "lpi": [
+    {
+      "exam": "LPIC-1",
+      "code": "101-500 + 102-500",
+      "title": "LPIC-1 Linux Administrator",
+      "official": [
+        [
+          "LPIC-1 overview",
+          "https://www.lpi.org/our-certifications/lpic-1-overview/"
+        ],
+        [
+          "Exam 101 and 102 objectives",
+          "https://www.lpi.org/our-certifications/exam-101-102-objectives/"
+        ]
+      ],
+      "free": [
+        [
+          "LPI Learning Materials: 101-500",
+          "https://learning.lpi.org/en/learning-materials/101-500/"
+        ],
+        [
+          "LPI Learning Materials: 102-500",
+          "https://learning.lpi.org/en/learning-materials/102-500/"
+        ]
+      ],
+      "book": [
+        "LPIC-1 Study Guide: Exam 101-500 and Exam 102-500, 5th Edition",
+        "Christine Bresnahan, Richard Blum",
+        "https://www.amazon.com/dp/1119582121"
+      ],
+      "udemy": [
+        {
+          "title": "Prep for the LPIC-1 Exam 102-500: Linux System Administrator",
+          "by": "Christine Bresnahan",
+          "url": "https://www.udemy.com/course/prep-for-the-lpic-1-exam-102-500-linux-system-administrator/",
+          "rating": 4.7,
+          "ratings": 330,
+          "note": "Exam 102"
+        },
+        {
+          "title": "LPIC-1 Linux Administrator (101-500)",
+          "by": "Stone River eLearning",
+          "url": "https://www.udemy.com/course/lpic-1-linux-administrator-101-500/",
+          "rating": 4.7,
+          "ratings": 54,
+          "note": "Exam 101"
+        },
+        {
+          "title": "Prep for the LPIC-1 Exam 101-500: Linux System Administrator",
+          "by": "Christine Bresnahan",
+          "url": "https://www.udemy.com/course/prep-for-the-lpic-1-exam-101-500-linux-system-administrator/",
+          "rating": 4.5,
+          "ratings": 1723,
+          "note": "Exam 101"
+        }
+      ],
+      "udemyNote": "LPIC courses have far fewer ratings than CompTIA ones. Christine Bresnahan co-wrote the Sybex guide."
+    },
+    {
+      "exam": "LPIC-2",
+      "code": "201-450 + 202-450",
+      "title": "LPIC-2 Linux Engineer",
+      "official": [
+        [
+          "LPIC-2 overview",
+          "https://www.lpi.org/our-certifications/lpic-2-overview/"
+        ],
+        [
+          "Exam 201 and 202 objectives",
+          "https://www.lpi.org/?page_id=12768"
+        ]
+      ],
+      "free": [
+        [
+          "LPI resource list (includes a free community LPIC-2 book)",
+          "https://learning.lpi.org/en/learning-materials/all-materials/"
+        ]
+      ],
+      "book": [
+        "LPIC-2 Study Guide: Exam 201 and Exam 202, 2nd Edition",
+        "Christine Bresnahan, Richard Blum",
+        "https://www.amazon.com/dp/1119150795"
+      ],
+      "bookNote": "From 2016. Check its contents against the current 201-450 and 202-450 objectives.",
+      "udemy": [
+        {
+          "title": "LPIC-2 Linux Engineer (201-450)",
+          "by": "Stone River eLearning",
+          "url": "https://www.udemy.com/course/lpic-2-linux-engineer-201-450/",
+          "rating": 4.8,
+          "ratings": 246,
+          "note": "Exam 201"
+        },
+        {
+          "title": "LPIC-2 Linux Engineer (202-450)",
+          "by": "Stone River eLearning",
+          "url": "https://www.udemy.com/course/lpic-2-linux-engineer-202-450/",
+          "rating": 4.7,
+          "ratings": 160,
+          "note": "Exam 202"
+        },
+        {
+          "title": "LPIC-2 - Linux Engineer Exam 202-450",
+          "by": "Ken Adams",
+          "url": "https://www.udemy.com/course/lpic-2-linux-engineer-exam-202-450-july2020-qa/",
+          "rating": 4.3,
+          "ratings": 74,
+          "note": "Exam 202"
+        }
+      ]
+    },
+    {
+      "exam": "LPIC-3",
+      "code": "300 / 303 / 305 / 306",
+      "title": "LPIC-3 Enterprise",
+      "note": "Pass one specialty exam. Version 3.0 offers four.",
+      "official": [
+        [
+          "LPIC-3 overview",
+          "https://www.lpi.org/our-certifications/lpic-3-overview/"
+        ],
+        [
+          "300: Mixed Environments",
+          "https://www.lpi.org/our-certifications/lpic-3-300-overview/"
+        ],
+        [
+          "303: Security",
+          "https://www.lpi.org/our-certifications/lpic-3-303-overview/"
+        ],
+        [
+          "305: Virtualization and Containerization",
+          "https://www.lpi.org/our-certifications/lpic-3-305-overview/"
+        ],
+        [
+          "306: High Availability and Storage Clusters",
+          "https://www.lpi.org/our-certifications/lpic-3-306-overview/"
+        ]
+      ],
+      "bookNote": "There is no Sybex guide for LPIC-3. For exam 305, Apress publishes LPIC-3 Virtualization and Containerization Study Guide by Antonio Vazquez (2024).",
+      "udemy": [
+        {
+          "title": "LPIC-3 (305) - Virtualization and Containerization",
+          "by": "Ken Adams",
+          "url": "https://www.udemy.com/course/lpic-3-305-virtualization-and-containerization-2025/",
+          "rating": 3.6,
+          "ratings": 10,
+          "note": "Exam 305"
+        }
+      ],
+      "udemyNote": "Only one Udemy course covers a current LPIC-3 exam. The free LPI objectives plus your lab are the main study path here."
     }
   ]
 }

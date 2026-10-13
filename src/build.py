@@ -18,21 +18,39 @@ def validate(data, res):
     sprints = {s['id'] for s in data['sprints']}
     gates = {g['id'] for g in data['gates']}
     tracks = {t['id'] for t in data['tracks']}
-    anchors = {x['anchor'] for k in ('microsoft', 'foundation', 'comptia', 'lpi', 'cisco', 'tools') for x in res[k]}
+    anchors = set()
+    for k in ('microsoft', 'foundation', 'comptia', 'lpi', 'cisco', 'tools'):
+        for n, x in enumerate(res.get(k, [])):
+            if isinstance(x.get('anchor'), str):
+                anchors.add(x['anchor'])
+            else:
+                errs.append('resources.json: %s %s: missing anchor' % (k, n))
     for t in data['tracks']:
         for i in t['items']:
-            if i not in sprints | gates:
+            if not isinstance(i, str):
+                errs.append('data.json: track %s: invalid item %r' % (t['id'], i))
+            elif i not in sprints | gates:
                 errs.append('data.json: track %s: unknown item "%s"' % (t['id'], i))
     for g in data['gates']:
         if 'cost' not in g:
             errs.append('data.json: gate %s: no cost' % g['id'])
-        for a in [g['res']] if isinstance(g['res'], str) else g['res']:
-            if a not in anchors:
-                errs.append('data.json: gate %s: no Resources card "%s"' % (g['id'], a))
+        r = g.get('res')
+        if r is None:
+            errs.append('data.json: gate %s: missing res' % g['id'])
+        elif not isinstance(r, (str, list)):
+            errs.append('data.json: gate %s: invalid res %r' % (g['id'], r))
+        else:
+            for a in [r] if isinstance(r, str) else r:
+                if a not in anchors:
+                    errs.append('data.json: gate %s: no Resources card "%s"' % (g['id'], a))
     for t in res['tools']:
+        where = 'tool %s' % t.get('anchor', '?')
+        if not isinstance(t.get('sprints'), list):
+            errs.append('resources.json: %s: missing sprints' % where)
+            continue
         for i in t['sprints']:
             if i not in sprints:
-                errs.append('resources.json: tool %s: unknown sprint "%s"' % (t['anchor'], i))
+                errs.append('resources.json: %s: unknown sprint "%s"' % (where, i))
     if 'chooser' in data:
         if not data['chooser']:
             errs.append('data.json: chooser: empty')

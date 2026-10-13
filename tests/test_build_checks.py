@@ -38,6 +38,14 @@ def m_chooser_track(d, r):
     d['chooser'] = [{'label': 'x', 'track': 'Z'}]
 def m_chooser_empty(d, r):
     d['chooser'] = []
+def m_no_res(d, r):
+    del gate(d, 'gsec')['res']
+def m_no_sprints(d, r):
+    del r['tools'][0]['sprints']
+def m_item_obj(d, r):
+    next(t for t in d['tracks'] if t['id'] == 'C')['items'].append({'x': 1})
+def m_no_anchor(d, r):
+    del r['tools'][0]['anchor']
 def m_http(d, r):
     d['kitUrl'] = 'http://example.com'
 
@@ -49,6 +57,10 @@ CASES = [
     ('tool_unknown_sprint', m_tool, 1, 'tool tool-vmware: unknown sprint "S99"'),
     ('chooser_unknown_track', m_chooser_track, 1, 'chooser: unknown track "Z"'),
     ('empty_chooser', m_chooser_empty, 1, 'chooser: empty'),
+    ('gate_missing_res', m_no_res, 1, 'gate gsec: missing res'),
+    ('tool_missing_sprints', m_no_sprints, 1, 'tool tool-vmware: missing sprints'),
+    ('track_item_not_string', m_item_obj, 1, 'track C: invalid item'),
+    ('tool_missing_anchor', m_no_anchor, 1, 'missing anchor'),
     ('http_link', m_http, 1, 'not https'),
     ('clean_build', lambda d, r: None, 0, 'ok'),
 ]

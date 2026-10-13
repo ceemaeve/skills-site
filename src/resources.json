@@ -71,7 +71,8 @@
         }
       ],
       "udemyNote": "AZ-802 is new, so only one full video course has ratings so far.",
-      "anchor": "az-802"
+      "anchor": "az-802",
+      "cost": "$165 in the US"
     },
     {
       "exam": "AZ-104",
@@ -139,7 +140,8 @@
           "ratings": 27692
         }
       ],
-      "anchor": "az-104"
+      "anchor": "az-104",
+      "cost": "$165 in the US"
     }
   ],
   "comptia": [
@@ -182,7 +184,8 @@
         ]
       ],
       "title": "CompTIA Cloud+",
-      "anchor": "cloud-plus"
+      "anchor": "cloud-plus",
+      "cost": "about $399. CompTIA list price; check the CompTIA store before you buy"
     },
     {
       "exam": "Security+",
@@ -223,7 +226,8 @@
         ]
       ],
       "title": "CompTIA Security+",
-      "anchor": "security-plus"
+      "anchor": "security-plus",
+      "cost": "about $439. CompTIA list price; check the CompTIA store before you buy"
     },
     {
       "exam": "Linux+",
@@ -264,7 +268,8 @@
         ]
       ],
       "title": "CompTIA Linux+",
-      "anchor": "linux-plus"
+      "anchor": "linux-plus",
+      "cost": "about $399. CompTIA list price; check the CompTIA store before you buy"
     }
   ],
   "foundation": [
@@ -310,7 +315,8 @@
           "note": "Core 1"
         }
       ],
-      "anchor": "a-plus"
+      "anchor": "a-plus",
+      "cost": "about $274 per exam, 2 exams (about $548). CompTIA list price; check the CompTIA store before you buy"
     },
     {
       "exam": "Network+",
@@ -350,7 +356,8 @@
           "ratings": 34903
         }
       ],
-      "anchor": "network-plus"
+      "anchor": "network-plus",
+      "cost": "about $399. CompTIA list price; check the CompTIA store before you buy"
     }
   ],
   "lpi": [
@@ -410,7 +417,8 @@
         }
       ],
       "udemyNote": "LPIC courses have far fewer ratings than CompTIA ones. Christine Bresnahan co-wrote the Sybex guide.",
-      "anchor": "lpic-1"
+      "anchor": "lpic-1",
+      "cost": "$200 per exam in the US, 2 exams ($400)"
     },
     {
       "exam": "LPIC-2",
@@ -464,7 +472,8 @@
           "note": "Exam 202"
         }
       ],
-      "anchor": "lpic-2"
+      "anchor": "lpic-2",
+      "cost": "$200 per exam in the US, 2 exams ($400)"
     },
     {
       "exam": "LPIC-3",
@@ -505,7 +514,8 @@
         }
       ],
       "udemyNote": "Only one Udemy course covers a current LPIC-3 exam. The free LPI objectives plus your lab are the main study path here.",
-      "anchor": "lpic-3"
+      "anchor": "lpic-3",
+      "cost": "$200 in the US, one specialty exam"
     }
   ],
   "cisco": [
@@ -577,7 +587,9 @@
         }
       ],
       "udemyNote": "Only Neil Anderson's course says it covers v2.0 so far.",
-      "anchor": "ccna"
+      "anchor": "ccna",
+      "cost": "$300"
     }
-  ]
+  ],
+  "pricesChecked": "October 13, 2026"
 }

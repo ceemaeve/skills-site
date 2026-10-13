@@ -20,17 +20,17 @@
     {"id":"N1","name":"Cisco routing and switching","weeks":4,"outcome":"Build, secure and troubleshoot a small Cisco campus network, and check what automation and AI tools produce."}
   ],
   "gates": [
-    {"id":"gaplus1","name":"A+ Core 1 exam","weeks":1,"note":"Review week, then the exam","res":"a-plus"},
-    {"id":"gaplus2","name":"A+ Core 2 exam","weeks":1,"note":"Review week, then the exam","res":"a-plus"},
-    {"id":"gnet","name":"Network+ exam","weeks":2,"note":"Two review weeks, then the exam","res":"network-plus"},
-    {"id":"g802","name":"AZ-802 exam","weeks":1,"note":"Review week, then the exam","res":"az-802"},
-    {"id":"g104","name":"AZ-104 exam","weeks":1,"note":"Review week, then the exam","res":"az-104"},
-    {"id":"gcloud","name":"Cloud+ exam","weeks":1,"note":"Review week, then the exam","res":"cloud-plus"},
-    {"id":"glinux","name":"Linux+ and LPIC-1 exams","weeks":2,"note":"Two review weeks, then the exams","res":"linux-plus"},
-    {"id":"gsec","name":"Security+ exam","weeks":1,"note":"Review week, then the exam","res":"security-plus"},
-    {"id":"glpic2","name":"LPIC-2 exams","weeks":2,"note":"Two review weeks, then the exams","res":"lpic-2"},
-    {"id":"glpic3","name":"LPIC-3 exam (one specialty)","weeks":2,"note":"Two review weeks, then the exam","res":"lpic-3"},
-    {"id":"gccna","name":"CCNA exam","weeks":2,"note":"Two review weeks, then the exam","res":"ccna"}
+    {"id":"gaplus1","name":"A+ Core 1 exam","weeks":1,"note":"Review week, then the exam","res":"a-plus","cost":274},
+    {"id":"gaplus2","name":"A+ Core 2 exam","weeks":1,"note":"Review week, then the exam","res":"a-plus","cost":274},
+    {"id":"gnet","name":"Network+ exam","weeks":2,"note":"Two review weeks, then the exam","res":"network-plus","cost":399},
+    {"id":"g802","name":"AZ-802 exam","weeks":1,"note":"Review week, then the exam","res":"az-802","cost":165},
+    {"id":"g104","name":"AZ-104 exam","weeks":1,"note":"Review week, then the exam","res":"az-104","cost":165},
+    {"id":"gcloud","name":"Cloud+ exam","weeks":1,"note":"Review week, then the exam","res":"cloud-plus","cost":399},
+    {"id":"glinux","name":"Linux+ and LPIC-1 exams","weeks":2,"note":"Two review weeks, then the exams","res":"linux-plus","cost":799},
+    {"id":"gsec","name":"Security+ exam","weeks":1,"note":"Review week, then the exam","res":"security-plus","cost":439},
+    {"id":"glpic2","name":"LPIC-2 exams","weeks":2,"note":"Two review weeks, then the exams","res":"lpic-2","cost":400},
+    {"id":"glpic3","name":"LPIC-3 exam (one specialty)","weeks":2,"note":"Two review weeks, then the exam","res":"lpic-3","cost":200},
+    {"id":"gccna","name":"CCNA exam","weeks":2,"note":"Two review weeks, then the exam","res":"ccna","cost":300}
   ],
   "tracks": [
     {"id":"A","name":"Skills only","blurb":"All 14 core sprints (S0 to S13), no exams.","fit":"Learning without exams","items":["S0","S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13"],"gates":false},
@@ -55,6 +55,7 @@
     {"name":"LPIC-3","what":"Senior Linux: one specialty exam"}
   ],
   "kitUrl": "https://github.com/ceemaeve/skill-training-completed",
+  "studyUrl": "https://github.com/ceemaeve/skill-training-completed/discussions",
   "zipUrl": "https://github.com/ceemaeve/skill-training-completed/archive/refs/heads/main.zip",
   "homeUrl": "https://ceema.dev"
 }

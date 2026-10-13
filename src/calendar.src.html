@@ -34,6 +34,10 @@ __SHARED_CSS__
   .copied{margin:6px 0 0;min-height:1.2em;font-family:var(--font-mono);font-size:12.5px;color:var(--cyan);width:100%;}
   .row .more{display:inline-block;margin-left:10px;color:var(--cyan);font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;}
   .row .more:hover{color:var(--text-hi);}
+  .row .tick{display:inline-flex;align-items:center;gap:8px;margin-left:12px;min-height:44px;vertical-align:middle;cursor:pointer;font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);}
+  .row .tick input{width:22px;height:22px;accent-color:var(--cyan);cursor:pointer;}
+  .row.done{opacity:.6;}
+  .row.done .name{text-decoration:line-through;text-decoration-color:var(--cyan);}
   @media(max-width:640px){main#main{display:flex;flex-direction:column;}.agenda{order:1;}.toolbar{order:2;margin-top:28px;}.cal{order:3;}.note{order:4;}}
   .check.off{opacity:.45;}
   .summary{margin-top:14px;display:flex;gap:12px 22px;flex-wrap:wrap;align-items:center;justify-content:space-between;}
@@ -90,7 +94,7 @@ __SHARED_CSS__
   <section class="hero">
     <span class="eyebrow">Plan your path</span>
     <h1>Study <span style="color:var(--pink)">Calendar</span></h1>
-    <p style="margin:12px 0 0;color:var(--text-dim);max-width:62ch">Choose a track, a start date and the hours you can give each week. The calendar lays out each sprint and exam gate in order. It runs in your browser and saves or sends nothing. The page address keeps your choices, so you can bookmark or share your plan.</p>
+    <p style="margin:12px 0 0;color:var(--text-dim);max-width:62ch">Choose a track, a start date and the hours you can give each week. The calendar lays out each sprint and exam gate in order. It runs in your browser and sends nothing anywhere. The page address keeps your choices, so you can bookmark or share your plan. Sprints you tick as done are saved in this browser only.</p>
   </section>
 
   <div class="controls">
@@ -119,7 +123,7 @@ __SHARED_CSS__
   </div>
 
   <section class="agenda"><h2>Sprint by sprint</h2><div id="agenda"></div></section>
-  <p class="note">Sprint weeks are planning estimates built on 8 hours a week, and they scale with your hours. Exam gate weeks stay fixed: they are review time, so book the exam inside that window. Check the official exam pages for current versions before you book.</p>
+  <p class="note">Exam costs are US list prices for one attempt each. Sprint weeks are planning estimates built on 8 hours a week, and they scale with your hours. Exam gate weeks stay fixed: they are review time, so book the exam inside that window. Check the official exam pages for current versions before you book.</p>
 </main>
 
 <footer><div class="wrap">&copy; 2026 Skill Training Completed, part of <a href="__HOME_URL__">ceema.dev</a>. Not affiliated with or endorsed by Microsoft, CompTIA, Cisco or LPI.</div></footer>
@@ -144,6 +148,14 @@ __SHARED_CSS__
   function todayUtc() { var d = new Date(); return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()); }
 
   var items = [], view = null, trackId = "";
+  var done = {};
+  try { (JSON.parse(localStorage.getItem("stc-done")) || []).forEach(function (id) { done[id] = true; }); } catch (e) {}
+  function saveDone() { try { localStorage.setItem("stc-done", JSON.stringify(Object.keys(done))); } catch (e) {} }
+  function updateProgress() {
+    var sprints = items.filter(function (x) { return x.it.kind === "sprint"; });
+    var n = sprints.filter(function (x) { return done[x.it.id]; }).length;
+    $("prog").textContent = n + " of " + sprints.length + " sprints done";
+  }
 
   function build() {
     var track = DATA.tracks.filter(function (t) { return t.id === $("track").value; })[0];
@@ -168,8 +180,12 @@ __SHARED_CSS__
     var sprintCount = items.filter(function (x) { return x.it.kind === "sprint"; }).length;
     var gateCount = items.length - sprintCount;
     $("stats").textContent = "";
+    var cost = items.reduce(function (sum, x) { return sum + (x.it.cost || 0); }, 0);
     ["Track " + track.id + ": " + track.name, sprintCount + (sprintCount === 1 ? " sprint" : " sprints"), gateCount + (gateCount === 1 ? " exam gate" : " exam gates"), totalWeeks + " weeks (about " + (Math.round(totalWeeks / 4.345 * 10) / 10) + " months)", "Finish around " + fmt(end) + " " + new Date(end).getUTCFullYear()]
+      .concat(cost ? ["Exams about $" + cost.toLocaleString("en-US")] : [])
       .forEach(function (text, i) { if (i) $("stats").appendChild(document.createTextNode("  |  ")); $("stats").appendChild(el("b", null, text)); });
+    $("stats").appendChild(document.createTextNode("  |  "));
+    var prog = el("b", null, ""); prog.id = "prog"; $("stats").appendChild(prog);
     $("gate-wrap").classList.toggle("off", !track.gates);
     $("gates").disabled = !track.gates;
     var qs = "?track=" + track.id + "&start=" + iso(start) + "&hours=" + hours + (track.gates && !$("gates").checked ? "&exams=0" : "");
@@ -206,8 +222,9 @@ __SHARED_CSS__
       grid.appendChild(cell);
     }
     var ag = $("agenda"); ag.textContent = "";
+    updateProgress();
     items.forEach(function (x) {
-      var row = el("div", "row " + x.it.kind);
+      var row = el("div", "row " + x.it.kind + (done[x.it.id] ? " done" : ""));
       var when = el("div", "when", fmt(x.from) + " to " + fmt(x.to));
       when.appendChild(el("small", null, "Week " + (x.w0 === x.w1 ? x.w0 : x.w0 + " to " + x.w1) + " (" + x.weeks + (x.weeks === 1 ? " week)" : " weeks)")));
       var what = el("div", "what");
@@ -217,6 +234,16 @@ __SHARED_CSS__
       var more = el("a", "more", x.it.kind === "sprint" ? "Labs and deliverable" : "Study links for this exam");
       more.href = x.it.kind === "sprint" ? x.it.doc : "resources.html#" + x.it.res;
       what.appendChild(more);
+      if (x.it.kind === "sprint") {
+        var tick = el("label", "tick"), box = document.createElement("input");
+        box.type = "checkbox"; box.checked = !!done[x.it.id];
+        box.addEventListener("change", function () {
+          if (box.checked) done[x.it.id] = true; else delete done[x.it.id];
+          saveDone(); row.classList.toggle("done", box.checked); updateProgress();
+        });
+        tick.appendChild(box); tick.appendChild(document.createTextNode(" Done"));
+        what.appendChild(tick);
+      }
       row.appendChild(when); row.appendChild(what); ag.appendChild(row);
     });
   }

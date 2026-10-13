@@ -1,34 +1,86 @@
-# Builds the Skill Training Completed site from data.json and resources.json.
+# Builds the Skill Training Completed site from data.json, resources.json and the study kit's SPRINTS.md.
 #   python3 src/build.py   (from the repo root, or from src/)
-# Writes index.html, calendar.html, resources.html, 404.html, fonts/, og.png, robots.txt, sitemap.xml and the icon files into ../site/
+# Needs the kit (ceemaeve/skill-training-completed) checked out at ../kit (the deploy does this),
+# next to this repo as ../../skill-training-completed, or at $KIT_DIR.
+# Writes index.html, calendar.html, resources.html, 404.html, sprints/, fonts/, og.png, robots.txt,
+# sitemap.xml and the icon files into ../site/
 import json, html, os, re, shutil
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, '..', 'site')
-os.makedirs(OUT, exist_ok=True)
+os.makedirs(os.path.join(OUT, 'sprints'), exist_ok=True)
 data = json.load(open(os.path.join(HERE, 'data.json'), encoding='utf-8'))
 e = html.escape
 byid = {s['id']: s for s in data['sprints']}
 byid.update({g['id']: g for g in data['gates']})
+SITE = 'https://skills.ceema.dev/'
 
-def kit_link(s):
-    # GitHub heading anchor for this sprint's section in the kit's SPRINTS.md
+# --- The kit's SPRINTS.md: one section per sprint
+kit_dirs = [os.environ.get('KIT_DIR', ''), os.path.join(HERE, '..', 'kit'), os.path.join(HERE, '..', '..', 'skill-training-completed')]
+kit_md = next((os.path.join(d, 'SPRINTS.md') for d in kit_dirs if d and os.path.exists(os.path.join(d, 'SPRINTS.md'))), None)
+if not kit_md:
+    raise SystemExit('Study kit not found. Clone ceemaeve/skill-training-completed next to this repo, or set KIT_DIR.')
+sections = {}
+for part in re.split(r'\n(?=## )', open(kit_md, encoding='utf-8').read()):
+    m = re.match(r'## ([FSN]\d+)\. ', part)
+    if m:
+        sections[m.group(1)] = part.split('\n---')[0]
+
+def inline(text):
+    text = e(text, quote=False)
+    text = re.sub(r'`([^`]+)`', r'<code>\1</code>', text)
+    text = re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', text)
+    # Kit file names (ASSESSMENT.md, LAB-ENVIRONMENT.md) link to the file on GitHub.
+    return re.sub(r'\b([A-Z][A-Z-]+\.md)\b', lambda m: '<a href="%s/blob/main/%s">%s</a>' % (data['kitUrl'], m.group(1), m.group(1)), text)
+
+def md_to_html(md):
+    # The kit's sprint sections use paragraphs, **bold**, `code` and numbered lists only.
+    out, items = [], []
+    def flush():
+        if items:
+            out.append('<ol>%s</ol>' % ''.join('<li>%s</li>' % inline(i) for i in items))
+            items.clear()
+    for line in md.split('\n')[1:]:
+        line = line.rstrip()
+        m = re.match(r'\d+\. (.*)', line)
+        if m:
+            items.append(m.group(1))
+            continue
+        flush()
+        if not line:
+            continue
+        if line.startswith('**Gate:'):
+            out.append('<p class="gate">%s</p>' % inline(line))
+        elif re.fullmatch(r'\*\*[^*]+\*\*', line):
+            out.append('<h2>%s</h2>' % e(line.strip('*')))
+        else:
+            out.append('<p>%s</p>' % inline(line))
+    flush()
+    return '\n'.join(out)
+
+def kit_anchor(s):
     head = '%s. %s (%d weeks)' % (s['id'], s['name'], s['weeks'])
-    slug = re.sub(r'[^a-z0-9 -]', '', head.lower()).replace(' ', '-')
-    return data['kitUrl'] + '/blob/main/SPRINTS.md#' + slug
+    return data['kitUrl'] + '/blob/main/SPRINTS.md#' + re.sub(r'[^a-z0-9 -]', '', head.lower()).replace(' ', '-')
 
 for s in data['sprints']:
-    s['doc'] = kit_link(s)
+    head = '## %s. %s (%d weeks)' % (s['id'], s['name'], s['weeks'])
+    assert s['id'] in sections and sections[s['id']].startswith(head), 'kit SPRINTS.md has no heading "%s"' % head
+    s['doc'] = 'sprints/%s.html' % s['id'].lower()
 
 def weeks(track):
     return sum(byid[i]['weeks'] for i in track['items'])
 
+def exam_cost(track):
+    return sum(byid[i].get('cost', 0) for i in track['items'] if track['gates'])
+
 cards = ''
 for t in data['tracks']:
     start = t['id'] == 'F'
+    cost = exam_cost(t)
     cards += ('<div class="card%s" id="track-%s"><span class="k">Track %s%s</span><h3>%s</h3><p>%s</p>'
-              '<div class="meta"><b>%d weeks</b> &middot; for: %s</div>'
+              '<div class="meta"><b>%d weeks</b>%s &middot; for: %s</div>'
               '<a class="go" href="calendar.html?track=%s">Plan this track</a></div>\n'
-              % (' start' if start else '', e(t['id'].lower()), e(t['id']), ' &middot; start here if new to IT' if start else '', e(t['name']), e(t['blurb']), weeks(t), e(t['fit']), e(t['id'])))
+              % (' start' if start else '', e(t['id'].lower()), e(t['id']), ' &middot; start here if new to IT' if start else '',
+                 e(t['name']), e(t['blurb']), weeks(t), ' &middot; exams about $%s' % format(cost, ',') if cost else '', e(t['fit']), e(t['id'])))
 GROUPS = [('F', 'Foundations', 'F1 to F3, for people new to IT (Tracks F and E)'),
           ('S', 'Core sprints', 'S0 to S13, the shared lab and most of the exams'),
           ('N', 'Networking', 'N1, the Cisco sprint for Track G')]
@@ -39,16 +91,36 @@ for letter, title, sub in GROUPS:
         if s['id'][0] != letter:
             continue
         rows += ('<details class="sprint"><summary><span class="id">%s</span><span class="nm">%s</span><span class="wk">%d weeks</span></summary>'
-                 '<p class="oc">%s</p><a class="doc" href="%s">Labs and deliverable in the kit</a></details>\n'
+                 '<p class="oc">%s</p><a class="doc" href="%s">Labs and deliverable</a></details>\n'
                  % (e(s['id']), e(s['name']), s['weeks'], e(s['outcome']), e(s['doc'])))
 chips = ''.join('<li><b>%s</b><span>%s</span></li>' % (e(c['name']), e(c['what'])) for c in data['certs'])
 css = open(os.path.join(HERE, 'shared.css'), encoding='utf-8').read()
 
 def fill(s):
-    return (s.replace('__SHARED_CSS__', css).replace('__KIT_URL__', e(data['kitUrl'])).replace('__ZIP_URL__', e(data['zipUrl'])).replace('__HOME_URL__', e(data['homeUrl']))
+    return (s.replace('__SHARED_CSS__', css).replace('__KIT_URL__', e(data['kitUrl'])).replace('__ZIP_URL__', e(data['zipUrl']))
+             .replace('__STUDY_URL__', e(data['studyUrl'])).replace('__HOME_URL__', e(data['homeUrl']))
              .replace('__TRACK_CARDS__', cards).replace('__SPRINT_ROWS__', rows).replace('__CERT_CHIPS__', chips))
 
-# Resources page, from resources.json
+# --- Sprint pages
+sprint_tpl = fill(open(os.path.join(HERE, 'sprint.src.html'), encoding='utf-8').read())
+group_name = {g[0]: g[1] for g in GROUPS}
+order = [s for letter, _, _ in GROUPS for s in data['sprints'] if s['id'][0] == letter]
+for n, s in enumerate(order):
+    tracks = ', '.join(t['id'] for t in data['tracks'] if s['id'] in t['items'])
+    pager = ''
+    if n:
+        p = order[n - 1]
+        pager += '<a class="prev" href="%s.html"><small>Previous</small>%s. %s</a>' % (p['id'].lower(), e(p['id']), e(p['name']))
+    if n + 1 < len(order):
+        p = order[n + 1]
+        pager += '<a class="next" href="%s.html"><small>Next</small>%s. %s</a>' % (p['id'].lower(), e(p['id']), e(p['name']))
+    page = (sprint_tpl.replace('__S_ID__', e(s['id'])).replace('__S_NAME__', e(s['name'])).replace('__S_OUTCOME__', e(s['outcome']))
+            .replace('__S_SLUG__', s['id'].lower()).replace('__S_GROUP__', e(group_name[s['id'][0]])).replace('__S_WEEKS__', str(s['weeks']))
+            .replace('__S_TRACKS__', e(tracks)).replace('__S_KIT__', e(kit_anchor(s))).replace('__S_PAGER__', pager)
+            .replace('__S_BODY__', md_to_html(sections[s['id']])))
+    open(os.path.join(OUT, 'sprints', '%s.html' % s['id'].lower()), 'w', encoding='utf-8').write(page)
+
+# --- Resources page, from resources.json
 res = json.load(open(os.path.join(HERE, 'resources.json'), encoding='utf-8'))
 
 def ext(url, text):
@@ -71,15 +143,18 @@ def udemy(courses):
 def tip(text):
     return '<p class="tip">%s</p>' % e(text) if text else ''
 
+def cost(x):
+    return '<p class="cost"><b>Exam cost:</b> %s</p>' % e(x['cost']) if x.get('cost') else ''
+
 ms_learn = ms_udemy = ''
 for x in res['microsoft']:
-    ms_learn += ('<div class="card" id="%s"><span class="k">%s</span><h3>%s</h3>%s<h4>Official pages</h4>%s<h4>Learning paths</h4>%s</div>\n'
-                 % (e(x['anchor']), e(x['exam']), e(x['name']), tip(x.get('note')), linklist(x['links']), linklist(x['paths'])))
+    ms_learn += ('<div class="card" id="%s"><span class="k">%s</span><h3>%s</h3>%s%s<h4>Official pages</h4>%s<h4>Learning paths</h4>%s</div>\n'
+                 % (e(x['anchor']), e(x['exam']), e(x['name']), cost(x), tip(x.get('note')), linklist(x['links']), linklist(x['paths'])))
     ms_udemy += ('<div class="card"><span class="k">%s</span><h3>%s</h3>%s%s</div>\n'
                  % (e(x['exam']), e(x['name']), tip(x.get('udemyNote')), udemy(x['udemy'])))
 
 def exam_card(x):
-    out = '<div class="card" id="%s"><span class="k">%s</span><h3>%s</h3>%s' % (e(x['anchor']), e(x['code']), e(x['title']), tip(x.get('note')))
+    out = '<div class="card" id="%s"><span class="k">%s</span><h3>%s</h3>%s%s' % (e(x['anchor']), e(x['code']), e(x['title']), cost(x), tip(x.get('note')))
     out += '<h4>Official pages</h4>%s' % linklist(x['official'])
     if x.get('free'):
         out += '<h4>Free study material</h4>%s' % linklist(x['free'])
@@ -99,26 +174,25 @@ cisco = ''.join(exam_card(x) for x in res['cisco'])
 
 idx = fill(open(os.path.join(HERE, 'index.src.html'), encoding='utf-8').read())
 resp = (fill(open(os.path.join(HERE, 'resources.src.html'), encoding='utf-8').read()).replace('__MS_LEARN__', ms_learn)
-        .replace('__MS_UDEMY__', ms_udemy).replace('__COMPTIA__', comptia).replace('__FOUNDATION__', foundation).replace('__LPI__', lpi).replace('__CISCO__', cisco).replace('__CHECKED__', e(res['checked'])))
-open(os.path.join(OUT, 'resources.html'), 'w', encoding='utf-8').write(resp)
+        .replace('__MS_UDEMY__', ms_udemy).replace('__COMPTIA__', comptia).replace('__FOUNDATION__', foundation).replace('__LPI__', lpi)
+        .replace('__CISCO__', cisco).replace('__CHECKED__', e(res['checked'])).replace('__PRICES_CHECKED__', e(res['pricesChecked'])))
 cal = fill(open(os.path.join(HERE, 'calendar.src.html'), encoding='utf-8').read()).replace('__DATA__', json.dumps(data, ensure_ascii=False).replace('</', '<\\/'))
 open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8').write(idx)
+open(os.path.join(OUT, 'resources.html'), 'w', encoding='utf-8').write(resp)
 open(os.path.join(OUT, 'calendar.html'), 'w', encoding='utf-8').write(cal)
 open(os.path.join(OUT, '404.html'), 'w', encoding='utf-8').write(fill(open(os.path.join(HERE, '404.src.html'), encoding='utf-8').read()))
-for f in ('favicon.png', 'favicon.ico', 'apple-touch-icon.png', 'og.png', 'robots.txt', 'sitemap.xml'):
+for f in ('favicon.png', 'favicon.ico', 'apple-touch-icon.png', 'og.png', 'robots.txt'):
     shutil.copy(os.path.join(HERE, f), os.path.join(OUT, f))
 shutil.copytree(os.path.join(HERE, 'fonts', 'web'), os.path.join(OUT, 'fonts'), dirs_exist_ok=True)
 
-# Check: each sprint link matches a heading in the kit, when a kit checkout sits next to this repo.
-kit = os.path.join(HERE, '..', '..', 'skill-training-completed', 'SPRINTS.md')
-if os.path.exists(kit):
-    heads = open(kit, encoding='utf-8').read()
-    for s in data['sprints']:
-        assert '## %s. %s (%d weeks)' % (s['id'], s['name'], s['weeks']) in heads, 'kit has no heading for ' + s['id']
+urls = ['', 'calendar.html', 'resources.html'] + [s['doc'] for s in order]
+open(os.path.join(OUT, 'sitemap.xml'), 'w', encoding='utf-8').write(
+    '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    + ''.join('  <url><loc>%s%s</loc></url>\n' % (SITE, u) for u in urls) + '</urlset>\n')
 
 # Check: no template placeholder may survive into a page.
-import re
-for page in ('index.html', 'calendar.html', 'resources.html', '404.html'):
+pages = ['index.html', 'calendar.html', 'resources.html', '404.html'] + [s['doc'] for s in order]
+for page in pages:
     left = re.findall(r'__[A-Z_]+__', open(os.path.join(OUT, page), encoding='utf-8').read())
     assert not left, '%s still has %s' % (page, sorted(set(left)))
-print('ok', len(idx), len(cal))
+print('ok', len(pages), 'pages')

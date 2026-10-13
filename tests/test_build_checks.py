@@ -25,7 +25,11 @@ def run(mutate, raw=None, tpl=None):
                 f.write(raw)
         p = subprocess.run([sys.executable, os.path.join(ROOT, 'src', 'build.py')], env=dict(os.environ, SRC_DIR=src),
                            capture_output=True, text=True)
-        return p.returncode, p.stdout + p.stderr, sorted(os.listdir(os.path.join(tmp, 'site'))) if os.path.isdir(os.path.join(tmp, 'site')) else None
+        site = os.path.join(tmp, 'site')
+        listing = sorted(os.listdir(site)) if os.path.isdir(site) else None
+        pages = {f: open(os.path.join(site, f), encoding='utf-8').read() for f in ('index.html', 'resources.html', 'calendar.html')
+                 if listing and f in listing}
+        return p.returncode, p.stdout + p.stderr, listing, pages
     finally:
         shutil.rmtree(tmp)
 
@@ -95,6 +99,14 @@ def m_js(d, r):
     r['tools'][0]['links'][0][1] = 'javascript:alert(1)'
 def m_kit_heading(d, r):
     d['sprints'][0]['name'] += ' renamed'
+def m_aws(d, r):
+    # An AWS card, a gate pointing into the aws group, and an A sprint (with a stand-in kit heading).
+    card = json.loads(json.dumps(r['cisco'][0]))
+    card.update(anchor='aws-test', exam='AWS SAA', code='SAA-C03', title='Solutions Architect')
+    r['aws'] = [card]
+    gate(d, 'gccna')['res'] = 'aws-test'
+def m_aws_sprint_no_kit(d, r):
+    d['sprints'].append({'id': 'A1', 'name': 'AWS', 'weeks': 3, 'outcome': 'x'})
 def t_placeholder(src):
     with open(os.path.join(src, '404.src.html'), 'a', encoding='utf-8') as f:
         f.write('__LEFT_OVER__')
@@ -125,7 +137,9 @@ CASES = [
     ('gate_missing_id', m_gate_no_id, 1, 'data.json: gates 0: missing id'),
     ('track_missing_id', m_track_no_id, 1, 'data.json: tracks 0: missing id'),
     ('duplicate_id', m_dup_id, 1, 'data.json: duplicate id "F1"'),
-    ('sprint_id_letter', m_sprint_bad_id, 1, 'data.json: sprint X1: id must be F, S or N and a number'),
+    ('sprint_id_letter', m_sprint_bad_id, 1, 'data.json: sprint X1: id must be a group letter (F, S, N, A) and a number'),
+    ('aws_sprint_reaches_kit_check', m_aws_sprint_no_kit, 1, 'data.json: sprint A1: kit SPRINTS.md has no heading "## A1. AWS (3 weeks)"'),
+    ('aws_gate_res', m_aws, 0, 'ok 22 pages'),
     ('res_nested_list', m_res_nested, 1, 'data.json: gate glinux: invalid res'),
     ('tool_sprints_nested', m_tool_nested, 1, 'resources.json: tool tool-vmware: invalid sprint'),
     ('ftp_link', m_ftp, 1, 'data.json: kitUrl: not https: ftp://'),
@@ -137,13 +151,22 @@ CASES = [
 
 failed = 0
 for name, mutate, code, text in CASES:
-    got, out, site = run(mutate, ',' if name == 'json_syntax' else None, t_placeholder if name == 'placeholder_left' else None)
+    got, out, site, pages = run(mutate, ',' if name == 'json_syntax' else None, t_placeholder if name == 'placeholder_left' else None)
     good = got == code and text in out and 'Traceback' not in out
     # Failure: the old site/ is untouched. Success: site/ is replaced by the new build.
     if code:
         good = good and site == ['keep.txt']
     else:
         good = good and site is not None and 'keep.txt' not in site and 'index.html' in site
+        rp = pages.get('resources.html', '')
+        if name == 'aws_gate_res':
+            # The AWS section, its card, its jump button and the meta description all appear, and the calendar knows the exam name.
+            good = good and '<section id="aws">' in rp and 'id="aws-test"' in rp and 'href="#aws"' in rp and 'CCNA, AWS SAA, Cloud+' in rp \
+                and 'Cisco, AWS and LPI' in rp and '<!--aws' not in rp and '"aws-test": "AWS SAA"' in pages.get('calendar.html', '')
+        if name == 'clean_build':
+            # No AWS cards yet: no AWS section, button, meta words or empty AWS sprint group.
+            good = good and 'id="aws"' not in rp and 'href="#aws"' not in rp and 'AWS SAA' not in rp and '<!--aws' not in rp \
+                and 'CCNA, Cloud+' in rp and 'Cisco and LPI' in rp and '>AWS <small>' not in pages.get('index.html', '')
     failed += not good
     print('%s %s' % ('PASS' if good else 'FAIL', name))
     if not good:

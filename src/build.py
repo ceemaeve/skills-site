@@ -25,6 +25,15 @@ def load_json(name):
 data = load_json('data.json')
 res = load_json('resources.json')
 
+# Sprint groups, in page order. A sprint id is one of these letters plus a number.
+GROUPS = [('F', 'Foundations', 'F1 to F3, for people new to IT (Tracks F and E)'),
+          ('S', 'Core sprints', 'S0 to S13, the shared lab and most of the exams'),
+          ('N', 'Networking', 'N1, the Cisco sprint for Track G'),
+          ('A', 'AWS', 'A1, the AWS sprint for Track H')]
+LETTERS = ''.join(g[0] for g in GROUPS)
+# Resources exam-card groups (aws may be absent until it has cards).
+CARD_GROUPS = ('microsoft', 'foundation', 'comptia', 'lpi', 'cisco', 'aws')
+
 def validate(data, res):
     # Returns error strings as "<file>: <where>: <problem>".
     errs = []
@@ -39,15 +48,15 @@ def validate(data, res):
             if i in seen:
                 errs.append('data.json: duplicate id "%s"' % i)
             seen.add(i)
-            if k == 'sprints' and not re.fullmatch(r'[FSN]\d+', i):
-                errs.append('data.json: sprint %s: id must be F, S or N and a number, for example S14' % i)
+            if k == 'sprints' and not re.fullmatch(r'[%s]\d+' % LETTERS, i):
+                errs.append('data.json: sprint %s: id must be a group letter (%s) and a number, for example S14' % (i, ', '.join(LETTERS)))
     if errs:
         return errs
     sprints = {s['id'] for s in data['sprints']}
     gates = {g['id'] for g in data['gates']}
     tracks = {t['id'] for t in data['tracks']}
     anchors = set()
-    for k in ('microsoft', 'foundation', 'comptia', 'lpi', 'cisco', 'tools'):
+    for k in CARD_GROUPS + ('tools',):
         for n, x in enumerate(res.get(k, [])):
             if isinstance(x.get('anchor'), str):
                 if x['anchor'] in anchors:
@@ -145,7 +154,7 @@ if not kit_md:
     fail(['Study kit not found. Clone ceemaeve/skill-training-completed next to this repo, or set KIT_DIR.'])
 sections = {}
 for part in re.split(r'\n(?=## )', open(kit_md, encoding='utf-8').read()):
-    m = re.match(r'## ([FSN]\d+)\. ', part)
+    m = re.match(r'## ([%s]\d+)\. ' % LETTERS, part)
     if m:
         sections[m.group(1)] = part.split('\n---')[0]
 
@@ -211,11 +220,10 @@ for t in data['tracks']:
               '<a class="go" href="calendar.html?track=%s">Plan this track</a></div>\n'
               % (' start' if start else '', e(t['id'].lower()), e(t['id']), ' &middot; start here if new to IT' if start else '',
                  e(t['name']), e(t['blurb']), weeks(t), ' &middot; exams about $%s' % format(cost, ',') if cost else '', e(t['fit']), e(t['id'])))
-GROUPS = [('F', 'Foundations', 'F1 to F3, for people new to IT (Tracks F and E)'),
-          ('S', 'Core sprints', 'S0 to S13, the shared lab and most of the exams'),
-          ('N', 'Networking', 'N1, the Cisco sprint for Track G')]
 rows = ''
 for letter, title, sub in GROUPS:
+    if not any(s['id'][0] == letter for s in data['sprints']):
+        continue  # no heading for a group with no sprints yet
     rows += '<h3 class="grp">%s <small>%s</small></h3>\n' % (e(title), e(sub))
     for s in data['sprints']:
         if s['id'][0] != letter:
@@ -313,15 +321,23 @@ comptia = ''.join(exam_card(x) for x in res['comptia'])
 foundation = ''.join(exam_card(x) for x in res['foundation'])
 lpi = ''.join(exam_card(x) for x in res['lpi'])
 cisco = ''.join(exam_card(x) for x in res['cisco'])
+aws = ''.join(exam_card(x) for x in res.get('aws', []))
+
+def optional(page, name, on):
+    # Keeps (on) or drops (off) everything between <!--name--> and <!--/name-->, markers included.
+    if on:
+        return page.replace('<!--%s-->' % name, '').replace('<!--/%s-->' % name, '')
+    return re.sub(r'\n?[ \t]*<!--%s-->.*?<!--/%s-->' % (name, name), '', page, flags=re.S)
 tools = ''.join(tool_card(t) for t in res['tools'])
 
 chooser = '\n        '.join('<li><a href="calendar.html?track=%s">%s<b>Track %s</b></a></li>' % (e(c['track']), e(c['label']), e(c['track'])) for c in data['chooser'])
 idx = fill(open(os.path.join(HERE, 'index.src.html'), encoding='utf-8').read()).replace('__CHOOSER__', chooser).replace('__NOTICE__', e(data['notice']))
 resp = (fill(open(os.path.join(HERE, 'resources.src.html'), encoding='utf-8').read()).replace('__MS_LEARN__', ms_learn)
         .replace('__MS_UDEMY__', ms_udemy).replace('__COMPTIA__', comptia).replace('__FOUNDATION__', foundation).replace('__LPI__', lpi)
-        .replace('__CISCO__', cisco).replace('__TOOLS__', tools).replace('__CHECKED__', e(res['checked'])).replace('__PRICES_CHECKED__', e(res['pricesChecked'])))
+        .replace('__CISCO__', cisco).replace('__AWS__', aws).replace('__TOOLS__', tools).replace('__CHECKED__', e(res['checked'])).replace('__PRICES_CHECKED__', e(res['pricesChecked'])))
+resp = optional(resp, 'aws', bool(aws))
 # The calendar labels two-exam gates (Linux+ and LPIC-1) with the Resources card's exam name.
-data['resNames'] = {x['anchor']: x['exam'] for k in ('microsoft', 'foundation', 'comptia', 'lpi', 'cisco') for x in res[k]}
+data['resNames'] = {x['anchor']: x['exam'] for k in CARD_GROUPS for x in res.get(k, [])}
 cal = fill(open(os.path.join(HERE, 'calendar.src.html'), encoding='utf-8').read()).replace('__DATA__', json.dumps(data, ensure_ascii=False).replace('</', '<\\/'))
 open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8').write(idx)
 open(os.path.join(OUT, 'resources.html'), 'w', encoding='utf-8').write(resp)

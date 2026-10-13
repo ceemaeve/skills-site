@@ -8,7 +8,14 @@ import json, html, os, re, shutil, sys
 SCRIPT = os.path.dirname(os.path.abspath(__file__))
 # $SRC_DIR (tests) reads the src files from there and writes to <SRC_DIR>/../site, never the repo's own site/.
 HERE = os.environ.get('SRC_DIR') or SCRIPT
-OUT = os.path.join(HERE, '..', 'site')
+# The build writes to .site-build/ and only replaces site/ once every page passed its checks,
+# so a failed build leaves the old site/ exactly as it was.
+FINAL = os.path.join(HERE, '..', 'site')
+OUT = os.path.join(HERE, '..', '.site-build')
+def fail(lines):
+    print('\n'.join(lines))
+    shutil.rmtree(OUT, ignore_errors=True)
+    sys.exit(1)
 def load_json(name):
     try:
         return json.load(open(os.path.join(HERE, name), encoding='utf-8'))
@@ -21,6 +28,21 @@ res = load_json('resources.json')
 def validate(data, res):
     # Returns error strings as "<file>: <where>: <problem>".
     errs = []
+    # Every sprint, gate and track needs its own id; the other checks rely on them, so stop here if any is wrong.
+    seen = set()
+    for k in ('sprints', 'gates', 'tracks'):
+        for n, x in enumerate(data[k]):
+            i = x.get('id') if isinstance(x, dict) else None
+            if not isinstance(i, str) or not i:
+                errs.append('data.json: %s %d: missing id' % (k, n))
+                continue
+            if i in seen:
+                errs.append('data.json: duplicate id "%s"' % i)
+            seen.add(i)
+            if k == 'sprints' and not re.fullmatch(r'[FSN]\d+', i):
+                errs.append('data.json: sprint %s: id must be F, S or N and a number, for example S14' % i)
+    if errs:
+        return errs
     sprints = {s['id'] for s in data['sprints']}
     gates = {g['id'] for g in data['gates']}
     tracks = {t['id'] for t in data['tracks']}
@@ -58,7 +80,9 @@ def validate(data, res):
             errs.append('data.json: gate %s: invalid res %r' % (g['id'], r))
         else:
             for a in [r] if isinstance(r, str) else r:
-                if a not in anchors:
+                if not isinstance(a, str):
+                    errs.append('data.json: gate %s: invalid res %r' % (g['id'], a))
+                elif a not in anchors:
                     errs.append('data.json: gate %s: no Resources card "%s"' % (g['id'], a))
     for t in res['tools']:
         where = 'tool %s' % t.get('anchor', '?')
@@ -66,7 +90,9 @@ def validate(data, res):
             errs.append('resources.json: %s: missing sprints' % where)
             continue
         for i in t['sprints']:
-            if i not in sprints:
+            if not isinstance(i, str):
+                errs.append('resources.json: %s: invalid sprint %r' % (where, i))
+            elif i not in sprints:
                 errs.append('resources.json: %s: unknown sprint "%s"' % (where, i))
     ch = data.get('chooser')
     if ch is None:
@@ -91,7 +117,8 @@ def validate(data, res):
         errs.append('data.json: notice: invalid')
     def walk(x, file, where):
         if isinstance(x, str):
-            if x.startswith('http://'):
+            # A link is a string with a scheme and no spaces; only https:// is allowed (no http:, ftp:, javascript:, data:).
+            if re.match(r'[A-Za-z][A-Za-z0-9+.-]*:\S*$', x) and not x.startswith('https://'):
                 errs.append('%s: %s: not https: %s' % (file, where, x))
         elif isinstance(x, dict):
             for k, v in x.items():
@@ -105,9 +132,7 @@ def validate(data, res):
 
 errors = validate(data, res)
 if errors:
-    print('\n'.join(errors))
-    sys.exit(1)
-os.makedirs(os.path.join(OUT, 'sprints'), exist_ok=True)
+    fail(errors)
 e = html.escape
 byid = {s['id']: s for s in data['sprints']}
 byid.update({g['id']: g for g in data['gates']})
@@ -117,7 +142,7 @@ SITE = 'https://skills.ceema.dev/'
 kit_dirs = [os.environ.get('KIT_DIR', ''), os.path.join(SCRIPT, '..', 'kit'), os.path.join(SCRIPT, '..', '..', 'skill-training-completed')]
 kit_md = next((os.path.join(d, 'SPRINTS.md') for d in kit_dirs if d and os.path.exists(os.path.join(d, 'SPRINTS.md'))), None)
 if not kit_md:
-    raise SystemExit('Study kit not found. Clone ceemaeve/skill-training-completed next to this repo, or set KIT_DIR.')
+    fail(['Study kit not found. Clone ceemaeve/skill-training-completed next to this repo, or set KIT_DIR.'])
 sections = {}
 for part in re.split(r'\n(?=## )', open(kit_md, encoding='utf-8').read()):
     m = re.match(r'## ([FSN]\d+)\. ', part)
@@ -160,10 +185,16 @@ def kit_anchor(s):
     head = '%s. %s (%d weeks)' % (s['id'], s['name'], s['weeks'])
     return data['kitUrl'] + '/blob/main/SPRINTS.md#' + re.sub(r'[^a-z0-9 -]', '', head.lower()).replace(' ', '-')
 
+errors = []
 for s in data['sprints']:
     head = '## %s. %s (%d weeks)' % (s['id'], s['name'], s['weeks'])
-    assert s['id'] in sections and sections[s['id']].startswith(head), 'kit SPRINTS.md has no heading "%s"' % head
+    if not (s['id'] in sections and sections[s['id']].startswith(head)):
+        errors.append('data.json: sprint %s: kit SPRINTS.md has no heading "%s" (the id, name and weeks must match the kit)' % (s['id'], head))
     s['doc'] = 'sprints/%s.html' % s['id'].lower()
+if errors:
+    fail(errors)
+shutil.rmtree(OUT, ignore_errors=True)
+os.makedirs(os.path.join(OUT, 'sprints'))
 
 def weeks(track):
     return sum(byid[i]['weeks'] for i in track['items'])
@@ -307,7 +338,13 @@ open(os.path.join(OUT, 'sitemap.xml'), 'w', encoding='utf-8').write(
 
 # Check: no template placeholder may survive into a page.
 pages = ['index.html', 'calendar.html', 'resources.html', '404.html'] + [s['doc'] for s in order]
+errors = []
 for page in pages:
     left = re.findall(r'__[A-Z_]+__', open(os.path.join(OUT, page), encoding='utf-8').read())
-    assert not left, '%s still has %s' % (page, sorted(set(left)))
+    if left:
+        errors.append('%s still has %s (a template placeholder the build did not fill: a build chat bug)' % (page, ', '.join(sorted(set(left)))))
+if errors:
+    fail(errors)
+shutil.rmtree(FINAL, ignore_errors=True)
+os.replace(OUT, FINAL)
 print('ok', len(pages), 'pages')

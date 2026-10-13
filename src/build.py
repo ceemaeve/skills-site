@@ -4,18 +4,67 @@
 # next to this repo as ../../skill-training-completed, or at $KIT_DIR.
 # Writes index.html, calendar.html, resources.html, 404.html, sprints/, fonts/, og.png, robots.txt,
 # sitemap.xml and the icon files into ../site/
-import json, html, os, re, shutil
-HERE = os.path.dirname(os.path.abspath(__file__))
+import json, html, os, re, shutil, sys
+SCRIPT = os.path.dirname(os.path.abspath(__file__))
+# $SRC_DIR (tests) reads the src files from there and writes to <SRC_DIR>/../site, never the repo's own site/.
+HERE = os.environ.get('SRC_DIR') or SCRIPT
 OUT = os.path.join(HERE, '..', 'site')
-os.makedirs(os.path.join(OUT, 'sprints'), exist_ok=True)
 data = json.load(open(os.path.join(HERE, 'data.json'), encoding='utf-8'))
+res = json.load(open(os.path.join(HERE, 'resources.json'), encoding='utf-8'))
+
+def validate(data, res):
+    # Returns error strings as "<file>: <where>: <problem>".
+    errs = []
+    sprints = {s['id'] for s in data['sprints']}
+    gates = {g['id'] for g in data['gates']}
+    tracks = {t['id'] for t in data['tracks']}
+    anchors = {x['anchor'] for k in ('microsoft', 'foundation', 'comptia', 'lpi', 'cisco', 'tools') for x in res[k]}
+    for t in data['tracks']:
+        for i in t['items']:
+            if i not in sprints | gates:
+                errs.append('data.json: track %s: unknown item "%s"' % (t['id'], i))
+    for g in data['gates']:
+        if 'cost' not in g:
+            errs.append('data.json: gate %s: no cost' % g['id'])
+        for a in [g['res']] if isinstance(g['res'], str) else g['res']:
+            if a not in anchors:
+                errs.append('data.json: gate %s: no Resources card "%s"' % (g['id'], a))
+    for t in res['tools']:
+        for i in t['sprints']:
+            if i not in sprints:
+                errs.append('resources.json: tool %s: unknown sprint "%s"' % (t['anchor'], i))
+    if 'chooser' in data:
+        if not data['chooser']:
+            errs.append('data.json: chooser: empty')
+        for c in data['chooser']:
+            if c['track'] not in tracks:
+                errs.append('data.json: chooser: unknown track "%s"' % c['track'])
+    def walk(x, file, where):
+        if isinstance(x, str):
+            if x.startswith('http://'):
+                errs.append('%s: %s: not https: %s' % (file, where, x))
+        elif isinstance(x, dict):
+            for k, v in x.items():
+                walk(v, file, '%s.%s' % (where, k) if where else k)
+        elif isinstance(x, list):
+            for n, v in enumerate(x):
+                walk(v, file, '%s[%d]' % (where, n))
+    walk(data, 'data.json', '')
+    walk(res, 'resources.json', '')
+    return errs
+
+errors = validate(data, res)
+if errors:
+    print('\n'.join(errors))
+    sys.exit(1)
+os.makedirs(os.path.join(OUT, 'sprints'), exist_ok=True)
 e = html.escape
 byid = {s['id']: s for s in data['sprints']}
 byid.update({g['id']: g for g in data['gates']})
 SITE = 'https://skills.ceema.dev/'
 
 # --- The kit's SPRINTS.md: one section per sprint
-kit_dirs = [os.environ.get('KIT_DIR', ''), os.path.join(HERE, '..', 'kit'), os.path.join(HERE, '..', '..', 'skill-training-completed')]
+kit_dirs = [os.environ.get('KIT_DIR', ''), os.path.join(SCRIPT, '..', 'kit'), os.path.join(SCRIPT, '..', '..', 'skill-training-completed')]
 kit_md = next((os.path.join(d, 'SPRINTS.md') for d in kit_dirs if d and os.path.exists(os.path.join(d, 'SPRINTS.md'))), None)
 if not kit_md:
     raise SystemExit('Study kit not found. Clone ceemaeve/skill-training-completed next to this repo, or set KIT_DIR.')
@@ -102,8 +151,6 @@ def fill(s):
              .replace('__TRACK_CARDS__', cards).replace('__SPRINT_ROWS__', rows).replace('__CERT_CHIPS__', chips))
 
 # --- Resources data (the sprint pages list each sprint's lab tools)
-res = json.load(open(os.path.join(HERE, 'resources.json'), encoding='utf-8'))
-
 def tools_for(sid):
     return [t for t in res['tools'] if sid in t['sprints']]
 

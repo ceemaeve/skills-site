@@ -766,6 +766,135 @@
       "cost": "$150"
     }
   ],
+  "copilot": [
+    {
+      "exam": "AB-900",
+      "code": "AB-900",
+      "title": "Microsoft 365 Copilot and Agent Administration Fundamentals",
+      "note": "The skills list was updated on October 14, 2026. The labs need a one-month Microsoft 365 Business free trial: it needs a card, so cancel before it bills.",
+      "official": [
+        [
+          "Certification page",
+          "https://learn.microsoft.com/en-us/credentials/certifications/copilot-and-agent-administration-fundamentals/"
+        ],
+        [
+          "Study guide (skills measured)",
+          "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ab-900"
+        ],
+        [
+          "Course AB-900T00: Introduction to Microsoft 365 and AI administration",
+          "https://learn.microsoft.com/en-us/training/courses/ab-900t00/"
+        ]
+      ],
+      "free": [
+        [
+          "Free practice assessment (Microsoft Learn)",
+          "https://learn.microsoft.com/en-us/credentials/certifications/copilot-and-agent-administration-fundamentals/practice/assessment?assessment-type=practice&assessmentId=428463062&practice-assessment-type=certification"
+        ],
+        [
+          "Learn path: Explore Microsoft 365 administration",
+          "https://learn.microsoft.com/en-us/training/paths/explore-microsoft-365-administration/"
+        ],
+        [
+          "Learn path: Explore Microsoft 365 Copilot and agent administration",
+          "https://learn.microsoft.com/en-us/training/paths/explore-microsoft-365-copilot-agent-administration/"
+        ]
+      ],
+      "book": [
+        "Microsoft 365 Copilot and Agent Administration Fundamentals",
+        "Steve Miles",
+        "https://www.amazon.com/dp/1807306518",
+        "Packt",
+        "Amazon"
+      ],
+      "udemy": [
+        {
+          "title": "AB-900: Copilot & Agent Administration Fundamentals Course",
+          "by": "John Christopher",
+          "url": "https://www.udemy.com/course/ab-900-copilot-agent-administration-fundamentals-course/",
+          "rating": 4.7,
+          "ratings": 1182
+        },
+        {
+          "title": "AB-900 Microsoft 365 Certified: Fundamentals",
+          "by": "David Dilday (Refactored LLC)",
+          "url": "https://www.udemy.com/course/ms-900-course/",
+          "rating": 4.5,
+          "ratings": 4880
+        },
+        {
+          "title": "AB-900 prep: Microsoft 365 Copilot and Agent Administration",
+          "by": "Phillip Burton",
+          "url": "https://www.udemy.com/course/ab-900-exam-prep-microsoft-copilot-and-agent-administration/",
+          "rating": 4.5,
+          "ratings": 441
+        }
+      ],
+      "anchor": "ab-900",
+      "cost": "$99"
+    },
+    {
+      "exam": "GH-300",
+      "code": "GH-300",
+      "title": "GitHub Copilot",
+      "note": "GitHub Copilot Free is enough for the P3 labs. The certification is valid for 2 years.",
+      "official": [
+        [
+          "Certification page",
+          "https://learn.microsoft.com/en-us/credentials/certifications/github-copilot/"
+        ],
+        [
+          "Study guide (skills measured)",
+          "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-300"
+        ],
+        [
+          "Course GH-300T00: GitHub Copilot",
+          "https://learn.microsoft.com/en-us/training/courses/gh-300t00/"
+        ]
+      ],
+      "free": [
+        [
+          "Free practice assessment (Microsoft Learn)",
+          "https://learn.microsoft.com/en-us/credentials/certifications/github-copilot/practice/assessment?assessment-type=practice&assessmentId=218035372&practice-assessment-type=certification"
+        ],
+        [
+          "Learn path: GitHub Copilot Fundamentals, part 1",
+          "https://learn.microsoft.com/training/paths/copilot/"
+        ],
+        [
+          "Learn path: GitHub Copilot Fundamentals, part 2",
+          "https://learn.microsoft.com/training/paths/gh-copilot-2/"
+        ]
+      ],
+      "bookNote": "No study guide from a major publisher yet. The two free Learn paths cover the exam.",
+      "udemy": [
+        {
+          "title": "GitHub Copilot - The Complete Guide",
+          "by": "Alex Dan",
+          "url": "https://www.udemy.com/course/github-copilot-the-complete-guide/",
+          "rating": 4.5,
+          "ratings": 21528
+        },
+        {
+          "title": "GH-300: GitHub Copilot Certification Exam Prep Hands-On",
+          "by": "Ankit Mistry, Ajay Gadhave, Pooja Gadhave",
+          "url": "https://www.udemy.com/course/github-copilot-exam-preparation/",
+          "rating": 4.5,
+          "ratings": 2717
+        },
+        {
+          "title": "GitHub Copilot Certification - Practice Exams (GH-300)",
+          "by": "Bryan Krausen",
+          "url": "https://www.udemy.com/course/copilot-certification-practice-exams/",
+          "rating": 4.4,
+          "ratings": 2798,
+          "note": "Practice exams, not a video course"
+        }
+      ],
+      "anchor": "gh-300",
+      "cost": "$99"
+    }
+  ],
   "pricesChecked": "October 13, 2026",
   "tools": [
     {
@@ -789,7 +918,8 @@
       "sprints": [
         "S0",
         "S8",
-        "C2"
+        "C2",
+        "P3"
       ],
       "links": [
         [
@@ -809,7 +939,8 @@
         "F3",
         "S0",
         "S8",
-        "C2"
+        "C2",
+        "P3"
       ],
       "links": [
         [
@@ -829,7 +960,8 @@
         "S0",
         "S8",
         "S10",
-        "C2"
+        "C2",
+        "P3"
       ],
       "links": [
         [
@@ -993,6 +1125,47 @@
         [
           "Claude Code overview (docs)",
           "https://code.claude.com/docs/en/overview"
+        ]
+      ]
+    },
+    {
+      "anchor": "tool-ms-copilot",
+      "name": "Microsoft Copilot",
+      "sprints": [
+        "P1",
+        "P2"
+      ],
+      "note": "P1 works with the free Copilot app or Copilot Chat. P2 needs a Microsoft 365 Business free trial tenant of your own. Never paste passwords, keys or real data.",
+      "links": [
+        [
+          "Microsoft Learn: Work smarter with AI",
+          "https://learn.microsoft.com/en-us/training/paths/work-smarter-with-ai/"
+        ],
+        [
+          "Manage Microsoft 365 Copilot Chat (admin docs)",
+          "https://learn.microsoft.com/copilot/manage"
+        ],
+        [
+          "Microsoft 365 Business Standard one-month trial",
+          "https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-standard-one-month-trial"
+        ]
+      ]
+    },
+    {
+      "anchor": "tool-github-copilot",
+      "name": "GitHub Copilot",
+      "sprints": [
+        "P3"
+      ],
+      "note": "Copilot Free gives 2,000 completions a month and a chat allowance; Pro is $10 a month if you run out.",
+      "links": [
+        [
+          "GitHub Copilot plans",
+          "https://docs.github.com/en/copilot/get-started/plans"
+        ],
+        [
+          "Learn path: GitHub Copilot Fundamentals, part 1",
+          "https://learn.microsoft.com/training/paths/copilot/"
         ]
       ]
     }

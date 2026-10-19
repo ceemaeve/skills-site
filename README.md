@@ -35,4 +35,4 @@ Who owns which files, and the checklists for routine changes, are in the TEL Ski
 
 ## Deploy secrets
 
-Settings > Secrets and variables > Actions: `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_PATH` (`/var/www/skills`), `DEPLOY_SSH_KEY`, `DEPLOY_KNOWN_HOSTS`. The server's `setup-server.sh base` stage prints all five.
+Settings > Secrets and variables > Actions: `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_PATH` (`/var/www/skills`), `DEPLOY_SSH_KEY`, `DEPLOY_KNOWN_HOSTS`. Values for the first three and the host key come from TEL Technology. Never put the private key in chat.

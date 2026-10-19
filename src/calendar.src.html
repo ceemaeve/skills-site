@@ -126,7 +126,7 @@ __SHARED_CSS__
   <p class="note">Exam costs are US list prices for one attempt each. Sprint weeks are planning estimates built on 8 hours a week, and they scale with your hours. Exam gate weeks stay fixed: they are review time, so book the exam inside that window. Check the official exam pages for current versions before you book.</p>
 </main>
 
-<footer><div class="wrap">&copy; 2026 Skill Training Completed, part of <a href="__HOME_URL__">ceema.dev</a>. Not affiliated with or endorsed by Microsoft, CompTIA, Cisco, LPI, GitHub, Amazon Web Services or Anthropic.</div></footer>
+<footer><div class="wrap">&copy; 2026 Skill Training Completed, part of <a href="__HOME_URL__">thisevelife.space</a>. Not affiliated with or endorsed by Microsoft, CompTIA, Cisco, LPI, GitHub, Amazon Web Services or Anthropic.</div></footer>
 
 <script>
 (function () {
@@ -265,7 +265,7 @@ __SHARED_CSS__
     return out ? out + "\r\n " + cur : cur;
   }
   function download() {
-    var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//ceema.dev//Skill Training Completed Study Calendar//EN", "CALSCALE:GREGORIAN"];
+    var lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//thisevelife.space//Skill Training Completed Study Calendar//EN", "CALSCALE:GREGORIAN"];
     var stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d+Z$/, "Z");
     items.forEach(function (x) {
       var s = iso(x.from).replace(/-/g, ""), e = iso(x.to + MS).replace(/-/g, "");

@@ -6,7 +6,7 @@
   @font-face{font-family:'Share Tech Mono';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/share-tech-mono-latin-400-normal.woff2) format('woff2');}
   :root{
     color-scheme:dark;
-    /* Stream EVE Today palette (stream-eve-today core/app/globals.css), shared across ceema.dev */
+    /* Stream EVE Today palette (stream-eve-today core/app/globals.css) */
     --void:#140c2b;--panel:#261650;--panel-2:#1a1036;--edge:#4b2f8a;
     --blue:#8b5cf6;--cyan:#34f0c0;--magenta:#ff4fa3;--pink:#ff6fb5;--pink-soft:#ffa3d1;--amber:#ffc83d;
     --text-hi:#ffffff;--text-mid:#e7defc;--text-dim:#aa9dd2;--text-faint:#8a7cbd;

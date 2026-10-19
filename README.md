@@ -25,13 +25,13 @@ Moved here from the private `tel-sites` repo (`src/site-skills/`, last commit th
 3. Run `python3 tests/test_build_checks.py` before you push. Every line must say PASS.
 4. Commit and push to `main`. The Deploy workflow does the rest (Actions tab shows it).
 
-Who owns which files, and the checklists for routine changes, are in the ceema.dev project doc `claude/SKILLS-SITE-HANDOFF.md`.
+Who owns which files, and the checklists for routine changes, are in the TEL Skills project docs.
 
 ## Rules
 
 1. **Two repos.** The public repo https://github.com/ceemaeve/skill-training-completed is the download kit (the training .md files people give to their own Claude). The sprint pages are built from its SPRINTS.md: the deploy checks out the kit, and a daily run picks up kit edits. Everything else on the site comes from this repo. The server never reads either repo. Each sprint in `src/data.json` must have a heading `## <id>. <name> (<weeks> weeks)` in the kit, or the build fails.
 2. **Own folder.** The deploy owns `/var/www/skills` only and deletes anything the build no longer makes. Its `DEPLOY_PATH` secret must be exactly `/var/www/skills`; the workflow refuses anything else.
-3. **Caddy lives with the server.** The site's Caddy file is written by `deploy/setup-server.sh` in ceemaeve/ceema-dev (`/etc/caddy/sites/skills.caddy`). Change it there.
+3. **Caddy lives with the server.** The site's Caddy file is managed by TEL Technology (installed from the ceemaeve/tel-sites repo). Ask TEL Technology to change it.
 
 ## Deploy secrets
 

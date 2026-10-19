@@ -1,4 +1,4 @@
-# Draws og.png (social preview card) in the ceema.dev look shared by every ceema.dev site.
+# Draws og.png (social preview card) in the same look as the rest of This EVE Life.
 # Fonts: Orbitron, Rajdhani and Share Tech Mono (Google Fonts, SIL Open Font License, see fonts/OFL-*.txt).
 # The counts on the bottom line come from data.json, so after adding a sprint, track or cert:
 #   python3 make_og.py      (needs Pillow), then commit src/og.png. The Actions build only copies it.

@@ -61,6 +61,6 @@ data = json.load(open(os.path.join(HERE, "data.json"), encoding="utf-8"))
 n = lambda k, one, many: f"{len(data[k])} {one if len(data[k]) == 1 else many}"
 counts = "  ·  ".join([n("sprints", "sprint", "sprints"), n("tracks", "track", "tracks"), n("certs", "certification", "certifications")])
 d.text((90, 572), counts, font=raj(32), fill=mid, anchor="ls")
-d.text((1110, 572), "skills.ceema.dev", font=mono(28), fill=white, anchor="rs")
+d.text((1110, 572), "skills.thisevelife.space", font=mono(28), fill=white, anchor="rs")
 im.save(OUT, optimize=True)
 print("wrote", OUT)

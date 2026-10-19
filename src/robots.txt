@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://skills.ceema.dev/sitemap.xml
+Sitemap: https://skills.thisevelife.space/sitemap.xml

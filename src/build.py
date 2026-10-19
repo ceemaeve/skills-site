@@ -147,7 +147,7 @@ if errors:
 e = html.escape
 byid = {s['id']: s for s in data['sprints']}
 byid.update({g['id']: g for g in data['gates']})
-SITE = 'https://skills.ceema.dev/'
+SITE = 'https://skills.thisevelife.space/'
 
 # --- The kit's SPRINTS.md: one section per sprint
 kit_dirs = [os.environ.get('KIT_DIR', ''), os.path.join(SCRIPT, '..', 'kit'), os.path.join(SCRIPT, '..', '..', 'skill-training-completed')]

@@ -1,6 +1,6 @@
 # skills-site
 
-Source for the Skill Training Completed website at **https://skills.ceema.dev** (moving from skilltrainingcompleted.dev, which will redirect here). Public repo. Pushing to `main` builds the site and deploys it to the ceema.dev VPS.
+Source for the Skill Training Completed website at **https://skills.thisevelife.space** (skilltrainingcompleted.dev and www redirect there). Public repo. Pushing to `main` builds the site and deploys it to TEL-SVS-01.
 
 Moved here from the private `tel-sites` repo (`src/site-skills/`, last commit there 3fa4dfc) on 2026-10-09. The first build was checked byte-for-byte against the live site.
 

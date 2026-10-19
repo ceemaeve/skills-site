@@ -36,9 +36,9 @@ glow = glow.filter(ImageFilter.GaussianBlur(9)); im.paste(glow, (0, 0), glow)
 d = ImageDraw.Draw(im, "RGBA")
 d.ellipse((cx-r, cy-r, cx+r, cy+r), outline=cyan, width=7)
 d.ellipse((cx-9, cy-9, cx+9, cy+9), fill=magenta)
-d.text((172, cy), "CEEMA", font=orbitron(30), fill=white, anchor="lm")
-w = d.textlength("CEEMA", font=orbitron(30))
-d.text((172 + w, cy), ".DEV", font=orbitron(30), fill=magenta, anchor="lm")
+d.text((172, cy), "THIS EVE", font=orbitron(30), fill=white, anchor="lm")
+w = d.textlength("THIS EVE ", font=orbitron(30))
+d.text((172 + w, cy), "LIFE", font=orbitron(30), fill=magenta, anchor="lm")
 
 # eyebrow
 ey = 236

@@ -70,9 +70,10 @@
     {"name":"LPIC-2","what":"Advanced Linux administration (two exams)"},
     {"name":"LPIC-3","what":"Senior Linux: one specialty exam"}
   ],
-  "kitUrl": "https://github.com/ceemaeve/skill-training-completed",
-  "studyUrl": "https://github.com/ceemaeve/skill-training-completed/discussions",
-  "zipUrl": "https://github.com/ceemaeve/skill-training-completed/archive/refs/heads/main.zip",
+  "kitUrl": "https://github.com/ceemaeve/skills-site/tree/main/kit",
+  "kitBlobUrl": "https://github.com/ceemaeve/skills-site/blob/main/kit",
+  "studyUrl": "https://github.com/ceemaeve/skills-site/discussions",
+  "zipUrl": "/skill-training-completed-kit.zip",
   "homeUrl": "https://thisevelife.space",
   "chooser": [
     {"label": "New to IT, or in help desk or desktop support", "track": "F"},

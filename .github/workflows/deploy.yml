@@ -6,9 +6,6 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  # Daily rebuild, so edits to the study kit's SPRINTS.md reach the sprint pages.
-  schedule:
-    - cron: "17 13 * * *"
 
 permissions:
   contents: read
@@ -22,12 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-
-      - name: Check out the study kit (sprint pages are built from its SPRINTS.md)
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with:
-          repository: ceemaeve/skill-training-completed
-          path: kit
 
       - name: Check deploy settings
         env:
@@ -52,8 +43,6 @@ jobs:
 
       # Breaks a scratch copy of the data once per build check and confirms the build stops with the right message.
       - name: Run the build-check tests
-        env:
-          KIT_DIR: kit
         run: python3 tests/test_build_checks.py
 
       - name: Build the site

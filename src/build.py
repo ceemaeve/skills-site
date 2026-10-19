@@ -1,10 +1,9 @@
 # Builds the Skill Training Completed site from data.json, resources.json and the study kit's SPRINTS.md.
 #   python3 src/build.py   (from the repo root, or from src/)
-# Needs the kit (ceemaeve/skill-training-completed) checked out at ../kit (the deploy does this),
-# next to this repo as ../../skill-training-completed, or at $KIT_DIR.
+# The study kit lives in this repo's kit/ folder (or $KIT_DIR). The build also zips it into skill-training-completed-kit.zip.
 # Writes index.html, calendar.html, resources.html, 404.html, sprints/, fonts/, og.png, robots.txt,
-# sitemap.xml and the icon files into ../site/
-import json, html, os, re, shutil, sys
+# sitemap.xml, the kit ZIP and the icon files into ../site/
+import json, html, os, re, shutil, sys, zipfile
 SCRIPT = os.path.dirname(os.path.abspath(__file__))
 # $SRC_DIR (tests) reads the src files from there and writes to <SRC_DIR>/../site, never the repo's own site/.
 HERE = os.environ.get('SRC_DIR') or SCRIPT
@@ -150,10 +149,10 @@ byid.update({g['id']: g for g in data['gates']})
 SITE = 'https://skills.thisevelife.space/'
 
 # --- The kit's SPRINTS.md: one section per sprint
-kit_dirs = [os.environ.get('KIT_DIR', ''), os.path.join(SCRIPT, '..', 'kit'), os.path.join(SCRIPT, '..', '..', 'skill-training-completed')]
+kit_dirs = [os.environ.get('KIT_DIR', ''), os.path.join(SCRIPT, '..', 'kit')]
 kit_md = next((os.path.join(d, 'SPRINTS.md') for d in kit_dirs if d and os.path.exists(os.path.join(d, 'SPRINTS.md'))), None)
 if not kit_md:
-    fail(['Study kit not found. Clone ceemaeve/skill-training-completed next to this repo, or set KIT_DIR.'])
+    fail(['Study kit not found: expected kit/SPRINTS.md in this repo, or set KIT_DIR.'])
 sections = {}
 for part in re.split(r'\n(?=## )', open(kit_md, encoding='utf-8').read()):
     m = re.match(r'## ([%s]\d+)\. ' % LETTERS, part)
@@ -164,8 +163,8 @@ def inline(text):
     text = e(text, quote=False)
     text = re.sub(r'`([^`]+)`', r'<code>\1</code>', text)
     text = re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', text)
-    # Kit file names (ASSESSMENT.md, LAB-ENVIRONMENT.md) link to the file on GitHub.
-    return re.sub(r'\b([A-Z][A-Z-]+\.md)\b', lambda m: '<a href="%s/blob/main/%s">%s</a>' % (data['kitUrl'], m.group(1), m.group(1)), text)
+    # Kit file names (ASSESSMENT.md, LAB-ENVIRONMENT.md) link to the file in this repo on GitHub.
+    return re.sub(r'\b([A-Z][A-Z-]+\.md)\b', lambda m: '<a href="%s/%s">%s</a>' % (data['kitBlobUrl'], m.group(1), m.group(1)), text)
 
 def md_to_html(md):
     # The kit's sprint sections use paragraphs, **bold**, `code` and numbered lists only.
@@ -194,7 +193,7 @@ def md_to_html(md):
 
 def kit_anchor(s):
     head = '%s. %s (%d weeks)' % (s['id'], s['name'], s['weeks'])
-    return data['kitUrl'] + '/blob/main/SPRINTS.md#' + re.sub(r'[^a-z0-9 -]', '', head.lower()).replace(' ', '-')
+    return data['kitBlobUrl'] + '/SPRINTS.md#' + re.sub(r'[^a-z0-9 -]', '', head.lower()).replace(' ', '-')
 
 errors = []
 for s in data['sprints']:
@@ -350,6 +349,16 @@ open(os.path.join(OUT, '404.html'), 'w', encoding='utf-8').write(fill(open(os.pa
 for f in ('favicon.png', 'favicon.ico', 'apple-touch-icon.png', 'og.png', 'robots.txt'):
     shutil.copy(os.path.join(HERE, f), os.path.join(OUT, f))
 shutil.copytree(os.path.join(HERE, 'fonts', 'web'), os.path.join(OUT, 'fonts'), dirs_exist_ok=True)
+
+# The kit ZIP: every .md file in the kit folder under skill-training-completed/, with fixed timestamps so the same kit gives the same ZIP.
+kit_root = os.path.dirname(kit_md)
+with zipfile.ZipFile(os.path.join(OUT, 'skill-training-completed-kit.zip'), 'w', zipfile.ZIP_DEFLATED) as z:
+    for name in sorted(os.listdir(kit_root)):
+        if name.endswith('.md'):
+            zi = zipfile.ZipInfo('skill-training-completed/' + name, date_time=(2026, 1, 1, 0, 0, 0))
+            zi.compress_type = zipfile.ZIP_DEFLATED
+            zi.external_attr = 0o644 << 16
+            z.writestr(zi, open(os.path.join(kit_root, name), 'rb').read())
 
 urls = ['', 'calendar.html', 'resources.html'] + [s['doc'] for s in order]
 open(os.path.join(OUT, 'sitemap.xml'), 'w', encoding='utf-8').write(

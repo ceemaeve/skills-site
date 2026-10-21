@@ -36,7 +36,7 @@
     {"id":"gcloud","name":"Cloud+ exam","weeks":1,"note":"Review week, then the exam","res":"cloud-plus","cost":399},
     {"id":"glinux","name":"Linux+ and LPIC-1 exams","weeks":2,"note":"Two review weeks, then the exams","res":["linux-plus","lpic-1"],"cost":799},
     {"id":"gsec","name":"Security+ exam","weeks":1,"note":"Review week, then the exam","res":"security-plus","cost":439},
-    {"id":"gsecai","name":"SecAI+ exam","weeks":1,"note":"Review week, then the exam","res":"secai-plus","cost":359},
+    {"id":"gsecai","name":"SecAI+ exam","weeks":1,"note":"Review week, then the exam","res":"secai-plus","cost":298},
     {"id":"glpic2","name":"LPIC-2 exams","weeks":2,"note":"Two review weeks, then the exams","res":"lpic-2","cost":400},
     {"id":"glpic3","name":"LPIC-3 exam (one specialty)","weeks":2,"note":"Two review weeks, then the exam","res":"lpic-3","cost":200},
     {"id":"gccna","name":"CCNA exam","weeks":2,"note":"Two review weeks, then the exam","res":"ccna","cost":300},

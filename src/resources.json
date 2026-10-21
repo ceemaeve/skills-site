@@ -275,6 +275,66 @@
       ]
     },
     {
+      "exam": "SecAI+",
+      "code": "CY0-001",
+      "note": "SecAI+ launched on February 17, 2026 and is CompTIA's first expansion certification. It adds to Security+, CySA+ or PenTest+ and does not replace them. CompTIA recommends 3 to 4 years in IT with at least 2 years of hands-on security work. The exam has up to 60 questions in 60 minutes (multiple-choice and performance-based), and a pass mark of 600 on a scale of 100 to 900. CompTIA gives an estimated retirement three years after launch.",
+      "book": [
+        "CompTIA SecAI+ Study Guide: Exam CY0-001",
+        "Mike Chapple, Fred Nwanganga",
+        "https://www.amazon.com/dp/1394368070",
+        "Sybex",
+        "Amazon"
+      ],
+      "udemy": [
+        {
+          "title": "CompTIA SecAI+ 2026: Complete AI Security Exam Prep",
+          "by": "Vinay Kumar",
+          "url": "https://www.udemy.com/course/comptia-secai-certification-2025-complete-exam-prep/",
+          "rating": 4.7,
+          "ratings": 55
+        },
+        {
+          "title": "CompTIA SecAI+ (CY0-001): 360 AI Security Practice Questions",
+          "by": "Fettah Ben",
+          "url": "https://www.udemy.com/course/comptia-secai/",
+          "rating": 4.8,
+          "ratings": 29,
+          "note": "Practice tests"
+        },
+        {
+          "title": "CompTIA SecAI+ (CY0-001) Course + EBook + Exams (ALL IN ONE)",
+          "by": "Big Data Landscape",
+          "url": "https://www.udemy.com/course/comptia-secai-plus-/",
+          "rating": 4.8,
+          "ratings": 15
+        }
+      ],
+      "udemyNote": "SecAI+ is new, so every Udemy course for it has few ratings. Check that a course is updated for CY0-001 and read its reviews before you buy.",
+      "official": [
+        [
+          "CompTIA SecAI+ (CY0-001)",
+          "https://www.comptia.org/en-us/certifications/secai/"
+        ],
+        [
+          "CY0-001 exam objectives (PDF)",
+          "https://lecbyo.files.cmp.optimizely.com/download/4ac9eb6a529711f0b35e3e002873e549"
+        ],
+        [
+          "CompTIA SecAI+ FAQs",
+          "https://www.comptia.org/en-us/blog/comptia-secai-frequently-asked-questions/"
+        ]
+      ],
+      "free": [
+        [
+          "Free SecAI+ practice questions (CompTIA, 10 questions)",
+          "https://www.comptia.org/en-us/certifications/secai/practice-questions/"
+        ]
+      ],
+      "title": "CompTIA SecAI+",
+      "anchor": "secai-plus",
+      "cost": "about $359. CompTIA's own pages don't list the price, and price trackers disagree (one shows $298 in October 2026), so check the CompTIA store before you buy"
+    },
+    {
       "exam": "Linux+",
       "code": "XK0-006",
       "book": [
@@ -1098,7 +1158,8 @@
       "sprints": [
         "C1",
         "C2",
-        "C3"
+        "C3",
+        "X1"
       ],
       "note": "C1 and C3 work on the free plan. C2's Claude Code needs a paid Claude plan or an Anthropic Console account. Never paste passwords, keys or real data.",
       "links": [
@@ -1166,6 +1227,42 @@
         [
           "Learn path: GitHub Copilot Fundamentals, part 1",
           "https://learn.microsoft.com/training/paths/copilot/"
+        ]
+      ]
+    },
+    {
+      "anchor": "tool-ollama",
+      "name": "Ollama",
+      "sprints": [
+        "X1"
+      ],
+      "note": "Runs small open AI models on the lab host, with no GPU needed (replies are slow). Check how much memory each model needs and suspend the Windows VMs while it runs.",
+      "links": [
+        [
+          "Download Ollama",
+          "https://ollama.com/download"
+        ]
+      ]
+    },
+    {
+      "anchor": "tool-ai-security-refs",
+      "name": "AI security references",
+      "sprints": [
+        "X1"
+      ],
+      "note": "Free frameworks the SecAI+ objectives name. X1 uses them to threat-model and to map risks.",
+      "links": [
+        [
+          "OWASP Top 10 for LLM Applications",
+          "https://genai.owasp.org/llm-top-10/"
+        ],
+        [
+          "MITRE ATLAS",
+          "https://atlas.mitre.org/"
+        ],
+        [
+          "NIST AI Risk Management Framework",
+          "https://www.nist.gov/itl/ai-risk-management-framework"
         ]
       ]
     }

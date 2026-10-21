@@ -88,7 +88,7 @@ def m_track_no_id(d, r):
 def m_dup_id(d, r):
     d['gates'][0]['id'] = d['sprints'][0]['id']
 def m_sprint_bad_id(d, r):
-    d['sprints'][0]['id'] = 'X1'
+    d['sprints'][0]['id'] = 'Z1'
 def m_res_nested(d, r):
     gate(d, 'glinux')['res'] = [['linux-plus']]
 def m_tool_nested(d, r):
@@ -157,7 +157,7 @@ CASES = [
     ('gate_missing_id', m_gate_no_id, 1, 'data.json: gates 0: missing id'),
     ('track_missing_id', m_track_no_id, 1, 'data.json: tracks 0: missing id'),
     ('duplicate_id', m_dup_id, 1, 'data.json: duplicate id "F1"'),
-    ('sprint_id_letter', m_sprint_bad_id, 1, 'data.json: sprint X1: id must be a group letter (C, P, F, S, N, A) and a number'),
+    ('sprint_id_letter', m_sprint_bad_id, 1, 'data.json: sprint Z1: id must be a group letter (C, P, F, S, N, A, X) and a number'),
     ('aws_sprint_reaches_kit_check', m_aws_sprint_no_kit, 1, 'data.json: sprint A99: kit SPRINTS.md has no heading "## A99. AWS (3 weeks)"'),
     ('aws_gate_res', m_aws, 0, PAGES),
     ('copilot_gate_res', m_copilot, 0, PAGES),

@@ -24,7 +24,8 @@
     {"id":"C3","name":"Skills and agents","weeks":2,"outcome":"Package a lab chore as a Claude Skill someone else can use, and explain where subagents and MCP fit."},
     {"id":"P1","name":"Copilot basics","weeks":2,"outcome":"Use Microsoft Copilot for study and admin work, check what it tells you, and explain what Microsoft 365 Copilot can see."},
     {"id":"P2","name":"Copilot and agent administration","weeks":3,"outcome":"Set up, protect and monitor Microsoft 365 Copilot and agents in a tenant, and find oversharing before Copilot surfaces it."},
-    {"id":"P3","name":"GitHub Copilot for scripts","weeks":2,"outcome":"Use GitHub Copilot to write, explain and test lab scripts, and review every suggestion before you keep it."}
+    {"id":"P3","name":"GitHub Copilot for scripts","weeks":2,"outcome":"Use GitHub Copilot to write, explain and test lab scripts, and review every suggestion before you keep it."},
+    {"id":"X1","name":"AI security","weeks":4,"outcome":"Threat-model, protect and monitor a small AI application, use AI in security work without trusting it blindly, and explain AI risk and compliance in business terms."}
   ],
   "gates": [
     {"id":"gaplus1","name":"A+ Core 1 exam","weeks":1,"note":"Review week, then the exam","res":"a-plus","cost":274},
@@ -35,6 +36,7 @@
     {"id":"gcloud","name":"Cloud+ exam","weeks":1,"note":"Review week, then the exam","res":"cloud-plus","cost":399},
     {"id":"glinux","name":"Linux+ and LPIC-1 exams","weeks":2,"note":"Two review weeks, then the exams","res":["linux-plus","lpic-1"],"cost":799},
     {"id":"gsec","name":"Security+ exam","weeks":1,"note":"Review week, then the exam","res":"security-plus","cost":439},
+    {"id":"gsecai","name":"SecAI+ exam","weeks":1,"note":"Review week, then the exam","res":"secai-plus","cost":359},
     {"id":"glpic2","name":"LPIC-2 exams","weeks":2,"note":"Two review weeks, then the exams","res":"lpic-2","cost":400},
     {"id":"glpic3","name":"LPIC-3 exam (one specialty)","weeks":2,"note":"Two review weeks, then the exam","res":"lpic-3","cost":200},
     {"id":"gccna","name":"CCNA exam","weeks":2,"note":"Two review weeks, then the exam","res":"ccna","cost":300},
@@ -47,12 +49,13 @@
     {"id":"B","name":"Microsoft","blurb":"Windows Server, Azure and Microsoft 365 Copilot, ending in three Microsoft exams: AZ-802 (Windows Server), AZ-104 (Azure) and AB-900 (Copilot).","fit":"Windows Server and Azure administration","items":["C1","P1","S0","S1","S2","S3","S4","S5","S6","S7","g802","S8","g104","P2","gab900"],"gates":true},
     {"id":"C","name":"Linux","blurb":"Linux+, then LPIC-1, LPIC-2 and LPIC-3, with Linux as your main lab work.","fit":"Linux server administration","items":["C1","S0","S1","S2","S5","S6","S7","S8","S10","glinux","S12","glpic2","S13","glpic3"],"gates":true},
     {"id":"D","name":"Security","blurb":"Hardening, monitoring and security operations, ending in Security+.","fit":"Security or compliance","items":["C1","P1","S0","S1","S2","S6","S7","S9","gcloud","S11","gsec","S13"],"gates":true},
-    {"id":"E","name":"Everyone","blurb":"Every sprint except N1 (Cisco), A1 (AWS), C2 and C3 (Claude), P2 and P3 (Copilot): Claude and Copilot basics, Foundations, then the 14 core sprints, with their exams.","fit":"A mix, or growing into a senior generalist","items":["C1","P1","F1","F2","gaplus1","F3","gaplus2","gnet","S0","S1","S2","S3","S4","S5","S6","S7","g802","S8","g104","S9","gcloud","S10","glinux","S11","gsec","S12","glpic2","S13","glpic3"],"gates":true},
+    {"id":"E","name":"Everyone","blurb":"Every sprint except N1 (Cisco), A1 (AWS), C2 and C3 (Claude), P2 and P3 (Copilot) and X1 (AI security): Claude and Copilot basics, Foundations, then the 14 core sprints, with their exams.","fit":"A mix, or growing into a senior generalist","items":["C1","P1","F1","F2","gaplus1","F3","gaplus2","gnet","S0","S1","S2","S3","S4","S5","S6","S7","g802","S8","g104","S9","gcloud","S10","glinux","S11","gsec","S12","glpic2","S13","glpic3"],"gates":true},
     {"id":"F","name":"Foundations","blurb":"New to IT? Start here: Claude basics, then hardware, networking, operating systems and support, with A+ and Network+ along the way. Then pick B, C or D.","fit":"New to IT, help desk and desktop support","items":["C1","F1","F2","gaplus1","F3","gaplus2","gnet"],"gates":true},
     {"id":"G","name":"Networking","blurb":"Cisco routing and switching on top of networking basics, ending in the CCNA. New to IT? Do Track F first.","fit":"Network administration and network operations center (NOC) jobs","items":["C1","F2","S0","S1","N1","gccna"],"gates":true},
     {"id":"H","name":"AWS","blurb":"Cloud on AWS: the shared lab, networking and cloud architecture, then AWS core services, ending in AWS Solutions Architect – Associate. New to IT? Do Track F first.","fit":"Cloud jobs on AWS","items":["C1","S0","S1","S9","A1","gaws"],"gates":true},
     {"id":"I","name":"Claude","blurb":"Use Claude well in IT work: Claude basics, the shared lab, Claude Code for your lab scripts, then Skills and agents. No exam; C2 needs a paid Claude plan.","fit":"Anyone who wants to use Claude well in IT work","items":["C1","S0","C2","C3"],"gates":false},
-    {"id":"J","name":"Copilot","blurb":"Microsoft 365 Copilot and GitHub Copilot: the basics, the identity and security groundwork, Copilot and agent administration, then GitHub Copilot for your scripts. Ends in AB-900 and GH-300.","fit":"IT staff rolling out or supporting Copilot","items":["C1","P1","S0","S1","S2","S3","S6","P2","gab900","P3","ggh300"],"gates":true}
+    {"id":"J","name":"Copilot","blurb":"Microsoft 365 Copilot and GitHub Copilot: the basics, the identity and security groundwork, Copilot and agent administration, then GitHub Copilot for your scripts. Ends in AB-900 and GH-300.","fit":"IT staff rolling out or supporting Copilot","items":["C1","P1","S0","S1","S2","S3","S6","P2","gab900","P3","ggh300"],"gates":true},
+    {"id":"K","name":"AI security","blurb":"Security groundwork and Security+, then AI security and the CompTIA SecAI+ exam. CompTIA recommends Security+ (or CySA+ or PenTest+) and about two years of hands-on security work before SecAI+, so this track builds that base first.","fit":"Security staff taking on AI systems and AI-assisted security","items":["C1","S0","S1","S2","S6","S7","S11","gsec","X1","gsecai"],"gates":true}
   ],
   "certs": [
     {"name":"CompTIA A+","what":"IT support: hardware, operating systems and troubleshooting (two exams)"},
@@ -65,6 +68,7 @@
     {"name":"Microsoft AZ-104","what":"Azure administration"},
     {"name":"CompTIA Cloud+","what":"Cloud operations, for any provider"},
     {"name":"CompTIA Security+","what":"Core security skills"},
+    {"name":"CompTIA SecAI+","what":"Securing AI systems and using AI in security work"},
     {"name":"CompTIA Linux+","what":"Linux administration"},
     {"name":"LPIC-1","what":"Linux administration, from the Linux Professional Institute (two exams)"},
     {"name":"LPIC-2","what":"Advanced Linux administration (two exams)"},
@@ -80,6 +84,7 @@
     {"label": "Windows Server and Azure", "track": "B"},
     {"label": "Linux servers", "track": "C"},
     {"label": "Security or compliance", "track": "D"},
+    {"label": "Securing AI systems, or using AI in security work", "track": "K"},
     {"label": "Networking, or a network operations center", "track": "G"},
     {"label": "Cloud on AWS", "track": "H"},
     {"label": "Using Claude well in IT work", "track": "I"},

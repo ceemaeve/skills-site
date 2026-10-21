@@ -52,6 +52,17 @@ For IT people asked to roll out or support Microsoft 365 Copilot, and for anyone
 - About 26 weeks at 8 hours per week.
 - On Track B already? It includes P2 and AB-900; add P3 and GH-300 (3 weeks) for GitHub Copilot.
 
+## Track K: AI security (Security+, SecAI+)
+
+For security staff who now have to secure AI systems or use AI in their security work.
+
+- Do C1, S0, S1, S2, S6, S7, S11 and X1 (see SPRINTS.md). S1, S2, S6, S7 and S11 give X1 the networking, identity, hardening, logging and risk groundwork it assumes.
+- Sit Security+ after S11 and SecAI+ after X1. SecAI+ adds to Security+, CySA+ or PenTest+ and is not meant as a first security exam.
+- Security+ V8 (SY0-801) launches on November 17, 2026. Study V8 unless you will sit the exam before then.
+- X1 runs a small open AI model on the lab host with Ollama. Everything else works on free plans.
+- About 26 weeks at 8 hours per week.
+- On Track D already? It has the groundwork and Security+. Add X1 and SecAI+ (5 weeks).
+
 ## Track A: Skills only (no exams)
 
 For people who want the capability without the certificate.
@@ -85,7 +96,7 @@ For people who want the capability without the certificate.
 
 ## Track E: Everyone
 
-- Every sprint except N1 (Cisco), A1 (AWS), C2 and C3 (Claude), P2 and P3 (Copilot): C1, P1, F1 to F3, then S0 to S13, with all their exam gates, A+ and Network+ included. About 72 weeks at 8 hours per week. CCNA, AWS and the later Claude and Copilot sprints are not in Track E; add N1 and its gate (6 weeks) for CCNA, A1 and its gate (6 weeks) for AWS, C2 and C3 (4 weeks) for more Claude, P2 and AB-900 (4 weeks) for Copilot administration, or P3 and GH-300 (3 weeks) for GitHub Copilot.
+- Every sprint except N1 (Cisco), A1 (AWS), C2 and C3 (Claude), P2 and P3 (Copilot) and X1 (AI security): C1, P1, F1 to F3, then S0 to S13, with all their exam gates, A+ and Network+ included. About 72 weeks at 8 hours per week. CCNA, AWS, AI security and the later Claude and Copilot sprints are not in Track E; add N1 and its gate (6 weeks) for CCNA, A1 and its gate (6 weeks) for AWS, C2 and C3 (4 weeks) for more Claude, P2 and AB-900 (4 weeks) for Copilot administration, P3 and GH-300 (3 weeks) for GitHub Copilot, or X1 and SecAI+ (5 weeks) for AI security.
 - Already past the basics? Do C1 and P1, then start at S0 and skip the Foundations block (58 weeks).
 
 ## Choosing
@@ -99,6 +110,7 @@ For people who want the capability without the certificate.
 | Cloud engineering on Azure | B, then S9 and Cloud+ |
 | Cloud engineering on AWS | H |
 | Security or compliance | D |
+| Securing AI systems, or using AI in security work | K (or D, then add X1) |
 | A mix, or growing into a senior generalist | E |
 | Not interested in exams | A, with the other track's sprints as a guide |
 | Using Claude well in IT work | I, on its own or next to another track |

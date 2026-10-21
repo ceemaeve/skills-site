@@ -43,6 +43,12 @@ Track F needs less than the full lab:
 - Cisco Packet Tracer, free with a Cisco Networking Academy account. It covers most N1 labs.
 - Cisco Modeling Labs Free, up to five nodes with real IOS images, for RESTCONF and anything Packet Tracer can't do. It runs as a VM on the lab host. Check Cisco's CML Free install guide for the memory it needs, and suspend the Windows VMs while it runs.
 
+## AI security lab (Track K)
+
+- One small open AI model run with Ollama on the lab host, for X1. Small models need no GPU but answer slowly. Check Ollama's current system requirements and the memory each model needs, and suspend the Windows VMs while it runs.
+- LNX1 for the gateway script and the logs, and your S11 log setup for the detection rules.
+- A few made-up documents for the model to answer questions about. Never real company or personal data.
+
 ## Naming
 
 - Domain name for the lab: use a name that is not your real production domain, for example `corp.test`. `.test` is reserved for testing and will never resolve on the internet.
@@ -92,6 +98,14 @@ Delete old snapshots regularly. A long snapshot chain slows the disk and eats sp
 3. Use test users and made-up sample files only. Never real names, ID numbers or company data.
 4. Don't link a payment method for pay-as-you-go agents. Reading how billing works is enough.
 5. Never paste a password, key or token into a prompt, and keep secrets out of the scripts repo.
+
+## AI security rules (X1)
+
+1. Attack only the application you built in your own lab. Never run prompt injection, jailbreaks or any other test against a system you don't own or don't have written permission to test.
+2. Use made-up data only: fake names, fake ID numbers, fake keys.
+3. Keep API keys and secrets out of prompts, logs and scripts.
+4. Treat every model answer as untrusted input, including answers about itself.
+5. Check what an AI assistant tells you about a log against the log, and say where it helped.
 
 ## Backups of the lab itself
 

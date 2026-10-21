@@ -2,7 +2,7 @@
 
 Copy this file to `deliverables/<your-name>/PROGRESS.md` and fill it in as you go.
 
-**Track:** A / B / C / D / E / F / G
+**Track:** A / B / C / D / E / F / G / H / I / J / K
 **Start date:**
 **Hours per week:**
 
@@ -35,6 +35,7 @@ Level key: 0 not started, 1 guided, 2 independent, 3 can teach.
 | C3 | Skills and agents | | | | [ ] |
 | P2 | Copilot and agent administration | | | | [ ] |
 | P3 | GitHub Copilot for scripts | | | | [ ] |
+| X1 | AI security | | | | [ ] |
 
 ## Exams
 
@@ -49,6 +50,7 @@ Level key: 0 not started, 1 guided, 2 independent, 3 can teach.
 | Linux+ | [ ] | | | |
 | LPIC-1 | [ ] | | | |
 | Security+ | [ ] | | | |
+| SecAI+ | [ ] | | | |
 | LPIC-2 | [ ] | | | |
 | LPIC-3 (track: ) | [ ] | | | |
 | CCNA | [ ] | | | |

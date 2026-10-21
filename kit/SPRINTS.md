@@ -1,6 +1,6 @@
 # Sprint plan
 
-Twenty-five sprints: three Claude sprints (C1 to C3), three Copilot sprints (P1 to P3), three Foundations sprints (F1 to F3) for people new to IT, the fourteen core sprints (S0 through S13), one Cisco networking sprint (N1) for Track G, and one AWS sprint (A1) for Track H. Every track starts with C1, Claude basics; C2 and C3 are Track I. Tracks A, B, D, E and J add P1, Copilot basics; P2 and P3 are for Tracks B and J. Each teaches one skill area end to end, then ends with a "prove it" deliverable that someone else can check.
+Twenty-six sprints: three Claude sprints (C1 to C3), three Copilot sprints (P1 to P3), three Foundations sprints (F1 to F3) for people new to IT, the fourteen core sprints (S0 through S13), one Cisco networking sprint (N1) for Track G, one AWS sprint (A1) for Track H, and one AI security sprint (X1) for Track K. Every track starts with C1, Claude basics; C2 and C3 are Track I. Tracks A, B, D, E and J add P1, Copilot basics; P2 and P3 are for Tracks B and J. Each teaches one skill area end to end, then ends with a "prove it" deliverable that someone else can check.
 
 **Pacing assumption:** about 8 hours per week (3 reading or video, 4 hands-on lab, 1 review). Change the pace and the calendar moves, but not the order. Week counts below are planning estimates.
 
@@ -67,6 +67,21 @@ Every lab in this file assumes the layout in [LAB-ENVIRONMENT.md](LAB-ENVIRONMEN
 | P3 | GitHub Copilot for scripts | 2 | 25 |
 | **Gate** | **GH-300** (1 review week) | 1 | 26 |
 
+**AI security (Track K)**
+
+| Step | Skill area | Weeks | Running total |
+| --- | --- | --- | --- |
+| C1 | Claude basics | 2 | 2 |
+| S0 | Lab and foundations | 2 | 4 |
+| S1 | Networking and name resolution | 3 | 7 |
+| S2 | Identity and directory services | 4 | 11 |
+| S6 | Security and hardening | 3 | 14 |
+| S7 | Monitoring, backup, troubleshooting | 3 | 17 |
+| S11 | Security operations, governance, risk | 3 | 20 |
+| **Gate** | **Security+** (1 review week) | 1 | 21 |
+| X1 | AI security | 4 | 25 |
+| **Gate** | **SecAI+** (1 review week) | 1 | 26 |
+
 **Core path (C1 and P1, then S0 to S13)**
 
 | Sprint | Skill area | Weeks | Running total |
@@ -100,6 +115,8 @@ The core path is 58 weeks with C1 and P1, about 13.4 months at 8 hours per week.
 **First exam timing:** counted from the start of the track (C1), AZ-802 lands at week 29 (about 6.7 months) at 8 hours per week. At 12 hours per week it lands around week 19 (about 4.5 months). On Track F the first exam is A+ Core 1, at week 10.
 
 **Security+ timing:** V8 (SY0-801) launches on November 17, 2026, and V7 retires on June 11, 2027. Security+ comes at week 47 of the core path, so anyone starting after mid-2026 reaches it after V8 launches. Study the V8 objectives.
+
+**SecAI+ timing:** SecAI+ (CY0-001, V1) launched on February 17, 2026, and CompTIA lists an estimated retirement three years after launch. On Track K, Security+ comes at week 21, after V8 launches, so study the V8 objectives there too. Check CompTIA's SecAI+ page for a new version before you book.
 
 ---
 
@@ -641,3 +658,39 @@ Microsoft has two Copilots that matter for IT work. Microsoft 365 Copilot works 
 **Certs:** GH-300 (use GitHub Copilot responsibly 15–20%, GitHub Copilot features 25–30%, data and architecture 10–15%, prompt engineering and context crafting 10–15%, developer productivity 10–15%, privacy, content exclusions and safeguards 10–15%).
 
 **Gate: GH-300** happens here, with one review week. Take the free practice assessment on Microsoft Learn first.
+
+---
+
+## AI security (Track K)
+
+One sprint for people who work in security, or who have just passed Security+, and are now asked to secure AI systems or use AI in security work. It builds on S2, S6, S7 and S11 and leads to CompTIA SecAI+.
+
+**SecAI+ is an expansion exam:** it adds to Security+, CySA+ or PenTest+ and does not replace them. CompTIA recommends one of those (or equivalent) and about two years of hands-on security work, and the exam is not meant for people new to security. Track K puts Security+ first for that reason. The exam is SecAI+ V1 (CY0-001), with up to 60 questions in 60 minutes.
+
+**AI lab:** one small open AI model on the lab host, run with Ollama (free; small models need no GPU, but answers are slow), and a few made-up documents for it to answer questions about. Everything you attack in this sprint is your own lab. Never test prompts, jailbreaks or any other attack on a system you don't own, and never put real company or personal data into the lab. The rules are in [LAB-ENVIRONMENT.md](LAB-ENVIRONMENT.md).
+
+## X1. AI security (4 weeks)
+
+**Outcome:** you can threat-model, protect and monitor a small AI application, use AI in security work without trusting it blindly, and explain AI risk and compliance in business terms.
+
+**Before you start:** S2, S6, S7 and S11, and Security+ or equivalent knowledge. A little Python helps in lab 1; an AI assistant can draft the script, and you read every line before you run it.
+
+**Skills:** AI types and how models are trained and tuned (machine learning, deep learning, generative AI, large and small language models); prompt engineering (system and user prompts, zero-, one- and multi-shot); data security for AI (cleansing, lineage, provenance, vector storage and embeddings, retrieval-augmented generation); security across the AI life cycle; threat modeling with the OWASP Top 10 for LLM Applications, MITRE ATLAS and the MIT AI Risk Repository; guardrails, prompt firewalls and gateway limits (rate, token and input quotas); access control for models, data and agents; encryption, redaction, masking and data minimization; prompt and log monitoring; auditing for hallucinations, bias and accuracy; attacks (prompt injection, data and model poisoning, jailbreaking, model theft and inversion, AI supply chain, insecure output handling, excessive agency, overreliance) and the controls that answer them; AI-enabled security tools and automation; how attackers use AI; AI governance, roles and responsible AI principles; compliance frameworks (NIST AI RMF, EU AI Act, ISO and OECD standards).
+
+**Courses:** the SecAI+ exam objectives are the outline. Read them in week 1 (the link is on the Resources page) and turn each objective into a question you can answer. The study guide and courses on the Resources page cover the rest. CompTIA also sells its own CertMaster learning products; they are optional.
+
+**Labs**
+1. The target: run a small open model with Ollama on the lab host. Ask the same question with a zero-shot, a one-shot and a multi-shot prompt, and write a system prompt that sets its role and limits. Then build a small question-answering script that retrieves from a folder of made-up runbooks (embeddings and a vector store). An AI assistant can draft the script; read every line before you run it.
+2. Threat model: draw the data flow of that application (user, prompt, model, retrieved documents, answer) and mark where each threat lands, using the OWASP Top 10 for LLM Applications and MITRE ATLAS. Rate each threat by likelihood and impact and pick a control for the top five.
+3. Break it: attack your own application with direct prompt injection, an instruction hidden inside a retrieved document, a jailbreak attempt and a request that makes it reveal its system prompt. Log each attempt, the answer and whether it worked.
+4. Guardrails and limits: add a prompt template that keeps instructions apart from user text, an input check and an output check, and a small gateway script in front of the model with a rate limit and a token cap. Repeat lab 3 and record which attacks now fail and which still work.
+5. Data and access: classify the made-up documents, then redact and mask the fake names and ID numbers before indexing. Run the application under its own least-privilege account, keep its key out of the scripts, and allow only the application host to reach the model's port.
+6. Watch and audit: log every prompt and response, keep secrets out of the logs, and write three detection rules in your S11 log setup (injection phrases, unusually long prompts, a jump in token use). Check 20 answers against the source documents for hallucinations and write down how many were wrong.
+7. AI in security work: give an AI assistant (Claude, from C1) a day of lab logs and ask for a summary and a draft incident ticket for one event. Check every claim against the logs and note what it got wrong. Then list how attackers use AI (deepfake voice and video, tailored phishing, automated reconnaissance) and which control from S6 or S11 answers each.
+8. Govern it: write a one-page AI use policy for a small team: which AI tools are sanctioned, private versus public models, what data may go in, and who approves. Name the roles, and map three risks from your threat model to the NIST AI Risk Management Framework functions (Govern, Map, Measure, Manage).
+
+**Prove it:** the threat model with its five controls, the attack log from labs 3 and 4 (what worked before and after the controls), the three detection rules, and the one-page policy. A partner reviews them and tries three attacks of their own on your application.
+
+**Certs:** SecAI+ CY0-001 (securing AI systems 40%, AI-assisted security 24%, AI governance, risk and compliance 19%, basic AI concepts related to cybersecurity 17%).
+
+**Gate: SecAI+ (CY0-001)** happens here, with one review week. Take CompTIA's free practice questions first, and review the securing AI systems domain twice, since it is the largest.

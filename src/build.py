@@ -30,7 +30,8 @@ GROUPS = [('C', 'Claude', 'C1 in every track; C2 and C3 for Track I'),
           ('F', 'Foundations', 'F1 to F3, for people new to IT (Tracks F and E)'),
           ('S', 'Core sprints', 'S0 to S13, the shared lab and most of the exams'),
           ('N', 'Networking', 'N1, the Cisco sprint for Track G'),
-          ('A', 'AWS', 'A1, the AWS sprint for Track H')]
+          ('A', 'AWS', 'A1, the AWS sprint for Track H'),
+          ('X', 'AI security', 'X1, the SecAI+ sprint for Track K')]
 LETTERS = ''.join(g[0] for g in GROUPS)
 # Resources exam-card groups (aws and copilot may be absent until they have cards).
 CARD_GROUPS = ('microsoft', 'foundation', 'comptia', 'lpi', 'cisco', 'aws', 'copilot')

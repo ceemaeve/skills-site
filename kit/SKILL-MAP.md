@@ -4,7 +4,7 @@ The curriculum is organized by skill, not by certification. Each skill area is t
 
 **Key:** ● primary topic for that exam, ◐ partly covered, ○ light mention, blank = not covered.
 
-This is a judgment call based on the official outlines and study guides read on 2026-09-29 (AZ-802, AZ-104, Cloud+ CV0-004, Linux+ XK0-006, LPIC-1/2/3 topic lists). The Security+ column follows the V8 (SY0-801) objectives, checked on 2026-10-13.
+This is a judgment call based on the official outlines and study guides read on 2026-09-29 (AZ-802, AZ-104, Cloud+ CV0-004, Linux+ XK0-006, LPIC-1/2/3 topic lists). The Security+ column follows the V8 (SY0-801) objectives, checked on 2026-10-13. The SecAI+ marks follow the CY0-001 objectives, read on 2026-10-21; they are the same kind of judgment call.
 
 | Skill area | Sprint | AZ-802 | AZ-104 | Cloud+ | Sec+ | Linux+ | LPIC-1 | LPIC-2 | LPIC-3 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -59,6 +59,17 @@ Network+ also overlaps the core path: S1 (networking and name resolution) and S6
 | Copilot and agent administration | P2 | ● | |
 | GitHub Copilot for scripts | P3 | | ● |
 
+**AI security (Track K)**
+
+| Skill area | Sprint | Sec+ | SecAI+ |
+| --- | --- | --- | --- |
+| Networking and name resolution | S1 | ◐ | ○ |
+| Identity, directory services and access | S2 | ◐ | ◐ |
+| Security and hardening | S6 | ● | ◐ |
+| Monitoring, backup, troubleshooting | S7 | ◐ | ◐ |
+| Security operations, governance, risk | S11 | ● | ◐ |
+| AI security | X1 | ○ | ● |
+
 **Claude (C1 in every track; C2 and C3 for Track I)**
 
 The Claude sprints don't map to an exam. They support every other sprint: C1 makes Claude a study partner you check, C2 helps with the scripts in S8 and S10, and C3 turns a lab chore into a Skill.
@@ -83,4 +94,5 @@ The Claude sprints don't map to an exam. They support every other sprint: C1 mak
 - **AZ-104:** identity/governance 20-25%, compute 20-25%, storage 15-20%, networking 15-20%, monitor/backup 10-15%.
 - **Cloud+ CV0-004:** architecture 23%, deployment 19%, security 19%, operations 17%, troubleshooting 12%, DevOps fundamentals 10%.
 - **Security+ SY0-801 (V8):** security operations 27%, threats, vulnerabilities and attacks 24%, security architecture 19%, general security concepts 16%, program management and oversight 14%.
+- **SecAI+ CY0-001:** securing AI systems 40%, AI-assisted security 24%, AI governance, risk and compliance 19%, basic AI concepts related to cybersecurity 17%.
 - **Linux+ XK0-006:** system management 23%, troubleshooting 22%, services and user management 20%, security 18%, automation 17%.

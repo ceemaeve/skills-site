@@ -238,7 +238,7 @@ css = open(os.path.join(HERE, 'shared.css'), encoding='utf-8').read()
 
 def fill(s):
     return (s.replace('__SHARED_CSS__', css).replace('__KIT_URL__', e(data['kitUrl'])).replace('__ZIP_URL__', e(data['zipUrl']))
-             .replace('__STUDY_URL__', e(data['studyUrl'])).replace('__HOME_URL__', e(data['homeUrl']))
+             .replace('__STUDY_URL__', e(data['studyUrl'])).replace('__HOME_URL__', e(data['homeUrl'])).replace('__MIRROR_URL__', e(data['mirrorUrl']))
              .replace('__TRACK_CARDS__', cards).replace('__SPRINT_ROWS__', rows).replace('__CERT_CHIPS__', chips))
 
 # --- Resources data (the sprint pages list each sprint's lab tools)

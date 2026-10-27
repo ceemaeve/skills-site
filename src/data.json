@@ -79,6 +79,7 @@
   "studyUrl": "https://github.com/ceemaeve/skills-site/discussions",
   "zipUrl": "/skill-training-completed-kit.zip",
   "homeUrl": "https://thisevelife.space",
+  "mirrorUrl": "https://skills.christhompson.us",
   "chooser": [
     {"label": "New to IT, or in help desk or desktop support", "track": "F"},
     {"label": "Windows Server and Azure", "track": "B"},

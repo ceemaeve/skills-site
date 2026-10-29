@@ -59,7 +59,7 @@ For security staff who now have to secure AI systems or use AI in their security
 
 - Do C1, S0, S1, S2, S6, S7, S11 and X1 (see SPRINTS.md). S1, S2, S6, S7 and S11 give X1 the networking, identity, hardening, logging and risk groundwork it assumes.
 - Sit Security+ after S11 and SecAI+ after X1. SecAI+ adds to Security+, CySA+ or PenTest+ and is not meant as a first security exam.
-- Security+ V8 (SY0-801) launches on November 17, 2026. Study V8 unless you will sit the exam before then.
+- Security+ V8 (SY0-801) replaces V7 on November 17, 2026. Study V8 unless you will sit the exam before that date.
 - X1 runs a small open AI model on the lab host with Ollama. Everything else works on free plans.
 - About 26 weeks at 8 hours per week.
 - On Track D already? It has the groundwork and Security+. Add X1 and SecAI+ (5 weeks).

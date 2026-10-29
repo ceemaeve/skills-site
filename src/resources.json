@@ -215,7 +215,7 @@
     {
       "exam": "Security+",
       "code": "SY0-701",
-      "note": "Security+ v8 (SY0-801) launches on November 17, 2026, and SY0-701 (v7) stays available until June 11, 2027. The Sybex SY0-801 guide is due in December 2026.",
+      "note": "Security+ v8 (SY0-801) replaces v7 on November 17, 2026, and SY0-701 (v7) stays available until June 11, 2027. The Sybex SY0-801 guide is due in December 2026.",
       "book": [
         "CompTIA Security+ Study Guide: Exam SY0-701, 9th Edition",
         "Mike Chapple, David Seidl",
@@ -256,7 +256,7 @@
           "https://lecbyo.files.cmp.optimizely.com/download/cf25ec24b8a511ef9ecbb69c0f9687be"
         ],
         [
-          "Security+ v8 (SY0-801), launching November 17, 2026",
+          "Security+ v8 (SY0-801), from November 17, 2026",
           "https://www.comptia.org/en/certifications/security/v8/"
         ],
         [

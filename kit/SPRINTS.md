@@ -114,7 +114,7 @@ The core path is 58 weeks with C1 and P1, about 13.4 months at 8 hours per week.
 
 **First exam timing:** counted from the start of the track (C1), AZ-802 lands at week 29 (about 6.7 months) at 8 hours per week. At 12 hours per week it lands around week 19 (about 4.5 months). On Track F the first exam is A+ Core 1, at week 10.
 
-**Security+ timing:** V8 (SY0-801) launches on November 17, 2026, and V7 retires on June 11, 2027. Security+ comes at week 47 of the core path, so anyone starting after mid-2026 reaches it after V8 launches. Study the V8 objectives.
+**Security+ timing:** V8 (SY0-801) replaces V7 on November 17, 2026, and V7 retires on June 11, 2027. Security+ comes at week 47 of the core path, so anyone starting after mid-2026 reaches it after V8 replaces V7. Study the V8 objectives.
 
 **SecAI+ timing:** SecAI+ (CY0-001, V1) launched on February 17, 2026, and CompTIA lists an estimated retirement three years after launch. On Track K, Security+ comes at week 21, after V8 launches, so study the V8 objectives there too. Check CompTIA's SecAI+ page for a new version before you book.
 

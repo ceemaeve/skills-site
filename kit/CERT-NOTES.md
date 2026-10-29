@@ -32,7 +32,7 @@ Note: some older study plans mention LPIC 1-4. LPI has no LPIC-4. LPIC-3 has fou
 
 ## Security+ V7 or V8
 
-V8 (SY0-801) launches on November 17, 2026, and V7 (SY0-701) retires on June 11, 2027. Study V8 unless you will sit the exam before November 17.
+V8 (SY0-801) replaces V7 on November 17, 2026, and V7 (SY0-701) retires on June 11, 2027. Study V8 unless you will sit the exam before that date.
 
 ## Overlap map
 

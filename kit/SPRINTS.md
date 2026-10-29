@@ -1,6 +1,6 @@
 # Sprint plan
 
-Twenty-six sprints: three Claude sprints (C1 to C3), three Copilot sprints (P1 to P3), three Foundations sprints (F1 to F3) for people new to IT, the fourteen core sprints (S0 through S13), one Cisco networking sprint (N1) for Track G, one AWS sprint (A1) for Track H, and one AI security sprint (X1) for Track K. Every track starts with C1, Claude basics; C2 and C3 are Track I. Tracks A, B, D, E and J add P1, Copilot basics; P2 and P3 are for Tracks B and J. Each teaches one skill area end to end, then ends with a "prove it" deliverable that someone else can check.
+Twenty-four sprints: three Claude sprints (C1 to C3), three Copilot sprints (P1 to P3), one Foundations sprint (F2, networking) for people new to IT, the fourteen core sprints (S0 through S13), one Cisco networking sprint (N1) for Track D, one AWS sprint (A1) for Track E, and one AI security sprint (X1) for Track I. Every track starts with C1, Claude basics; C2 and C3 are Track A. Tracks B, C, F, G and H add P1, Copilot basics; P2 and P3 are for Tracks H and C. Each teaches one skill area end to end, then ends with a "prove it" deliverable that someone else can check.
 
 **Pacing assumption:** about 8 hours per week (3 reading or video, 4 hands-on lab, 1 review). Change the pace and the calendar moves, but not the order. Week counts below are planning estimates.
 
@@ -8,19 +8,16 @@ Twenty-six sprints: three Claude sprints (C1 to C3), three Copilot sprints (P1 t
 
 Every lab in this file assumes the layout in [LAB-ENVIRONMENT.md](LAB-ENVIRONMENT.md).
 
-**Foundations (Tracks F and E)**
+**Foundations (Track B)**
 
 | Sprint | Skill area | Weeks | Running total |
 | --- | --- | --- | --- |
 | C1 | Claude basics | 2 | 2 |
-| F1 | Hardware, devices and troubleshooting | 3 | 5 |
-| F2 | Networking fundamentals | 4 | 9 |
-| **Gate** | **A+ Core 1** (1 review week) | 1 | 10 |
-| F3 | Operating systems, security and support | 3 | 13 |
-| **Gate** | **A+ Core 2** (1 review week) | 1 | 14 |
-| **Gate** | **Network+** (2 review weeks) | 2 | 16 |
+| P1 | Copilot basics | 2 | 4 |
+| F2 | Networking fundamentals | 4 | 8 |
+| **Gate** | **Network+** (2 review weeks) | 2 | 10 |
 
-**Networking (Track G)**
+**Networking (Track D)**
 
 | Step | Skill area | Weeks | Running total |
 | --- | --- | --- | --- |
@@ -31,7 +28,7 @@ Every lab in this file assumes the layout in [LAB-ENVIRONMENT.md](LAB-ENVIRONMEN
 | N1 | Cisco routing and switching | 4 | 15 |
 | **Gate** | **CCNA** (2 review weeks) | 2 | 17 |
 
-**AWS (Track H)**
+**AWS (Track E)**
 
 | Step | Skill area | Weeks | Running total |
 | --- | --- | --- | --- |
@@ -42,7 +39,7 @@ Every lab in this file assumes the layout in [LAB-ENVIRONMENT.md](LAB-ENVIRONMEN
 | A1 | AWS core services | 4 | 14 |
 | **Gate** | **AWS Solutions Architect – Associate** (2 review weeks) | 2 | 16 |
 
-**Claude (Track I)**
+**Claude (Track A)**
 
 | Step | Skill area | Weeks | Running total |
 | --- | --- | --- | --- |
@@ -51,7 +48,7 @@ Every lab in this file assumes the layout in [LAB-ENVIRONMENT.md](LAB-ENVIRONMEN
 | C2 | Claude for IT work | 2 | 6 |
 | C3 | Skills and agents | 2 | 8 |
 
-**Copilot (Track J)**
+**Copilot (Track C)**
 
 | Step | Skill area | Weeks | Running total |
 | --- | --- | --- | --- |
@@ -67,7 +64,7 @@ Every lab in this file assumes the layout in [LAB-ENVIRONMENT.md](LAB-ENVIRONMEN
 | P3 | GitHub Copilot for scripts | 2 | 25 |
 | **Gate** | **GH-300** (1 review week) | 1 | 26 |
 
-**AI security (Track K)**
+**AI security (Track I)**
 
 | Step | Skill area | Weeks | Running total |
 | --- | --- | --- | --- |
@@ -110,63 +107,27 @@ Every lab in this file assumes the layout in [LAB-ENVIRONMENT.md](LAB-ENVIRONMEN
 | S13 | Capstone | 3 | 56 |
 | **Gate** | **LPIC-3, one specialty** (2 review weeks) | 2 | 58 |
 
-The core path is 58 weeks with C1 and P1, about 13.4 months at 8 hours per week. Track E adds the 14 Foundations weeks after them, for 72 weeks (about 16.6 months). The earlier cert-by-cert roadmap came out near 18 months, so the overlap saves several months. Skip the gates for people on the skills-only track (see [TRACKS.md](TRACKS.md)).
+The core path is 58 weeks with C1 and P1, about 13.4 months at 8 hours per week. Foundations adds 6 weeks after them (F2 and Network+), for 64 weeks (about 14.8 months). The earlier cert-by-cert roadmap came out near 18 months, so the overlap saves several months. Skip the gates for people on the skills-only track (see [TRACKS.md](TRACKS.md)).
 
-**First exam timing:** counted from the start of the track (C1), AZ-802 lands at week 29 (about 6.7 months) at 8 hours per week. At 12 hours per week it lands around week 19 (about 4.5 months). On Track F the first exam is A+ Core 1, at week 10.
+**First exam timing:** counted from the start of the track (C1), AZ-802 lands at week 29 (about 6.7 months) at 8 hours per week. At 12 hours per week it lands around week 19 (about 4.5 months). On Track B the first exam is Network+, at week 10.
 
 **Security+ timing:** V8 (SY0-801) replaces V7 on November 17, 2026, and V7 retires on June 11, 2027. Security+ comes at week 47 of the core path, so anyone starting after mid-2026 reaches it after V8 replaces V7. Study the V8 objectives.
 
-**SecAI+ timing:** SecAI+ (CY0-001, V1) launched on February 17, 2026, and CompTIA lists an estimated retirement three years after launch. On Track K, Security+ comes at week 21, after V8 launches, so study the V8 objectives there too. Check CompTIA's SecAI+ page for a new version before you book.
+**SecAI+ timing:** SecAI+ (CY0-001, V1) launched on February 17, 2026, and CompTIA lists an estimated retirement three years after launch. On Track I, Security+ comes at week 21, after V8 launches, so study the V8 objectives there too. Check CompTIA's SecAI+ page for a new version before you book.
 
 ---
 
-## Foundations (Track F, and the start of Track E)
+## Foundations (Track B)
 
-Three sprints for people new to IT. They cover the hardware, operating system, support and networking basics that S0 to S13 assume, and lead to CompTIA A+ (two exams) and Network+. If you already work in IT support, or you can pass a Network+ practice exam, skip to S0.
+One sprint for people new to IT, after C1 and P1. F2 covers the networking basics that S0 to S13 assume and leads to CompTIA Network+. If you already work in IT support, or you can pass a Network+ practice exam, skip to S0.
 
-**Why this order:** A+ Core 1 is about a quarter networking, so the networking sprint (F2) comes before the Core 1 exam. Network+ goes last, after F3 adds the security basics it also tests.
-
-**Foundations lab:** the lab host from LAB-ENVIRONMENT.md, an old PC or laptop you can open up (a used office desktop is fine), a USB stick for installers, and your home router. Cisco Packet Tracer and Wireshark are free. F1 installs VMware Workstation and one Windows 11 VM, which becomes CL1 in S0.
-
-## F1. Hardware, devices and troubleshooting (3 weeks)
-
-**Outcome:** you can identify, install and troubleshoot PC, laptop, mobile and printer hardware, and you work every problem with the same troubleshooting method.
-
-**Skills:** the CompTIA troubleshooting method, motherboards, CPUs, RAM, storage, power supplies, BIOS/UEFI and the boot process, display and peripheral connectors, laptops and mobile devices, printers, virtualization and cloud concepts.
-
-**Labs**
-1. Take apart the spare PC, identify every component, put it back together and boot it. Record each part's specs and connector types.
-2. In UEFI, change the boot order, turn virtualization support (VT-x or AMD-V) and Secure Boot on and off, and set then clear a firmware password.
-3. Add or swap RAM or a drive, then confirm the change in the operating system and in Disk Management.
-4. Install VMware Workstation on the lab host and a Windows 11 VM. Snapshot it as `clean-install`.
-5. Pair a phone with a laptop over Bluetooth, share the phone's hotspot, and add an email account to the phone. Note what each setting does.
-6. Fault practice: a partner breaks one thing on the spare PC (pulls a RAM stick, unplugs a drive, changes the boot order). Find it using the six steps of the method.
-
-**Prove it:** a hardware inventory of the spare PC, plus three troubleshooting tickets (symptom, theory, test, fix, check, notes) written in the order of the CompTIA method.
-
-**Example ticket**
-
-This one is invented, to show the level of detail. Yours will use your own spare PC.
-
-**Symptom:** The spare desktop powers on and the fans spin, but the screen stays black and the board beeps in a repeating pattern.
-
-**Theory:** The beeps point at memory. A loose or failed RAM stick is the most likely cause.
-
-**Test:** Powered off and unplugged the PC, then reseated both sticks. Still beeping. Booted with one stick at a time: stick A beeps in every slot, stick B boots in slot 1.
-
-**Fix:** Removed stick A and left stick B in slot 1.
-
-**Check:** The PC reaches the UEFI screen and Windows starts. Task Manager shows 8 GB, half the original 16 GB. Windows Memory Diagnostic finds no errors on stick B.
-
-**Notes:** Beep patterns differ by maker, so I looked the pattern up in the motherboard manual. Next time, test with a known-good stick before blaming the board. Stick A is labeled and set aside.
-
-**Certs:** A+ Core 1 (hardware 25%, hardware and network troubleshooting 28%, mobile devices 13%, virtualization and cloud computing 11%).
+**Foundations lab:** the lab host from LAB-ENVIRONMENT.md and your home router. Cisco Packet Tracer and Wireshark are free.
 
 ## F2. Networking fundamentals (4 weeks)
 
 **Outcome:** you can explain how data moves across a network, build a small switched and routed network, and troubleshoot it from the cable up to the application.
 
-**Skills:** OSI and TCP/IP models, cabling and connectors, Ethernet switching and VLANs, IPv4 and IPv6 addressing and subnetting, routing basics, Wi-Fi standards and security, common ports and protocols, DHCP and DNS basics, NAT and VPN concepts, SNMP and syslog, network troubleshooting tools.
+**Skills:** OSI and TCP/IP models, cabling and connectors, Ethernet switching and VLANs, IPv4 and IPv6 addressing and subnetting, routing basics, Wi-Fi standards and security, common ports and protocols, DHCP and DNS basics, NAT and VPN concepts, SNMP and syslog, network security basics (firewalls, access lists, authentication, common attacks), network troubleshooting tools.
 
 **Labs**
 1. Install Cisco Packet Tracer (free with a Cisco Networking Academy account). Build two VLANs on one switch, route between them with a router, and give both VLANs DHCP.
@@ -178,31 +139,9 @@ This one is invented, to show the level of detail. Yours will use your own spare
 
 **Prove it:** the Packet Tracer file with a diagram and addressing table, an annotated Wireshark capture, and a write-up of the fault practice.
 
-**Certs:** Network+ (all five domains: concepts 23%, implementation 20%, operations 19%, security 14%, troubleshooting 24%) and A+ Core 1 networking (23%). S1 builds on this in the full lab.
+**Certs:** Network+ (all five domains: concepts 23%, implementation 20%, operations 19%, security 14%, troubleshooting 24%). S1 builds on this in the full lab.
 
-**Gate: A+ Core 1 (220-1201)** happens here, with one review week.
-
-## F3. Operating systems, security and support (3 weeks)
-
-**Outcome:** you can install, configure and support Windows, find your way around macOS and Linux desktops, remove malware, and take a support ticket from first report to close.
-
-**Skills:** Windows editions and installation, Settings and Control Panel, Task Manager, Event Viewer, Device Manager, Disk Management, Safe Mode and recovery, command prompt and PowerShell basics, users, groups, NTFS and share permissions, macOS and Linux desktop basics, physical and logical security, malware removal, data destruction, scripting basics, remote access tools, ticketing, change management, backups, safety and professionalism.
-
-**Labs**
-1. In the Windows 11 VM, create a standard user and an admin user, share a folder with different NTFS and share permissions, and test access as each user.
-2. Work the tools: find a stopped service in Event Viewer, a missing driver in Device Manager, shrink a volume and add a partition in Disk Management, and boot into Safe Mode and the recovery options.
-3. Install an Ubuntu desktop VM and do the same user and permission tasks from the terminal. Note the differences.
-4. Malware removal: take a snapshot, trigger Microsoft Defender with the harmless EICAR test file, and follow CompTIA's malware removal steps in order, writing each one down. Revert the snapshot.
-5. Backups: set up File History, delete a file and restore it.
-6. Support practice: a partner sends three user tickets (can't print, slow PC, can't reach a share). Work each one in a ticket log, including the message you'd send the user.
-
-**Prove it:** the ticket log, a permissions test table (user, folder, expected, actual) and the malware removal write-up.
-
-**Certs:** A+ Core 2 (operating systems 28%, security 28%, software troubleshooting 23%, operational procedures 21%) and Network+ security (14%).
-
-**Gate: A+ Core 2 (220-1202)** happens here, with one review week.
-
-**Gate: Network+ (N10-009)** follows, with two review weeks: redo the F2 labs from memory, then practice exams.
+**Gate: Network+ (N10-009)** happens here, with two review weeks: redo the F2 labs from memory, then practice exams.
 
 ---
 
@@ -463,7 +402,7 @@ This one is invented, to show the level of detail. Yours will use your own spare
 
 ---
 
-## Networking (Track G)
+## Networking (Track D)
 
 One Cisco sprint for people heading into network administration or a network operations center. It builds on F2 and S1 and leads to the CCNA.
 
@@ -494,7 +433,7 @@ One Cisco sprint for people heading into network administration or a network ope
 
 ---
 
-## AWS (Track H)
+## AWS (Track E)
 
 One AWS sprint for people heading into cloud jobs on AWS. It builds on S1 (networking) and S9 (cloud architecture) and leads to AWS Certified Solutions Architect – Associate.
 
@@ -523,9 +462,9 @@ One AWS sprint for people heading into cloud jobs on AWS. It builds on S1 (netwo
 
 ---
 
-## Claude (C1 in every track; C2 and C3 for Track I)
+## Claude (C1 in every track; C2 and C3 for Track A)
 
-Claude is an AI assistant made by Anthropic. These sprints teach it the way the rest of the kit teaches everything: hands on, and checked. C1 opens every track, so you can use Claude as a study partner from then on. C2 and C3 go further, into Claude Code and Skills, for Track I. Anyone on another track can add them after S0 (4 weeks).
+Claude is an AI assistant made by Anthropic. These sprints teach it the way the rest of the kit teaches everything: hands on, and checked. C1 opens every track, so you can use Claude as a study partner from then on. C2 and C3 go further, into Claude Code and Skills, for Track A. Anyone on another track can add them after S0 (4 weeks).
 
 **Rules for every Claude lab:** never paste a password, key, token, or real company or personal data into a chat. Treat every answer as a draft and check it against the official docs or your lab. Say where Claude helped in your deliverables.
 
@@ -597,7 +536,7 @@ Claude is an AI assistant made by Anthropic. These sprints teach it the way the 
 
 ---
 
-## Copilot (P1 in Tracks A, B, D, E and J; P2 and P3 for Tracks B and J)
+## Copilot (P1 in Tracks B, C, F, G and H; P2 and P3 for Tracks C and H)
 
 Microsoft has two Copilots that matter for IT work. Microsoft 365 Copilot works across Word, Outlook, Teams and SharePoint, and IT runs it: licences, settings, data protection and agents. GitHub Copilot helps write code and scripts. P1 teaches using Copilot well and checking it. P2 teaches running Microsoft 365 Copilot and its agents, and leads to AB-900. P3 puts GitHub Copilot to work on your lab scripts, and leads to GH-300.
 
@@ -677,11 +616,11 @@ Microsoft has two Copilots that matter for IT work. Microsoft 365 Copilot works 
 
 ---
 
-## AI security (Track K)
+## AI security (Track I)
 
 One sprint for people who work in security, or who have just passed Security+, and are now asked to secure AI systems or use AI in security work. It builds on S2, S6, S7 and S11 and leads to CompTIA SecAI+.
 
-**SecAI+ is an expansion exam:** it adds to Security+, CySA+ or PenTest+ and does not replace them. CompTIA recommends one of those (or equivalent) and about two years of hands-on security work, and the exam is not meant for people new to security. Track K puts Security+ first for that reason. The exam is SecAI+ V1 (CY0-001), with up to 60 questions in 60 minutes.
+**SecAI+ is an expansion exam:** it adds to Security+, CySA+ or PenTest+ and does not replace them. CompTIA recommends one of those (or equivalent) and about two years of hands-on security work, and the exam is not meant for people new to security. Track I puts Security+ first for that reason. The exam is SecAI+ V1 (CY0-001), with up to 60 questions in 60 minutes.
 
 **AI lab:** one small open AI model on the lab host, run with Ollama (free; small models need no GPU, but answers are slow), and a few made-up documents for it to answer questions about. Everything you attack in this sprint is your own lab. Never test prompts, jailbreaks or any other attack on a system you don't own, and never put real company or personal data into the lab. The rules are in [LAB-ENVIRONMENT.md](LAB-ENVIRONMENT.md).
 

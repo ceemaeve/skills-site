@@ -188,7 +188,7 @@ __SHARED_CSS__
     var prog = el("b", null, ""); prog.id = "prog"; $("stats").appendChild(prog);
     $("gate-wrap").classList.toggle("off", !track.gates);
     $("gates").disabled = !track.gates;
-    var qs = "?track=" + track.id + "&start=" + iso(start) + "&hours=" + hours + (track.gates && !$("gates").checked ? "&exams=0" : "");
+    var qs = "?v=2&track=" + track.id + "&start=" + iso(start) + "&hours=" + hours + (track.gates && !$("gates").checked ? "&exams=0" : "");
     if (location.search !== qs) history.replaceState(null, "", qs);
     view = { y: new Date(start).getUTCFullYear(), m: new Date(start).getUTCMonth() };
     render(start, end);
@@ -283,7 +283,9 @@ __SHARED_CSS__
 
   DATA.tracks.forEach(function (t) { var o = el("option", null, t.id + ": " + t.name); o.value = t.id; $("track").appendChild(o); });
   var q = new URLSearchParams(location.search), qt = (q.get("track") || "").toUpperCase();
-  if (DATA.tracks.some(function (t) { return t.id === qt; })) $("track").value = qt; else $("track").value = "F";
+  /* Links made before the tracks were re-lettered (October 29, 2026) carry no v=2; map their letters. */
+  if (q.get("v") !== "2") qt = ({ I: "A", F: "B", J: "C", G: "D", H: "E", A: "F", E: "F", D: "G", B: "H", K: "I", C: "J" })[qt] || qt;
+  if (DATA.tracks.some(function (t) { return t.id === qt; })) $("track").value = qt; else $("track").value = "B";
   var qStart = parseIso(q.get("start"));
   $("start").value = iso(isNaN(qStart) ? mondayOnOrAfter(todayUtc()) : qStart);
   if ([].some.call($("hours").options, function (o) { return o.value === q.get("hours"); })) $("hours").value = q.get("hours");

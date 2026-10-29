@@ -25,13 +25,13 @@ data = load_json('data.json')
 res = load_json('resources.json')
 
 # Sprint groups, in page order. A sprint id is one of these letters plus a number.
-GROUPS = [('C', 'Claude', 'C1 in every track; C2 and C3 for Track I'),
-          ('P', 'Copilot', 'P1 in Tracks A, B, D, E and J; P2 in B and J; P3 in J'),
-          ('F', 'Foundations', 'F1 to F3, for people new to IT (Tracks F and E)'),
+GROUPS = [('C', 'Claude', 'C1 in every track; C2 and C3 for Track A'),
+          ('P', 'Copilot', 'P1 in Tracks B, C, F, G and H; P2 in C and H; P3 in C'),
+          ('F', 'Foundations', 'F2, the networking sprint for Tracks B and D'),
           ('S', 'Core sprints', 'S0 to S13, the shared lab and most of the exams'),
-          ('N', 'Networking', 'N1, the Cisco sprint for Track G'),
-          ('A', 'AWS', 'A1, the AWS sprint for Track H'),
-          ('X', 'AI security', 'X1, the SecAI+ sprint for Track K')]
+          ('N', 'Networking', 'N1, the Cisco sprint for Track D'),
+          ('A', 'AWS', 'A1, the AWS sprint for Track E'),
+          ('X', 'AI security', 'X1, the SecAI+ sprint for Track I')]
 LETTERS = ''.join(g[0] for g in GROUPS)
 # Resources exam-card groups (aws and copilot may be absent until they have cards).
 CARD_GROUPS = ('microsoft', 'foundation', 'comptia', 'lpi', 'cisco', 'aws', 'copilot')
@@ -217,12 +217,12 @@ def exam_cost(track):
 
 cards = ''
 for t in data['tracks']:
-    start = t['id'] == 'F'
+    start = t['id'] == 'B'
     cost = exam_cost(t)
     alert = '<p class="alert"><b>Exam change</b>%s</p>' % e(t['alert']) if t.get('alert') else ''
     cards += ('<div class="card%s" id="track-%s"><span class="k">Track %s%s</span><h3>%s</h3><p>%s</p>%s'
               '<div class="meta"><b>%d weeks</b>%s &middot; for: %s</div>'
-              '<a class="go" href="calendar.html?track=%s">Plan this track</a></div>\n'
+              '<a class="go" href="calendar.html?v=2&amp;track=%s">Plan this track</a></div>\n'
               % (' start' if start else '', e(t['id'].lower()), e(t['id']), ' &middot; start here if new to IT' if start else '',
                  e(t['name']), e(t['blurb']), alert, weeks(t), ' &middot; exams about $%s' % format(cost, ',') if cost else '', e(t['fit']), e(t['id'])))
 rows = ''
@@ -336,7 +336,7 @@ def optional(page, name, on):
     return re.sub(r'\n?[ \t]*<!--%s-->.*?<!--/%s-->' % (name, name), '', page, flags=re.S)
 tools = ''.join(tool_card(t) for t in res['tools'])
 
-chooser = '\n        '.join('<li><a href="calendar.html?track=%s">%s<b>Track %s</b></a></li>' % (e(c['track']), e(c['label']), e(c['track'])) for c in data['chooser'])
+chooser = '\n        '.join('<li><a href="calendar.html?v=2&amp;track=%s">%s<b>Track %s</b></a></li>' % (e(c['track']), e(c['label']), e(c['track'])) for c in data['chooser'])
 idx = fill(open(os.path.join(HERE, 'index.src.html'), encoding='utf-8').read()).replace('__CHOOSER__', chooser).replace('__NOTICE__', e(data['notice']))
 resp = (fill(open(os.path.join(HERE, 'resources.src.html'), encoding='utf-8').read()).replace('__MS_LEARN__', ms_learn)
         .replace('__MS_UDEMY__', ms_udemy).replace('__COMPTIA__', comptia).replace('__FOUNDATION__', foundation).replace('__LPI__', lpi)

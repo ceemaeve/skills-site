@@ -12,9 +12,7 @@ Level key: 0 not started, 1 guided, 2 independent, 3 can teach.
 | --- | --- | --- | --- | --- | --- |
 | C1 | Claude basics | | | | [ ] |
 | P1 | Copilot basics | | | | [ ] |
-| F1 | Hardware, devices and troubleshooting | | | | [ ] |
 | F2 | Networking fundamentals | | | | [ ] |
-| F3 | Operating systems, security and support | | | | [ ] |
 | S0 | Lab and foundations | | | | [ ] |
 | S1 | Networking and name resolution | | | | [ ] |
 | S2 | Identity and directory services | | | | [ ] |
@@ -41,8 +39,6 @@ Level key: 0 not started, 1 guided, 2 independent, 3 can teach.
 
 | Exam | Readiness gate met | Booked for | Result | Date |
 | --- | --- | --- | --- | --- |
-| A+ Core 1 | [ ] | | | |
-| A+ Core 2 | [ ] | | | |
 | Network+ | [ ] | | | |
 | AZ-802 | [ ] | | | |
 | AZ-104 | [ ] | | | |

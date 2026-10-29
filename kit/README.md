@@ -11,7 +11,7 @@ This folder is the download kit. The website offers it as a ZIP and builds its s
 | File | What it's for |
 | --- | --- |
 | [SKILL-MAP.md](SKILL-MAP.md) | Which skill areas each certification tests. This is where the overlap is |
-| [SPRINTS.md](SPRINTS.md) | The 26 sprints (3 Claude, 3 Copilot, 3 Foundations, 14 core, 1 Cisco networking, 1 AWS, 1 AI security), with labs, deliverables and exam gates |
+| [SPRINTS.md](SPRINTS.md) | The 24 sprints (3 Claude, 3 Copilot, 1 Foundations, 14 core, 1 Cisco networking, 1 AWS, 1 AI security), with labs, deliverables and exam gates |
 | [TRACKS.md](TRACKS.md) | Paths for different roles, including skills-only |
 | [LAB-ENVIRONMENT.md](LAB-ENVIRONMENT.md) | VM layout, networks, snapshots, Azure and AWS sandbox rules, Claude and Copilot rules |
 | [ASSESSMENT.md](ASSESSMENT.md) | Proficiency levels, peer review and exam readiness |
@@ -20,12 +20,12 @@ This folder is the download kit. The website offers it as a ZIP and builds its s
 
 ## Certifications covered
 
-CompTIA A+ and Network+ (Foundations), Cisco CCNA (Networking), AWS Certified Solutions Architect – Associate (AWS), Microsoft AZ-802, AZ-104 and AB-900, GitHub Copilot GH-300, CompTIA Cloud+, Security+, SecAI+ and Linux+, and LPIC-1, 2 and 3. Exam versions change, so re-check the official pages before booking.
+CompTIA Network+ (Foundations), Cisco CCNA (Networking), AWS Certified Solutions Architect – Associate (AWS), Microsoft AZ-802, AZ-104 and AB-900, GitHub Copilot GH-300, CompTIA Cloud+, Security+, SecAI+ and Linux+, and LPIC-1, 2 and 3. Exam versions change, so re-check the official pages before booking.
 
 ## How to use it
 
 1. Pick a track in TRACKS.md.
-2. Build the lab in LAB-ENVIRONMENT.md (sprint S0). Track F starts smaller, with the Foundations lab in F1.
+2. Build the lab in LAB-ENVIRONMENT.md (sprint S0). Track F starts smaller, with the Foundations lab in F2.
 3. Work through the sprints in order. Finish each "prove it" deliverable and get a peer review. No study partner yet? Find one in [Discussions](https://github.com/ceemaeve/skills-site/discussions), or run the self-check in ASSESSMENT.md.
 4. Track your own progress in a copy of PROGRESS-TEMPLATE.md.
 5. Book an exam only when you meet the readiness checklist in ASSESSMENT.md.

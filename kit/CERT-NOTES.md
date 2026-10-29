@@ -12,7 +12,6 @@ Last checked: 2026-10-13 (SecAI+ added 2026-10-21). The study order lives in [SP
 
 | Cert | Exam(s) | Format | Notes |
 | --- | --- | --- | --- |
-| CompTIA A+ (Foundations) | 220-1201 (Core 1), 220-1202 (Core 2) | 90 min, max 90 questions each; pass 675 (Core 1), 700 (Core 2) | V15, launched Mar 2025, estimated 2028 retirement. Both exams needed, in any order. Added 2026-10-13 |
 | Cisco CCNA (Networking) | 200-301 | 120 min, $300 | v1.1 until Feb 2, 2027; v2.0 from Feb 3, 2027 (same code). No prerequisites. Valid 3 years. Added 2026-10-13 |
 | AWS Certified Solutions Architect – Associate (AWS) | SAA-C03 | 130 min, 65 questions (50 scored), pass 720, $150 | No new version announced (checked 2026-10-13). AWS recommends a year of hands-on AWS design work; no prerequisite. Valid 3 years. Added 2026-10-13 |
 | Microsoft 365 Certified: Copilot and Agent Administration Fundamentals (Copilot) | AB-900 | $99 | Skills list updated October 14, 2026. Free practice assessment on Microsoft Learn. Added 2026-10-13 |
@@ -56,7 +55,6 @@ The VM layout, networks and snapshot rules are in [LAB-ENVIRONMENT.md](LAB-ENVIR
 
 ## Sources
 
-- [CompTIA A+](https://www.comptia.org/en-us/certifications/a/)
 - [CompTIA Network+](https://www.comptia.org/en-us/certifications/network/)
 - [Cisco CCNA](https://www.cisco.com/site/us/en/learn/training-certifications/certifications/enterprise/ccna/index.html) and [CCNA v2.0 exam topics](https://learningnetwork.cisco.com/s/ccna-v2-exam-topics)
 - [AB-900 certification](https://learn.microsoft.com/en-us/credentials/certifications/copilot-and-agent-administration-fundamentals/) and [study guide](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ab-900)

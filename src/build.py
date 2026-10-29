@@ -27,7 +27,7 @@ res = load_json('resources.json')
 # Sprint groups, in page order. A sprint id is one of these letters plus a number.
 GROUPS = [('C', 'Claude', 'C1 in every track; C2 and C3 for Track I'),
           ('P', 'Copilot', 'P1 in Tracks A, B, D, E and J; P2 in B and J; P3 in J'),
-          ('F', 'Foundations', 'F1 to F3, for people new to IT (Tracks F and E)'),
+          ('F', 'Foundations', 'F2, the networking sprint for Tracks F, E and G'),
           ('S', 'Core sprints', 'S0 to S13, the shared lab and most of the exams'),
           ('N', 'Networking', 'N1, the Cisco sprint for Track G'),
           ('A', 'AWS', 'A1, the AWS sprint for Track H'),

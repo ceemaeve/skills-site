@@ -2,16 +2,16 @@
 
 The sprints are the same for everyone. What changes is which parts a person does and whether they sit exams.
 
-Every track starts with C1, Claude basics (2 weeks, see SPRINTS.md). Tracks A, B, D, E and J then take P1, Copilot basics (2 weeks). The weeks below include them.
+Every track starts with C1, Claude basics (2 weeks, see SPRINTS.md). Tracks A, B, D, E, F and J then take P1, Copilot basics (2 weeks). The weeks below include them.
 
-## Track F: Foundations (A+, Network+)
+## Track F: Foundations (Claude, Copilot, Network+)
 
 For people new to IT, or moving into IT from another kind of work.
 
-- Do F1, F2 and F3 (see SPRINTS.md). C1 comes first because Claude is your study partner for everything after it.
+- Do C1, P1 and F2 (see SPRINTS.md). C1 comes first because Claude is your study partner for everything after it.
 - You do not need Git in this track. Keep each deliverable in a folder with screenshots and a short notes file. S0 teaches Git.
-- Sit A+ Core 1 after F2, A+ Core 2 after F3, then Network+.
-- About 16 weeks at 8 hours per week.
+- Sit Network+ after F2.
+- About 10 weeks at 8 hours per week.
 - Then pick B, C, D, G or H, or carry on with S0 as Track E does.
 
 ## Track G: Networking (CCNA)
@@ -70,7 +70,7 @@ For people who want the capability without the certificate.
 
 - Do every sprint's labs and its "prove it" deliverable.
 - Skip the exam gates and their review weeks. That saves about 10 weeks.
-- New to IT? Do the F1 to F3 labs first, still without the exams.
+- New to IT? Do the F2 labs first, still without the exam.
 - Skip S9 (cloud architecture) and S11 (security operations) if they don't apply to the role, and jump to S13 with a smaller capstone.
 - About 48 weeks at 8 hours per week (42 if you skip S9 and S11).
 - Assessment is by peer review of the deliverables using the rubric in ASSESSMENT.md.
@@ -97,7 +97,7 @@ For people who want the capability without the certificate.
 
 ## Track E: Everyone
 
-- Every sprint except N1 (Cisco), A1 (AWS), C2 and C3 (Claude), P2 and P3 (Copilot) and X1 (AI security): C1, P1, F1 to F3, then S0 to S13, with all their exam gates, A+ and Network+ included. About 72 weeks at 8 hours per week. CCNA, AWS, AI security and the later Claude and Copilot sprints are not in Track E; add N1 and its gate (6 weeks) for CCNA, A1 and its gate (6 weeks) for AWS, C2 and C3 (4 weeks) for more Claude, P2 and AB-900 (4 weeks) for Copilot administration, P3 and GH-300 (3 weeks) for GitHub Copilot, or X1 and SecAI+ (5 weeks) for AI security.
+- Every sprint except N1 (Cisco), A1 (AWS), C2 and C3 (Claude), P2 and P3 (Copilot) and X1 (AI security): C1, P1, F2, then S0 to S13, with all their exam gates, Network+ included. About 64 weeks at 8 hours per week. CCNA, AWS, AI security and the later Claude and Copilot sprints are not in Track E; add N1 and its gate (6 weeks) for CCNA, A1 and its gate (6 weeks) for AWS, C2 and C3 (4 weeks) for more Claude, P2 and AB-900 (4 weeks) for Copilot administration, P3 and GH-300 (3 weeks) for GitHub Copilot, or X1 and SecAI+ (5 weeks) for AI security.
 - Already past the basics? Do C1 and P1, then start at S0 and skip the Foundations block (58 weeks).
 
 ## Choosing

@@ -385,71 +385,6 @@
   ],
   "foundation": [
     {
-      "exam": "A+",
-      "code": "220-1201 + 220-1202",
-      "title": "CompTIA A+",
-      "note": "Two exams: Core 1 (220-1201, hardware, networking, mobile) and Core 2 (220-1202, operating systems, security, support).",
-      "official": [
-        [
-          "CompTIA A+ (220-1201, 220-1202)",
-          "https://www.comptia.org/en-us/certifications/a/"
-        ],
-        [
-          "220-1201 exam objectives (PDF)",
-          "https://lecbyo.files.cmp.optimizely.com/download/34be017cb73211ef8985a6f347fbf652"
-        ],
-        [
-          "220-1202 exam objectives (PDF, CompTIA draft v1.1)",
-          "https://lecbyo.files.cmp.optimizely.com/download/84764f7a85ba11ef87e9da1cab964337"
-        ]
-      ],
-      "book": [
-        "CompTIA A+ Complete Study Guide, 2-Volume Set: Core 1 and Core 2, 6th Edition",
-        "Quentin Docter, Jon Buhagiar",
-        "https://www.amazon.com/dp/1394330030",
-        "Sybex",
-        "Amazon"
-      ],
-      "udemy": [
-        {
-          "title": "CompTIA A+ 220-1201 Core 1 Hands-On Course Full Training",
-          "by": "Andrew Ramdayal",
-          "url": "https://www.udemy.com/course/comptia-a-plus-core-1-course-hands-on-training/",
-          "rating": 4.8,
-          "ratings": 7950,
-          "note": "Core 1"
-        },
-        {
-          "title": "CompTIA A+ 220-1202 Core 2 Hands-On Course - Full Training",
-          "by": "Andrew Ramdayal",
-          "url": "https://www.udemy.com/course/comptia-a-plus-core-2-exam-prep/",
-          "rating": 4.8,
-          "ratings": 5173,
-          "note": "Core 2"
-        },
-        {
-          "title": "CompTIA A+ Core 1 (220-1201) Full Course & Practice Exam",
-          "by": "Jason Dion",
-          "url": "https://www.udemy.com/course/comptia-a-core-1/",
-          "rating": 4.7,
-          "ratings": 47881,
-          "note": "Core 1"
-        }
-      ],
-      "anchor": "a-plus",
-      "cost": "about $274 per exam, 2 exams (about $548). CompTIA list price; check the CompTIA store before you buy",
-      "free": [
-        [
-          "Professor Messer: free 220-1201 video course",
-          "https://www.professormesser.com/free-a-plus-training/220-1201/220-1201-video/220-1201-training-course/"
-        ],
-        [
-          "Professor Messer: free 220-1202 video course",
-          "https://www.professormesser.com/free-a-plus-training/220-1202/220-1202-video/220-1202-training-course/"
-        ]
-      ]
-    },
-    {
       "exam": "Network+",
       "code": "N10-009",
       "title": "CompTIA Network+",
@@ -961,7 +896,6 @@
       "anchor": "tool-vmware",
       "name": "VMware Workstation Pro",
       "sprints": [
-        "F1",
         "S0"
       ],
       "note": "The lab runs on it. Free to use; the download needs a free Broadcom account.",
@@ -996,7 +930,6 @@
       "anchor": "tool-powershell",
       "name": "PowerShell",
       "sprints": [
-        "F3",
         "S0",
         "S8",
         "C2",

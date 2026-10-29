@@ -76,7 +76,7 @@ The Claude sprints don't map to an exam. They support every other sprint: C1 mak
 
 ## How to read it
 
-- A skill area with several ● or ◐ marks is where one sprint pays off across multiple exams. Networking, identity, storage and security are the biggest.
+- A skill area with several filled or half-filled marks is where one sprint pays off across multiple exams. Networking, identity, storage and security are the biggest.
 - LPIC-3 has four specialties. You take only one, so the LPIC-3 column shows the specialty that fits each area. Pick yours by S12.
 - Linux content is not one block. Each sprint from S1 to S8 has a short "Linux lane" so the Linux skills build up alongside the Windows and Azure ones. S10 and S12 then go deeper.
 

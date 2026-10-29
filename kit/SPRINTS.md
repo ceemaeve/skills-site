@@ -1,6 +1,6 @@
 # Sprint plan
 
-Twenty-four sprints: three Claude sprints (C1 to C3), three Copilot sprints (P1 to P3), one Foundations sprint (F2, networking) for people new to IT, the fourteen core sprints (S0 through S13), one Cisco networking sprint (N1) for Track G, one AWS sprint (A1) for Track H, and one AI security sprint (X1) for Track K. Every track starts with C1, Claude basics; C2 and C3 are Track I. Tracks A, B, D, E, F and J add P1, Copilot basics; P2 and P3 are for Tracks B and J. Each teaches one skill area end to end, then ends with a "prove it" deliverable that someone else can check.
+Twenty-four sprints: three Claude sprints (C1 to C3), three Copilot sprints (P1 to P3), one Foundations sprint (F2, networking) for people new to IT, the fourteen core sprints (S0 through S13), one Cisco networking sprint (N1) for Track D, one AWS sprint (A1) for Track E, and one AI security sprint (X1) for Track I. Every track starts with C1, Claude basics; C2 and C3 are Track A. Tracks B, C, F, G and H add P1, Copilot basics; P2 and P3 are for Tracks H and C. Each teaches one skill area end to end, then ends with a "prove it" deliverable that someone else can check.
 
 **Pacing assumption:** about 8 hours per week (3 reading or video, 4 hands-on lab, 1 review). Change the pace and the calendar moves, but not the order. Week counts below are planning estimates.
 
@@ -8,7 +8,7 @@ Twenty-four sprints: three Claude sprints (C1 to C3), three Copilot sprints (P1 
 
 Every lab in this file assumes the layout in [LAB-ENVIRONMENT.md](LAB-ENVIRONMENT.md).
 
-**Foundations (Tracks F and E)**
+**Foundations (Track B)**
 
 | Sprint | Skill area | Weeks | Running total |
 | --- | --- | --- | --- |
@@ -17,7 +17,7 @@ Every lab in this file assumes the layout in [LAB-ENVIRONMENT.md](LAB-ENVIRONMEN
 | F2 | Networking fundamentals | 4 | 8 |
 | **Gate** | **Network+** (2 review weeks) | 2 | 10 |
 
-**Networking (Track G)**
+**Networking (Track D)**
 
 | Step | Skill area | Weeks | Running total |
 | --- | --- | --- | --- |
@@ -28,7 +28,7 @@ Every lab in this file assumes the layout in [LAB-ENVIRONMENT.md](LAB-ENVIRONMEN
 | N1 | Cisco routing and switching | 4 | 15 |
 | **Gate** | **CCNA** (2 review weeks) | 2 | 17 |
 
-**AWS (Track H)**
+**AWS (Track E)**
 
 | Step | Skill area | Weeks | Running total |
 | --- | --- | --- | --- |
@@ -39,7 +39,7 @@ Every lab in this file assumes the layout in [LAB-ENVIRONMENT.md](LAB-ENVIRONMEN
 | A1 | AWS core services | 4 | 14 |
 | **Gate** | **AWS Solutions Architect – Associate** (2 review weeks) | 2 | 16 |
 
-**Claude (Track I)**
+**Claude (Track A)**
 
 | Step | Skill area | Weeks | Running total |
 | --- | --- | --- | --- |
@@ -48,7 +48,7 @@ Every lab in this file assumes the layout in [LAB-ENVIRONMENT.md](LAB-ENVIRONMEN
 | C2 | Claude for IT work | 2 | 6 |
 | C3 | Skills and agents | 2 | 8 |
 
-**Copilot (Track J)**
+**Copilot (Track C)**
 
 | Step | Skill area | Weeks | Running total |
 | --- | --- | --- | --- |
@@ -64,7 +64,7 @@ Every lab in this file assumes the layout in [LAB-ENVIRONMENT.md](LAB-ENVIRONMEN
 | P3 | GitHub Copilot for scripts | 2 | 25 |
 | **Gate** | **GH-300** (1 review week) | 1 | 26 |
 
-**AI security (Track K)**
+**AI security (Track I)**
 
 | Step | Skill area | Weeks | Running total |
 | --- | --- | --- | --- |
@@ -107,17 +107,17 @@ Every lab in this file assumes the layout in [LAB-ENVIRONMENT.md](LAB-ENVIRONMEN
 | S13 | Capstone | 3 | 56 |
 | **Gate** | **LPIC-3, one specialty** (2 review weeks) | 2 | 58 |
 
-The core path is 58 weeks with C1 and P1, about 13.4 months at 8 hours per week. Track E adds the 6 Foundations weeks after them, for 64 weeks (about 14.8 months). The earlier cert-by-cert roadmap came out near 18 months, so the overlap saves several months. Skip the gates for people on the skills-only track (see [TRACKS.md](TRACKS.md)).
+The core path is 58 weeks with C1 and P1, about 13.4 months at 8 hours per week. Foundations adds 6 weeks after them (F2 and Network+), for 64 weeks (about 14.8 months). The earlier cert-by-cert roadmap came out near 18 months, so the overlap saves several months. Skip the gates for people on the skills-only track (see [TRACKS.md](TRACKS.md)).
 
-**First exam timing:** counted from the start of the track (C1), AZ-802 lands at week 29 (about 6.7 months) at 8 hours per week. At 12 hours per week it lands around week 19 (about 4.5 months). On Track F the first exam is Network+, at week 10.
+**First exam timing:** counted from the start of the track (C1), AZ-802 lands at week 29 (about 6.7 months) at 8 hours per week. At 12 hours per week it lands around week 19 (about 4.5 months). On Track B the first exam is Network+, at week 10.
 
 **Security+ timing:** V8 (SY0-801) replaces V7 on November 17, 2026, and V7 retires on June 11, 2027. Security+ comes at week 47 of the core path, so anyone starting after mid-2026 reaches it after V8 replaces V7. Study the V8 objectives.
 
-**SecAI+ timing:** SecAI+ (CY0-001, V1) launched on February 17, 2026, and CompTIA lists an estimated retirement three years after launch. On Track K, Security+ comes at week 21, after V8 launches, so study the V8 objectives there too. Check CompTIA's SecAI+ page for a new version before you book.
+**SecAI+ timing:** SecAI+ (CY0-001, V1) launched on February 17, 2026, and CompTIA lists an estimated retirement three years after launch. On Track I, Security+ comes at week 21, after V8 launches, so study the V8 objectives there too. Check CompTIA's SecAI+ page for a new version before you book.
 
 ---
 
-## Foundations (Track F, and the start of Track E)
+## Foundations (Track B)
 
 One sprint for people new to IT, after C1 and P1. F2 covers the networking basics that S0 to S13 assume and leads to CompTIA Network+. If you already work in IT support, or you can pass a Network+ practice exam, skip to S0.
 
@@ -402,7 +402,7 @@ One sprint for people new to IT, after C1 and P1. F2 covers the networking basic
 
 ---
 
-## Networking (Track G)
+## Networking (Track D)
 
 One Cisco sprint for people heading into network administration or a network operations center. It builds on F2 and S1 and leads to the CCNA.
 
@@ -433,7 +433,7 @@ One Cisco sprint for people heading into network administration or a network ope
 
 ---
 
-## AWS (Track H)
+## AWS (Track E)
 
 One AWS sprint for people heading into cloud jobs on AWS. It builds on S1 (networking) and S9 (cloud architecture) and leads to AWS Certified Solutions Architect – Associate.
 
@@ -462,9 +462,9 @@ One AWS sprint for people heading into cloud jobs on AWS. It builds on S1 (netwo
 
 ---
 
-## Claude (C1 in every track; C2 and C3 for Track I)
+## Claude (C1 in every track; C2 and C3 for Track A)
 
-Claude is an AI assistant made by Anthropic. These sprints teach it the way the rest of the kit teaches everything: hands on, and checked. C1 opens every track, so you can use Claude as a study partner from then on. C2 and C3 go further, into Claude Code and Skills, for Track I. Anyone on another track can add them after S0 (4 weeks).
+Claude is an AI assistant made by Anthropic. These sprints teach it the way the rest of the kit teaches everything: hands on, and checked. C1 opens every track, so you can use Claude as a study partner from then on. C2 and C3 go further, into Claude Code and Skills, for Track A. Anyone on another track can add them after S0 (4 weeks).
 
 **Rules for every Claude lab:** never paste a password, key, token, or real company or personal data into a chat. Treat every answer as a draft and check it against the official docs or your lab. Say where Claude helped in your deliverables.
 
@@ -536,7 +536,7 @@ Claude is an AI assistant made by Anthropic. These sprints teach it the way the 
 
 ---
 
-## Copilot (P1 in Tracks A, B, D, E and J; P2 and P3 for Tracks B and J)
+## Copilot (P1 in Tracks B, C, F, G and H; P2 and P3 for Tracks C and H)
 
 Microsoft has two Copilots that matter for IT work. Microsoft 365 Copilot works across Word, Outlook, Teams and SharePoint, and IT runs it: licences, settings, data protection and agents. GitHub Copilot helps write code and scripts. P1 teaches using Copilot well and checking it. P2 teaches running Microsoft 365 Copilot and its agents, and leads to AB-900. P3 puts GitHub Copilot to work on your lab scripts, and leads to GH-300.
 
@@ -616,11 +616,11 @@ Microsoft has two Copilots that matter for IT work. Microsoft 365 Copilot works 
 
 ---
 
-## AI security (Track K)
+## AI security (Track I)
 
 One sprint for people who work in security, or who have just passed Security+, and are now asked to secure AI systems or use AI in security work. It builds on S2, S6, S7 and S11 and leads to CompTIA SecAI+.
 
-**SecAI+ is an expansion exam:** it adds to Security+, CySA+ or PenTest+ and does not replace them. CompTIA recommends one of those (or equivalent) and about two years of hands-on security work, and the exam is not meant for people new to security. Track K puts Security+ first for that reason. The exam is SecAI+ V1 (CY0-001), with up to 60 questions in 60 minutes.
+**SecAI+ is an expansion exam:** it adds to Security+, CySA+ or PenTest+ and does not replace them. CompTIA recommends one of those (or equivalent) and about two years of hands-on security work, and the exam is not meant for people new to security. Track I puts Security+ first for that reason. The exam is SecAI+ V1 (CY0-001), with up to 60 questions in 60 minutes.
 
 **AI lab:** one small open AI model on the lab host, run with Ollama (free; small models need no GPU, but answers are slow), and a few made-up documents for it to answer questions about. Everything you attack in this sprint is your own lab. Never test prompts, jailbreaks or any other attack on a system you don't own, and never put real company or personal data into the lab. The rules are in [LAB-ENVIRONMENT.md](LAB-ENVIRONMENT.md).
 

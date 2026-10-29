@@ -28,19 +28,19 @@ All VMs on at once is about 16GB, which leaves headroom on a 32GB host. In pract
 
 Use evaluation editions of Windows Server and Windows 11 from the Microsoft Evaluation Center. Check their current time limits, and use snapshots so an expired evaluation is a rebuild, not a disaster.
 
-## Foundations lab (Track F)
+## Foundations lab (Track B)
 
-Track F needs less than the full lab:
+Track B needs less than the full lab:
 
 - Cisco Packet Tracer and Wireshark, both free.
 - Your home router, read-only: look, screenshot, change nothing you can't put back.
 
-## Cisco lab (Track G)
+## Cisco lab (Track D)
 
 - Cisco Packet Tracer, free with a Cisco Networking Academy account. It covers most N1 labs.
 - Cisco Modeling Labs Free, up to five nodes with real IOS images, for RESTCONF and anything Packet Tracer can't do. It runs as a VM on the lab host. Check Cisco's CML Free install guide for the memory it needs, and suspend the Windows VMs while it runs.
 
-## AI security lab (Track K)
+## AI security lab (Track I)
 
 - One small open AI model run with Ollama on the lab host, for X1. Small models need no GPU but answer slowly. Check Ollama's current system requirements and the memory each model needs, and suspend the Windows VMs while it runs.
 - LNX1 for the gateway script and the logs, and your S11 log setup for the detection rules.
@@ -71,7 +71,7 @@ Delete old snapshots regularly. A long snapshot chain slows the disk and eats sp
 5. Never put real credentials, personal data or production settings in the lab.
 6. Do not link the lab tenant to your employer's or any production tenant.
 
-## AWS sandbox rules (Track H)
+## AWS sandbox rules (Track E)
 
 1. Use a new AWS account of your own. Check the current Free Tier terms when you sign up, because they change.
 2. Put MFA on the root user, then sign in with an IAM Identity Center user instead.

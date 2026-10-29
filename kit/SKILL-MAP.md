@@ -21,7 +21,7 @@ This is a judgment call based on the official outlines and study guides read on 
 | Security operations, governance, risk | S11 | | | ○ | ● | | | | ○ |
 | Containers, virtualization, HA | S12 | | | ◐ | ○ | ◐ | | | ● (305/306) |
 
-**Foundations sprint (Tracks F and E)**
+**Foundations sprint (Track B)**
 
 | Skill area | Sprint | Network+ |
 | --- | --- | --- |
@@ -29,7 +29,7 @@ This is a judgment call based on the official outlines and study guides read on 
 
 Network+ also overlaps the core path: S1 (networking and name resolution) and S6 (security and hardening) go deeper on the same topics.
 
-**Networking (Track G)**
+**Networking (Track D)**
 
 | Skill area | Sprint | CCNA |
 | --- | --- | --- |
@@ -37,7 +37,7 @@ Network+ also overlaps the core path: S1 (networking and name resolution) and S6
 | Networking and name resolution | S1 | ◐ |
 | Cisco routing and switching | N1 | ● |
 
-**AWS (Track H)**
+**AWS (Track E)**
 
 | Skill area | Sprint | AWS SAA |
 | --- | --- | --- |
@@ -45,7 +45,7 @@ Network+ also overlaps the core path: S1 (networking and name resolution) and S6
 | Cloud architecture and operations | S9 | ◐ |
 | AWS core services | A1 | ● |
 
-**Copilot (P1 in Tracks A, B, D, E and J; P2 and P3 for Tracks B and J)**
+**Copilot (P1 in Tracks B, C, F, G and H; P2 and P3 for Tracks C and H)**
 
 | Skill area | Sprint | AB-900 | GH-300 |
 | --- | --- | --- | --- |
@@ -57,7 +57,7 @@ Network+ also overlaps the core path: S1 (networking and name resolution) and S6
 | Copilot and agent administration | P2 | ● | |
 | GitHub Copilot for scripts | P3 | | ● |
 
-**AI security (Track K)**
+**AI security (Track I)**
 
 | Skill area | Sprint | Sec+ | SecAI+ |
 | --- | --- | --- | --- |
@@ -68,7 +68,7 @@ Network+ also overlaps the core path: S1 (networking and name resolution) and S6
 | Security operations, governance, risk | S11 | ● | ◐ |
 | AI security | X1 | ○ | ● |
 
-**Claude (C1 in every track; C2 and C3 for Track I)**
+**Claude (C1 in every track; C2 and C3 for Track A)**
 
 The Claude sprints don't map to an exam. They support every other sprint: C1 makes Claude a study partner you check, C2 helps with the scripts in S8 and S10, and C3 turns a lab chore into a Skill.
 

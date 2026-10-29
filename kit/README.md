@@ -25,7 +25,7 @@ CompTIA Network+ (Foundations), Cisco CCNA (Networking), AWS Certified Solutions
 ## How to use it
 
 1. Pick a track in TRACKS.md.
-2. Build the lab in LAB-ENVIRONMENT.md (sprint S0). Track F starts smaller, with the Foundations lab in F2.
+2. Build the lab in LAB-ENVIRONMENT.md (sprint S0). Track B starts smaller, with the Foundations lab in F2.
 3. Work through the sprints in order. Finish each "prove it" deliverable and get a peer review. No study partner yet? Find one in [Discussions](https://github.com/ceemaeve/skills-site/discussions), or run the self-check in ASSESSMENT.md.
 4. Track your own progress in a copy of PROGRESS-TEMPLATE.md.
 5. Book an exam only when you meet the readiness checklist in ASSESSMENT.md.

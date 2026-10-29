@@ -72,6 +72,8 @@ def validate(data, res):
         if not isinstance(s.get('weeks'), int) or isinstance(s.get('weeks'), bool):
             errs.append('data.json: sprint %s: weeks must be a number' % s['id'])
     for t in data['tracks']:
+        if 'alert' in t and not (isinstance(t['alert'], str) and t['alert'].strip()):
+            errs.append('data.json: track %s: alert must be text' % t['id'])
         for i in t['items']:
             if not isinstance(i, str):
                 errs.append('data.json: track %s: invalid item %r' % (t['id'], i))
@@ -217,11 +219,12 @@ cards = ''
 for t in data['tracks']:
     start = t['id'] == 'F'
     cost = exam_cost(t)
-    cards += ('<div class="card%s" id="track-%s"><span class="k">Track %s%s</span><h3>%s</h3><p>%s</p>'
+    alert = '<p class="alert"><b>Exam change</b>%s</p>' % e(t['alert']) if t.get('alert') else ''
+    cards += ('<div class="card%s" id="track-%s"><span class="k">Track %s%s</span><h3>%s</h3><p>%s</p>%s'
               '<div class="meta"><b>%d weeks</b>%s &middot; for: %s</div>'
               '<a class="go" href="calendar.html?track=%s">Plan this track</a></div>\n'
               % (' start' if start else '', e(t['id'].lower()), e(t['id']), ' &middot; start here if new to IT' if start else '',
-                 e(t['name']), e(t['blurb']), weeks(t), ' &middot; exams about $%s' % format(cost, ',') if cost else '', e(t['fit']), e(t['id'])))
+                 e(t['name']), e(t['blurb']), alert, weeks(t), ' &middot; exams about $%s' % format(cost, ',') if cost else '', e(t['fit']), e(t['id'])))
 rows = ''
 for letter, title, sub in GROUPS:
     if not any(s['id'][0] == letter for s in data['sprints']):
@@ -237,7 +240,7 @@ chips = ''.join('<li><b>%s</b><span>%s</span></li>' % (e(c['name']), e(c['what']
 css = open(os.path.join(HERE, 'shared.css'), encoding='utf-8').read()
 
 def fill(s):
-    return (s.replace('__SHARED_CSS__', css).replace('__KIT_URL__', e(data['kitUrl'])).replace('__ZIP_URL__', e(data['zipUrl']))
+    return (s.replace('__SHARED_CSS__', css).replace('__KIT_URL__', e(data['kitUrl'])).replace('__KIT_BLOB_URL__', e(data['kitBlobUrl'])).replace('__ZIP_URL__', e(data['zipUrl']))
              .replace('__STUDY_URL__', e(data['studyUrl'])).replace('__HOME_URL__', e(data['homeUrl'])).replace('__MIRROR_URL__', e(data['mirrorUrl']))
              .replace('__TRACK_CARDS__', cards).replace('__SPRINT_ROWS__', rows).replace('__CERT_CHIPS__', chips))
 
@@ -347,6 +350,68 @@ open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8').write(idx)
 open(os.path.join(OUT, 'resources.html'), 'w', encoding='utf-8').write(resp)
 open(os.path.join(OUT, 'calendar.html'), 'w', encoding='utf-8').write(cal)
 open(os.path.join(OUT, '404.html'), 'w', encoding='utf-8').write(fill(open(os.path.join(HERE, '404.src.html'), encoding='utf-8').read()))
+
+# --- Skill map page: the kit's SKILL-MAP.md (intro, key, the tables and "How to read it"; the exam-weight list stays in the kit)
+def skill_map_body():
+    path = os.path.join(os.path.dirname(kit_md), 'SKILL-MAP.md')
+    if not os.path.exists(path):
+        fail(['Study kit not found: expected kit/SKILL-MAP.md next to SPRINTS.md.'])
+    md = open(path, encoding='utf-8').read().split('\n## Suggested emphasis')[0]
+    glyph = {'\u25cf': ('m1', 'primary topic'), '\u25d0': ('m2', 'partly covered'), '\u25cb': ('m3', 'light mention')}
+    sprint_ids = {s['id'] for s in data['sprints']}
+    def cell(text, col):
+        text = text.strip()
+        if col == 1 and text in sprint_ids:
+            return '<a href="/sprints/%s.html">%s</a>' % (text.lower(), e(text))
+        if not text and col > 1:
+            return '<span class="vh">not covered</span>'
+        out = e(text)
+        for g, (cls, word) in glyph.items():
+            out = out.replace(g, '<span class="m %s" aria-hidden="true"></span><span class="vh">%s</span>' % (cls, word))
+        return out
+    def cell_marks(out):
+        for g, (cls, word) in glyph.items():
+            out = out.replace(g, '<span class="m %s" aria-hidden="true"></span><span class="vh">%s</span>' % (cls, word))
+        return out
+    html_out, rows, items, heading, tables = [], [], [], 'Core sprints', 0
+    def flush():
+        nonlocal rows, items, tables
+        if rows:
+            head, body = rows[0], rows[2:]
+            html_out.append('<p class="swipe" aria-hidden="true">Swipe the table for every exam &rarr;</p>')
+            t = '<div class="tw" role="region" tabindex="0" aria-label="Skill map: %s"><table><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>' % (
+                e(heading), ''.join('<th scope="col">%s</th>' % e(c.strip()) for c in head),
+                ''.join('<tr>%s</tr>' % ''.join('<td>%s</td>' % cell(c, n) for n, c in enumerate(r)) for r in body))
+            html_out.append(t)
+            tables += 1
+            rows = []
+        if items:
+            html_out.append('<ul>%s</ul>' % ''.join('<li>%s</li>' % inline(i) for i in items))
+            items = []
+    for line in md.split('\n')[1:]:
+        line = line.rstrip()
+        if line.startswith('|'):
+            rows.append(line.strip().strip('|').split('|'))
+            continue
+        if line.startswith('- '):
+            items.append(line[2:])
+            continue
+        flush()
+        if not line:
+            continue
+        if line.startswith('## '):
+            html_out.append('<h2>%s</h2>' % e(line[3:]))
+        elif re.fullmatch(r'\*\*[^*]+\*\*', line):
+            heading = line.strip('*')
+            html_out.append('<h3>%s</h3>' % e(heading))
+        else:
+            html_out.append('<p>%s</p>' % cell_marks(inline(line)))
+    flush()
+    if not tables:
+        fail(['kit/SKILL-MAP.md: no table found for the skill map page'])
+    return '\n'.join(html_out)
+skill_map = fill(open(os.path.join(HERE, 'skillmap.src.html'), encoding='utf-8').read()).replace('__SM_BODY__', skill_map_body())
+open(os.path.join(OUT, 'skill-map.html'), 'w', encoding='utf-8').write(skill_map)
 for f in ('favicon.png', 'favicon.ico', 'apple-touch-icon.png', 'og.png', 'robots.txt'):
     shutil.copy(os.path.join(HERE, f), os.path.join(OUT, f))
 shutil.copytree(os.path.join(HERE, 'fonts', 'web'), os.path.join(OUT, 'fonts'), dirs_exist_ok=True)
@@ -361,13 +426,13 @@ with zipfile.ZipFile(os.path.join(OUT, 'skill-training-completed-kit.zip'), 'w',
             zi.external_attr = 0o644 << 16
             z.writestr(zi, open(os.path.join(kit_root, name), 'rb').read())
 
-urls = ['', 'calendar.html', 'resources.html'] + [s['doc'] for s in order]
+urls = ['', 'calendar.html', 'resources.html', 'skill-map.html'] + [s['doc'] for s in order]
 open(os.path.join(OUT, 'sitemap.xml'), 'w', encoding='utf-8').write(
     '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + ''.join('  <url><loc>%s%s</loc></url>\n' % (SITE, u) for u in urls) + '</urlset>\n')
 
 # Check: no template placeholder may survive into a page.
-pages = ['index.html', 'calendar.html', 'resources.html', '404.html'] + [s['doc'] for s in order]
+pages = ['index.html', 'calendar.html', 'resources.html', 'skill-map.html', '404.html'] + [s['doc'] for s in order]
 errors = []
 for page in pages:
     left = re.findall(r'__[A-Z_]+__', open(os.path.join(OUT, page), encoding='utf-8').read())

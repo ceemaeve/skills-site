@@ -144,6 +144,22 @@ Three sprints for people new to IT. They cover the hardware, operating system, s
 
 **Prove it:** a hardware inventory of the spare PC, plus three troubleshooting tickets (symptom, theory, test, fix, check, notes) written in the order of the CompTIA method.
 
+**Example ticket**
+
+This one is invented, to show the level of detail. Yours will use your own spare PC.
+
+**Symptom:** The spare desktop powers on and the fans spin, but the screen stays black and the board beeps in a repeating pattern.
+
+**Theory:** The beeps point at memory. A loose or failed RAM stick is the most likely cause.
+
+**Test:** Powered off and unplugged the PC, then reseated both sticks. Still beeping. Booted with one stick at a time: stick A beeps in every slot, stick B boots in slot 1.
+
+**Fix:** Removed stick A and left stick B in slot 1.
+
+**Check:** The PC reaches the UEFI screen and Windows starts. Task Manager shows 8 GB, half the original 16 GB. Windows Memory Diagnostic finds no errors on stick B.
+
+**Notes:** Beep patterns differ by maker, so I looked the pattern up in the motherboard manual. Next time, test with a known-good stick before blaming the board. Stick A is labeled and set aside.
+
 **Certs:** A+ Core 1 (hardware 25%, hardware and network troubleshooting 28%, mobile devices 13%, virtualization and cloud computing 11%).
 
 ## F2. Networking fundamentals (4 weeks)

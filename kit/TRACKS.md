@@ -11,7 +11,7 @@ For people new to IT, or moving into IT from another kind of work.
 - Do F1, F2 and F3 (see SPRINTS.md).
 - Sit A+ Core 1 after F2, A+ Core 2 after F3, then Network+.
 - About 16 weeks at 8 hours per week.
-- Then pick B, C or D, or carry on with S0 as Track E does.
+- Then pick B, C, D, G or H, or carry on with S0 as Track E does.
 
 ## Track G: Networking (CCNA)
 
@@ -103,7 +103,7 @@ For people who want the capability without the certificate.
 
 | If your role is mostly... | Start with track |
 | --- | --- |
-| New to IT, or help desk and desktop support | F, then B, C or D |
+| New to IT, or help desk and desktop support | F, then B, C, D, G or H |
 | Network administration or a NOC | G (Track F first if new to IT) |
 | Windows and Microsoft 365 administration | B |
 | Linux server administration | C |

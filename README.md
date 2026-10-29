@@ -11,7 +11,7 @@ Moved here from the private `tel-sites` repo (`src/site-skills/`, last commit th
 | `src/data.json` | Sprints, gates, tracks, certs and the links the pages use (`kitUrl`, `kitBlobUrl`, `homeUrl`) |
 | `src/resources.json` | Study links on the Resources page (Microsoft Learn, CompTIA, Cisco, LPI, Sybex, Udemy) and the date they were checked |
 | `src/*.src.html`, `src/shared.css` | Page templates |
-| `src/build.py` | Writes the site into `site/` (index, calendar, resources, 404, one page per sprint in `sprints/`, fonts, og.png, robots.txt, sitemap.xml, icons) |
+| `src/build.py` | Writes the site into `site/` (index, calendar, resources, skill map, 404, one page per sprint in `sprints/`, fonts, og.png, robots.txt, sitemap.xml, icons) |
 | `src/sprint.src.html` | Template for the sprint pages; their text comes from the kit's SPRINTS.md |
 | `src/make_og.py` | Remakes `src/og.png` (needs Pillow and the fonts it names; run by hand, not in the deploy) |
 | `tests/test_build_checks.py` | Proves each build check stops bad data: breaks a scratch copy of `src/` once per check and expects the right message |

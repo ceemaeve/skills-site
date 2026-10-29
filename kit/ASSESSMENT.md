@@ -15,13 +15,23 @@ Aim for level 2 on every sprint before you move on, and level 3 on the areas you
 
 ## Sprint check (peer review)
 
-A teammate or study partner reviews your deliverable with these questions. All must be yes to mark the sprint done. Studying alone? Find a study partner in the [Discussions](https://github.com/ceemaeve/skills-site/discussions).
+A teammate or study partner reviews your deliverable with these questions. All must be yes to mark the sprint done. Studying alone? Find a study partner in the [Discussions](https://github.com/ceemaeve/skills-site/discussions), or run the self-check below.
 
 1. Does it work when someone else follows the steps?
 2. Is every setting justified, not just copied?
 3. Is there evidence (screenshots, logs, command output)?
 4. Did you break it on purpose and fix it at least once?
 5. Is anything sensitive (passwords, keys) kept out of the repo?
+
+## No study partner? Run the check yourself
+
+A self-check is weaker than a second pair of eyes. It still catches most gaps, and it keeps you moving until you find a partner.
+
+1. Wait a day after you finish the deliverable.
+2. Rebuild it from your own written steps, on a fresh VM or a snapshot from before the sprint. Where you get stuck, your steps are incomplete. Fix them.
+3. Answer the five sprint-check questions in writing, one line each, with the evidence (screenshot, log or command output) next to each answer.
+4. Optional: give Claude the deliverable and the five questions and ask what a reviewer would flag. Check anything it says against the official documentation before you act on it, because Claude can be wrong.
+5. Mark the sprint done when all five answers are yes. Post the deliverable in [Discussions](https://github.com/ceemaeve/skills-site/discussions) if you want a second reviewer.
 
 ## Exam readiness checklist
 

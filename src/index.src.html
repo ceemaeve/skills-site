@@ -24,12 +24,15 @@
 __SHARED_CSS__
   section{padding-block:clamp(32px,5vw,52px) 0;}
   section h2{font-size:clamp(22px,3.4vw,32px);letter-spacing:.03em;}
+  .lede a{color:var(--cyan);}
   .lede{color:var(--text-dim);max-width:62ch;margin:10px 0 0;}
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:22px;}
   .card{border:1px solid rgb(var(--rgb-primary) / .45);border-radius:var(--r);background:linear-gradient(180deg,rgb(var(--rgb-panel) / .9),rgb(var(--rgb-void) / .92));padding:20px 20px 22px;display:flex;flex-direction:column;gap:8px;min-width:0;}
   .card h3{font-size:18px;letter-spacing:.02em;}
   .card p{margin:0;color:var(--text-dim);font-size:16px;}
   .card .k{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.12em;color:var(--cyan);text-transform:uppercase;}
+  .card .alert{margin:0;font-size:15px;color:var(--text-mid);border-left:2px solid var(--amber);padding-left:10px;}
+  .card .alert b{display:block;font:600 12.5px/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);}
   .card .meta{margin-top:auto;padding-top:10px;font-family:var(--font-mono);font-size:12.5px;color:var(--text-dim);}
   .card p a{color:var(--cyan);}
   .card .meta b{color:var(--pink-soft);font-weight:400;}
@@ -97,10 +100,12 @@ __SHARED_CSS__
   <section id="how">
     <h2>How it works</h2>
     <div class="cards">
-      <div class="card"><span class="k">01</span><h3>Skills first</h3><p>You learn each skill once, and it counts toward every certification that tests it. Learn DNS once, for example, and it counts toward Network+, AZ-802 and Linux+.</p></div>
+      <div class="card"><span class="k">01</span><h3>Skills first</h3><p>You learn each skill once, and it counts toward every certification that tests it. Learn DNS once, for example, and it counts toward Network+, AZ-802 and Linux+. <a href="skill-map.html">See the skill map.</a></p></div>
       <div class="card"><span class="k">02</span><h3>One lab</h3><p>A VMware Workstation lab with two Windows domain controllers (the servers that handle sign-in), a file server, a Linux router and two Linux servers. You build it in S0 (2 weeks) and use it through S13.</p></div>
-      <div class="card"><span class="k">03</span><h3>Prove it</h3><p>Each sprint ends with a deliverable that a study partner reviews. <a href="__STUDY_URL__">Find a study partner</a> in the kit's Discussions. Book an exam once you meet the readiness checklist in the kit.</p></div>
+      <div class="card"><span class="k">03</span><h3>Prove it</h3><p>Each sprint ends with a deliverable that a study partner reviews. <a href="__STUDY_URL__">Find a study partner</a> in the kit's Discussions, or run the <a href="__KIT_BLOB_URL__/ASSESSMENT.md#no-study-partner-run-the-check-yourself">self-check</a> if you study alone. Book an exam once you meet the readiness checklist in the kit.</p></div>
     </div>
+    <p class="lede" style="margin-top:22px">This site is a syllabus with labs. It has no lessons of its own: the teaching comes from Microsoft Learn, CompTIA, Cisco and the other official sources linked on the <a href="resources.html">Resources</a> page. Each sprint tells you what to build and how to prove it. Add Claude as a coach, as described under <a href="#kit">Take it with you</a>, and the plan becomes guided study.</p>
+    <p class="lede">Made and maintained by This EVE Life, an EVE Online interview show and stream. The kit is free and public on GitHub, so you can read, copy and correct any of it.</p>
   </section>
 
   <section id="tracks">

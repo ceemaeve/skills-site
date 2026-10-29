@@ -124,7 +124,7 @@ def t_placeholder(src):
 # Facts from the real data, so the cases pass before and after content changes (AWS, new sprints).
 REAL = json.load(open(os.path.join(ROOT, 'src', 'data.json'), encoding='utf-8'))
 REAL_RES = json.load(open(os.path.join(ROOT, 'src', 'resources.json'), encoding='utf-8'))
-PAGES = 'ok %d pages' % (4 + len(REAL['sprints']))  # 4 main pages plus one per sprint
+PAGES = 'ok %d pages' % (5 + len(REAL['sprints']))  # 5 main pages plus one per sprint
 HAS_AWS_CARDS = bool(REAL_RES.get('aws'))
 HAS_A_SPRINTS = any(s['id'].startswith('A') for s in REAL['sprints'])
 HAS_C_SPRINTS = any(s['id'].startswith('C') for s in REAL['sprints'])

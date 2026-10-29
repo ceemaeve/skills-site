@@ -21,7 +21,7 @@ A teammate or study partner reviews your deliverable with these questions. All m
 2. Is every setting justified, not just copied?
 3. Is there evidence (screenshots, logs, command output)?
 4. Did you break it on purpose and fix it at least once?
-5. Is anything sensitive (passwords, keys) kept out of the repo?
+5. Is anything sensitive (passwords, keys) kept out of the repo or folder?
 
 ## No study partner? Run the check yourself
 
@@ -60,4 +60,4 @@ Score each 0 to 3. Passing is 2 or higher on every line.
 
 ## Skills-only track evidence
 
-If someone is not sitting exams, the peer-reviewed deliverables and the capstone are their record. Keep them in your repo under `deliverables/<name>/<sprint>/`.
+If someone is not sitting exams, the peer-reviewed deliverables and the capstone are their record. Keep them under `deliverables/<name>/<sprint>/`, in a plain folder until S0 and in a Git repo after it.

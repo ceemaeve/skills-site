@@ -37,5 +37,5 @@ Download the ZIP from https://skills.thisevelife.space and add them to a Claude 
 ## Rules
 
 - Never commit passwords, keys, tokens or personal data. Use throwaway credentials in the lab.
-- Keep deliverables in `deliverables/<name>/<sprint>/`.
+- Keep deliverables in `deliverables/<name>/<sprint>/`. Before S0 that is a plain folder on your computer with screenshots and notes. You need Git only once S0 teaches it.
 - Fix errors or outdated facts in these files with a normal commit and say what you changed.

@@ -8,7 +8,8 @@ Every track starts with C1, Claude basics (2 weeks, see SPRINTS.md). Tracks A, B
 
 For people new to IT, or moving into IT from another kind of work.
 
-- Do F1, F2 and F3 (see SPRINTS.md).
+- Do F1, F2 and F3 (see SPRINTS.md). C1 comes first because Claude is your study partner for everything after it.
+- You do not need Git in this track. Keep each deliverable in a folder with screenshots and a short notes file. S0 teaches Git.
 - Sit A+ Core 1 after F2, A+ Core 2 after F3, then Network+.
 - About 16 weeks at 8 hours per week.
 - Then pick B, C, D, G or H, or carry on with S0 as Track E does.

@@ -25,6 +25,14 @@ __SHARED_CSS__
   section{padding-block:clamp(32px,5vw,52px) 0;}
   section h2{font-size:clamp(22px,3.4vw,32px);letter-spacing:.03em;}
   .lede a{color:var(--cyan);}
+  .hero p.plain{color:var(--text-hi);font-size:clamp(21px,2.8vw,28px);font-weight:600;line-height:1.35;max-width:44ch;}
+  .words{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px 24px;margin:16px 0 0;}
+  .words dt{color:var(--text-hi);font-weight:700;font-size:17px;}
+  .words dd{margin:2px 0 0;color:var(--text-dim);font-size:16px;}
+  .need{margin-top:16px;border:1px solid rgb(var(--rgb-accent) / .5);border-radius:var(--r);background:rgb(var(--rgb-accent) / .06);padding:18px 20px;}
+  .need ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;color:var(--text-mid);}
+  .need li::marker{color:var(--cyan);}
+  .need strong{color:var(--text-hi);}
   .lede{color:var(--text-dim);max-width:62ch;margin:10px 0 0;}
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:22px;}
   .card{border:1px solid rgb(var(--rgb-primary) / .45);border-radius:var(--r);background:linear-gradient(180deg,rgb(var(--rgb-panel) / .9),rgb(var(--rgb-void) / .92));padding:20px 20px 22px;display:flex;flex-direction:column;gap:8px;min-width:0;}
@@ -93,6 +101,7 @@ __SHARED_CSS__
   <section class="hero">
     <span class="eyebrow">Skills first, certs optional</span>
     <h1>Skill Training <span>Completed</span></h1>
+    <p class="plain">A free, step-by-step IT study plan. You build one practice lab and prove each skill by making something.</p>
     <p>One home lab and 26 sprints, from Claude, Copilot and IT basics through Windows Server, Azure, Linux, Cisco networking, AWS, cloud, security and AI security. Each sprint ends with something you built and someone else can check. Certifications are optional exams along the way.</p>
     <div class="ctas"><a class="btn btn-primary" href="#choose">Find my track</a><a class="btn btn-ghost" href="__ZIP_URL__">Download the study kit (ZIP)</a></div>
   </section>
@@ -106,6 +115,32 @@ __SHARED_CSS__
     </div>
     <p class="lede" style="margin-top:22px">This site is a syllabus with labs. It has no lessons of its own: the teaching comes from Microsoft Learn, CompTIA, Cisco and the other official sources linked on the <a href="resources.html">Resources</a> page. Each sprint tells you what to build and how to prove it. Add Claude as a coach, as described under <a href="#kit">Take it with you</a>, and the plan becomes guided study.</p>
     <p class="lede">The kit is free and public on GitHub, so you can read, copy and correct any of it.</p>
+  </section>
+
+  <section id="words">
+    <h2>Words used here</h2>
+    <dl class="words">
+      <div><dt>Sprint</dt><dd>One block of study, 2 to 4 weeks at about 8 hours a week, that ends with something you build.</dd></div>
+      <div><dt>Deliverable</dt><dd>What you build or write at the end of a sprint to prove the skill, such as a working server or a written troubleshooting ticket.</dd></div>
+      <div><dt>Track</dt><dd>A path through the sprints for one goal. All tracks use the same sprints; each one picks a different set.</dd></div>
+      <div><dt>Gate</dt><dd>A review week followed by an optional certification exam.</dd></div>
+      <div><dt>Lab</dt><dd>Your practice environment, mostly virtual computers on your own PC, where you can build and break things safely.</dd></div>
+      <div><dt>Certification</dt><dd>A credential you earn by passing an exam from a company such as CompTIA, Microsoft or Cisco. All of them are optional here.</dd></div>
+    </dl>
+  </section>
+
+  <section id="need">
+    <h2>What you need</h2>
+    <div class="need">
+      <ul>
+        <li><strong>Time:</strong> about 8 hours a week. The <a href="calendar.html">study calendar</a> lets you pick your own pace.</li>
+        <li><strong>A computer for the full lab:</strong> 32 GB of RAM, about 500 GB of free SSD space and VMware Workstation Pro, which is free (the download needs a free Broadcom account). Track F needs less: a spare PC you can take apart, plus a PC that runs one or two virtual machines.</li>
+        <li><strong>Free accounts:</strong> Claude (the free plan covers C1 and C3), a free Azure account for the Azure sprints and, for Track H, a new AWS account of your own. Set a budget alert before you create anything in either cloud.</li>
+        <li><strong>Two items that cost money or ask for a card:</strong> C2 (Track I) needs a paid Claude plan or an Anthropic Console account. P2 (Track J) needs a one-month Microsoft 365 Business free trial, which takes a card and becomes a paid subscription unless you cancel before it ends.</li>
+        <li><strong>Git:</strong> you do not need it to start. Foundations learners keep each deliverable in a plain folder with screenshots and notes. S0 teaches Git.</li>
+        <li><strong>Exams:</strong> optional. Each track shows the US list price of its exams.</li>
+      </ul>
+    </div>
   </section>
 
   <section id="tracks">
@@ -123,7 +158,6 @@ __SHARED_CSS__
 
   <section id="sprints">
     <h2>The 26 sprints</h2>
-    <p class="lede">C1 starts every track: it teaches you to use Claude well for study and IT work, and C2 and C3 go further in Track I. P1 to P3 are the Copilot sprints: P1 is in Tracks A, B, D, E and J, P2 in Tracks B and J, and P3 in Track J. F1 to F3 are the Foundations sprints, for people new to IT. The core sprints, S0 to S13, start with Windows and Azure so the AZ-802 exam comes early, and each one adds a short Linux lab alongside the Windows work. N1 is the Cisco sprint for Track G, A1 the AWS sprint for Track H, and X1 the AI security sprint for Track K.</p>
     <div class="sprints">__SPRINT_ROWS__</div>
     <script>if (window.matchMedia("(min-width: 700px)").matches) document.querySelectorAll("details.sprint").forEach(function (d) { d.open = true; });</script>
   </section>
